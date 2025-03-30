@@ -587,7 +587,8 @@ include_once("components/header.php");
       </div>
       <div class="col-lg-6">
         <div class="contact-us-content">
-          <form id="contact-form" action="" method="post">
+
+          <form id="contact-form" action="thankyou.php" method="POST">
             <div class="row">
               <div class="col-lg-12">
                 <fieldset>
@@ -602,7 +603,7 @@ include_once("components/header.php");
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea required>
                 </fieldset>
               </div>
               <div class="col-lg-12">
@@ -612,6 +613,7 @@ include_once("components/header.php");
               </div>
             </div>
           </form>
+
         </div>
       </div>
     </div>

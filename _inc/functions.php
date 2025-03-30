@@ -24,6 +24,9 @@ function add_stylesheets()
     case "index":
       echo '<link rel="stylesheet" href="assets/css/owl.css">';
       break;
+    case "thankyou":
+      echo '<link rel="stylesheet" href="assets/css/owl.css">';
+      break;
   }
 }
 
@@ -36,6 +39,11 @@ function add_scripts()
 
   switch ($page_name) {
     case "index":
+      echo '<script src="assets/js/owl-carousel.js"></script>';
+      echo '<script src="assets/js/custom.js"></script>';
+      echo '<script src="assets/js/counter.js"></script>';
+      break;
+    case "thankyou":
       echo '<script src="assets/js/owl-carousel.js"></script>';
       echo '<script src="assets/js/custom.js"></script>';
       echo '<script src="assets/js/counter.js"></script>';

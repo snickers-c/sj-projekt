@@ -50,7 +50,7 @@ https://templatemo.com/tm-586-scholar
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
               <h1>Scholar</h1>
             </a>
             <!-- ***** Logo End ***** -->
