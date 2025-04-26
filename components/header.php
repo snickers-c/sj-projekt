@@ -1,5 +1,5 @@
 <?php
-require_once("_inc/functions.php");
+require_once("_inc/autoload.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,9 @@ require_once("_inc/functions.php");
   <!-- Bootstrap core CSS -->
   <!-- Additional CSS Files -->
   <?php
-  add_stylesheets();
+  $menu = new Menu();
+  echo $menu->addStylesheets();
+
   ?>
   <!--
 
@@ -66,15 +68,11 @@ https://templatemo.com/tm-586-scholar
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <?php
-              $pages = array(
-                "Home" => "#top",
-                "Services" => "#services",
-                "Courses" => "#courses",
-                "Team" => "#team",
-                "Events" => "#events",
-                "Register Now!" => "#contact"
-              );
-              echo load_menu($pages);
+              echo $menu->getMenu();
+              // $menuItems = $menu->getMenu();
+              // foreach ($menuItems as $item) {
+              //   echo '<li class="scroll-to-section"><a href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
+              // }
               ?>
             </ul>
             <a class='menu-trigger'>

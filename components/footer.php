@@ -10,7 +10,7 @@
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
 <?php
-add_scripts();
+echo $menu->addScripts();
 ?>
 
 </body>
