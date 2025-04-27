@@ -1,7 +1,7 @@
 <?php
 require_once("_inc/autoload.php");
 
-// $db = new Database();
+$db = new Database();
 ?>
 
 <!DOCTYPE html>

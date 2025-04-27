@@ -27,7 +27,7 @@ class Menu
     $pageName = basename($_SERVER["SCRIPT_NAME"], ".php");
     $header = '<header class="header-area header-sticky';
 
-    if ($pageName != "admin") {
+    if ($pageName == "index") {
       $header .= '">';
     } else {
       $header .= ' background-header">';
@@ -64,6 +64,7 @@ class Menu
         $result .= '<link rel="stylesheet" href="assets/css/owl.css">';
         break;
       case "admin":
+      case "admin-create":
         $result .= '<link rel="stylesheet" href="assets/css/custom.css">';
         break;
     }
@@ -92,6 +93,7 @@ class Menu
         $result .= '<script src="assets/js/counter.js"></script>';
         break;
       case "admin":
+      case "admin-create":
         $result .= '<script src="assets/js/custom.js"></script>';
         break;
     }

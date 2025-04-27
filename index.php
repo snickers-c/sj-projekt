@@ -418,33 +418,23 @@ include_once("components/header.php");
     <div class="row">
       <div class="col-lg-7">
         <div class="owl-carousel owl-testimonials">
-          <div class="item">
-            <p>“Please tell your friends or collegues about TemplateMo website. Anyone can access the website to
-              download free templates. Thank you for visiting.”</p>
-            <div class="author">
-              <img src="assets/images/testimonial-author.jpg" alt="">
-              <span class="category">Full Stack Master</span>
-              <h4>Claude David</h4>
+          <?php
+          $testimonial = new Testimonial($db);
+          $testimonialItems = $testimonial->readTestimonial();
+
+          foreach ($testimonialItems as $row) {
+            echo '
+            <div class="item">
+              <p>' . $row["text"] . '</p>
+              <div class="author">
+                <img src="' . $row["image"] . '" alt="">
+                <span class="category">' . $row["occupation"] . '</span>
+                <h4>' . $row["first_name"] . ' ' . $row["last_name"] . '</h4>
+              </div>
             </div>
-          </div>
-          <div class="item">
-            <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Quis ipsum suspendisse ultrices gravid.”</p>
-            <div class="author">
-              <img src="assets/images/testimonial-author.jpg" alt="">
-              <span class="category">UI Expert</span>
-              <h4>Thomas Jefferson</h4>
-            </div>
-          </div>
-          <div class="item">
-            <p>“Scholar is free website template provided by TemplateMo for educational related websites. This CSS
-              layout is based on Bootstrap v5.3.0 framework.”</p>
-            <div class="author">
-              <img src="assets/images/testimonial-author.jpg" alt="">
-              <span class="category">Digital Animator</span>
-              <h4>Stella Blair</h4>
-            </div>
-          </div>
+            ';
+          }
+          ?>
         </div>
       </div>
       <div class="col-lg-5 align-self-center">
