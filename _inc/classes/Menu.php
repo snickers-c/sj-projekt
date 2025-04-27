@@ -22,6 +22,20 @@ class Menu
     $this->menuItems = $menuItems;
   }
 
+  public function header()
+  {
+    $pageName = basename($_SERVER["SCRIPT_NAME"], ".php");
+    $header = '<header class="header-area header-sticky';
+
+    if ($pageName != "admin") {
+      $header .= '">';
+    } else {
+      $header .= ' background-header">';
+    }
+
+    return $header;
+  }
+
   public function getMenu()
   {
     $result = "";
@@ -49,6 +63,9 @@ class Menu
       case "thankyou":
         $result .= '<link rel="stylesheet" href="assets/css/owl.css">';
         break;
+      case "admin":
+        $result .= '<link rel="stylesheet" href="assets/css/custom.css">';
+        break;
     }
 
     return $result;
@@ -73,6 +90,9 @@ class Menu
         $result .= '<script src="assets/js/owl-carousel.js"></script>';
         $result .= '<script src="assets/js/custom.js"></script>';
         $result .= '<script src="assets/js/counter.js"></script>';
+        break;
+      case "admin":
+        $result .= '<script src="assets/js/custom.js"></script>';
         break;
     }
 
