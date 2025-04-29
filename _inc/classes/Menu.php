@@ -63,10 +63,10 @@ class Menu
       case "thankyou":
         $result .= '<link rel="stylesheet" href="assets/css/owl.css">';
         break;
-      case "admin":
-      case "admin-create":
-        $result .= '<link rel="stylesheet" href="assets/css/custom.css">';
-        break;
+        // case "admin":
+        // case "admin-create":
+        //   $result .= '<link rel="stylesheet" href="assets/css/custom.css">';
+        //   break;
     }
 
     return $result;
@@ -80,21 +80,17 @@ class Menu
     $result .= '<script src="vendor/jquery/jquery.min.js"></script>';
     $result .= '<script src="vendor/bootstrap/js/bootstrap.min.js"></script>';
     $result .= '<script src="assets/js/isotope.min.js"></script>';
+    $result .= '<script src="assets/js/custom.js"></script>';
+
 
     switch ($pageName) {
       case "index":
         $result .= '<script src="assets/js/owl-carousel.js"></script>';
-        $result .= '<script src="assets/js/custom.js"></script>';
         $result .= '<script src="assets/js/counter.js"></script>';
         break;
       case "thankyou":
         $result .= '<script src="assets/js/owl-carousel.js"></script>';
-        $result .= '<script src="assets/js/custom.js"></script>';
         $result .= '<script src="assets/js/counter.js"></script>';
-        break;
-      case "admin":
-      case "admin-create":
-        $result .= '<script src="assets/js/custom.js"></script>';
         break;
     }
 
