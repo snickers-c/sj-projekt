@@ -9,12 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $text = $_POST['text'];
   $image = $_POST['image'];
 
-  try {
-    $testimonial->createTestimonial($firstName, $lastName, $occupation, $text, $image);
+  if ($testimonial->createTestimonial($firstName, $lastName, $occupation, $text, $image)) {
     header('Location: admin.php');
     exit;
-  } catch (PDOException $e) {
-    echo "Inserting of testimonial failed " . $e;
+  } else {
+    echo "Inserting of testimonial failed";
     exit;
   }
 }

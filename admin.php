@@ -3,6 +3,15 @@ include_once("components/header.php");
 $testimonial = new Testimonial($db);
 $testimonialItems = $testimonial->readTestimonial();
 
+if (isset($_GET['delete'])) {
+  if ($testimonial->deleteTestimonial($_GET['delete'])) {
+    header("Location: admin.php");
+    exit;
+  } else {
+    echo "Record failed to be deleted.";
+  }
+}
+
 ?>
 <div class="header-text my-5">
   <br>
@@ -26,13 +35,16 @@ $testimonialItems = $testimonial->readTestimonial();
     <tbody>
       <?php
       foreach ($testimonialItems as $row) {
+        $id = $row['id_testimonial'];
         echo '<tr>';
-        echo '<td>' . $row['id_testimonial'] . '</td>';
+        echo '<td>' . $id . '</td>';
         echo '<td>' . $row['first_name'] . '</td>';
         echo '<td>' . $row['last_name'] . '</td>';
         echo '<td>' . $row['occupation'] . '</td>';
         echo '<td>' . $row['text'] . '</td>';
         echo '<td>' . $row['image'] . '</td>';
+        echo '<td><a href="admin-update.php?id=' . $id . '">Edit</a></td>';
+        echo '<td><a href="?delete=' . $id . '">Delete</a></td>';
         echo '</tr>';
       }
       ?>

@@ -4,7 +4,7 @@ class Testimonial
 
 
   private $db;
-
+  private $defaultImage = "assets/images/default-avatar.png";
 
   public function __construct(Database $database)
   {
@@ -16,10 +16,19 @@ class Testimonial
     }
   }
 
+  public function findTestimonial($id)
+  {
+    $stmt = $this->db->prepare("SELECT * FROM testimonial WHERE id_testimonial = :id");
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
   public function createTestimonial($firstName, $lastName, $occupation, $text, $image)
   {
     if (empty($image)) {
-      $image = "assets/images/default-avatar.png";
+      $image = $this->defaultImage;
     }
 
     $stmt = $this->db->prepare("INSERT INTO testimonial(first_name, last_name, occupation, text, image)
@@ -30,7 +39,7 @@ class Testimonial
     $stmt->bindParam(':text', $text, PDO::PARAM_STR);
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
 
-    $stmt->execute();
+    return $stmt->execute();
   }
 
   public function readTestimonial()
@@ -41,7 +50,30 @@ class Testimonial
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function updateTestimonial() {}
+  public function updateTestimonial($id, $firstName, $lastName, $occupation, $text, $image)
+  {
+    if (empty($image)) {
+      $image = $this->defaultImage;
+    }
 
-  public function deleteTestimonial() {}
+    $stmt = $this->db->prepare("UPDATE testimonial 
+      SET first_name = :firstName, last_name = :lastName, occupation = :occupation, text = :text, image = :image
+      WHERE id_testimonial = :id");
+    $stmt->bindParam(":firstName", $firstName, PDO::PARAM_STR);
+    $stmt->bindParam(":lastName", $lastName, PDO::PARAM_STR);
+    $stmt->bindParam(":occupation", $occupation, PDO::PARAM_STR);
+    $stmt->bindParam(":text", $text, PDO::PARAM_STR);
+    $stmt->bindParam(":image", $image, PDO::PARAM_STR);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+    return $stmt->execute();
+  }
+
+  public function deleteTestimonial($id)
+  {
+    $stmt = $this->db->prepare("DELETE FROM testimonial WHERE id_testimonial = :id");
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+    return $stmt->execute();
+  }
 }
