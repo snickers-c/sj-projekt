@@ -17,9 +17,9 @@ include_once("components/header.php");
                 <div class="main-button">
                   <a href="#">Request Demo</a>
                 </div>
-                <div class="icon-button">
+                <!-- <div class="icon-button">
                   <a href="#"><i class="fa fa-play"></i> What's Scholar?</a>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -33,9 +33,9 @@ include_once("components/header.php");
                 <div class="main-button">
                   <a href="#">Request Demo</a>
                 </div>
-                <div class="icon-button">
+                <!-- <div class="icon-button">
                   <a href="#"><i class="fa fa-play"></i> What's the best result?</a>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -49,9 +49,9 @@ include_once("components/header.php");
                 <div class="main-button">
                   <a href="#">Request Demo</a>
                 </div>
-                <div class="icon-button">
+                <!-- <div class="icon-button">
                   <a href="#"><i class="fa fa-play"></i> What's Online Course?</a>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

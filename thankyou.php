@@ -63,11 +63,11 @@ include_once("components/header.php");
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  $meno = $_POST["name"];
+  $name = $_POST["name"];
   $email = $_POST["email"];
   $text = $_POST["message"];
 
-  $arr = array($meno, $email, $text);
+  $arr = array($name, $email, $text);
   $i = 0;
   foreach ($arr as $item) {
     if (empty($item)) {
@@ -76,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $i++;
   }
 
-  echo "<h1>Ďakujeme za správu $arr[0], informujeme Vás na email: $arr[1]</h1>";
-  echo "<h1>Správa: $arr[2]</h1>";
+  echo "<h1>Thank you for contacting us $arr[0], we will get in touch with you on your email: $arr[1]</h1>";
+  echo "<h1>Your message: $arr[2]</h1>";
 }
 
 include_once("components/footer.php");

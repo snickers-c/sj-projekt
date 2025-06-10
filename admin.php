@@ -17,6 +17,20 @@ if (isset($_GET['delete'])) {
   <br>
 </div>
 <div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Testimonials</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Banners</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Statistics</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+    </li>
+  </ul>
   <h1>Testimonials</h1>
   <a href="admin-create.php">Create</a>
   <table class="table table-bordered">

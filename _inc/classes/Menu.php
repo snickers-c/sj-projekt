@@ -80,8 +80,6 @@ class Menu
     $result .= '<script src="vendor/jquery/jquery.min.js"></script>';
     $result .= '<script src="vendor/bootstrap/js/bootstrap.min.js"></script>';
     $result .= '<script src="assets/js/isotope.min.js"></script>';
-    $result .= '<script src="assets/js/custom.js"></script>';
-
 
     switch ($pageName) {
       case "index":
@@ -93,6 +91,7 @@ class Menu
         $result .= '<script src="assets/js/counter.js"></script>';
         break;
     }
+    $result .= '<script src="assets/js/custom.js"></script>';
 
     return $result;
   }

@@ -11,7 +11,7 @@ class Testimonial
     try {
       $this->db = $database->getConnection();
     } catch (PDOException $e) {
-      echo "získavanie pripojenia zlyhalo " . $e->getMessage();
+      echo "acquiring connection failed " . $e->getMessage();
       exit;
     }
   }

@@ -4,9 +4,9 @@ class Database
 
 
   private $host = "localhost";
-  private $db = "scholar_db";
+  private $db = "db_scholar";
   private $user = "root";
-  private $pass = "";
+  private $pass = "root";
   private $charset = "utf8";
   private $pdo;
 
@@ -19,7 +19,7 @@ class Database
       $this->pdo = new PDO($dsn, $this->user, $this->pass);
       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
-      echo "pripojenie zlyhalo " . $e->getMessage();
+      echo "connection failed " . $e->getMessage();
       exit;
     }
   }
