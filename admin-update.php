@@ -1,24 +1,53 @@
 <?php
 include_once("components/header.php");
-$testimonial = new Testimonial($db);
 
 $id = $_GET['id'];
-$currentTestimonial;
-if (isset($id)) {
-  $currentTestimonial = $testimonial->findTestimonial($id);
+
+if (($_GET['tab'] ?? '') == "testimonials") {
+  $testimonial = new Testimonial($db);
+
+  $current;
+  if (isset($id)) {
+    $current = $testimonial->findTestimonial($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $occupation = $_POST['occupation'];
+    $desc = $_POST['desc'];
+    $image = $_POST['image'];
+    $active = $_POST['active'];
+
+    if ($testimonial->updateTestimonial($id, $firstName, $lastName, $occupation, $desc, $image, $active)) {
+      header('Location: admin.php?tab=testimonials');
+      exit;
+    } else {
+      $err = "Update of data failed";
+    }
+  }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $firstName = $_POST['firstName'];
-  $lastName = $_POST['lastName'];
-  $occupation = $_POST['occupation'];
-  $text = $_POST['text'];
-  $image = $_POST['image'];
-  if ($testimonial->updateTestimonial($id, $firstName, $lastName, $occupation, $text, $image)) {
-    header("Location: admin.php");
-    exit;
-  } else {
-    echo "Update of data failed.";
+if (($_GET['tab'] ?? '') == "users") {
+  $user = new User($db);
+
+  $current;
+  if (isset($id)) {
+    $current = $user->findUser($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $role = $_POST['role'];
+    $email = $_POST['email'];
+
+    if ($user->updateUser($id, $firstName, $lastName, $role, $email)) {
+      header('Location: admin.php?tab=users');
+      exit;
+    } else {
+      $err = "Update of data failed";
+    }
   }
 }
 ?>
@@ -26,37 +55,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <br>
 </div>
 <div class="container">
-  <h1>Create new testimonial</h1>
+  <?php if (($_GET['tab'] ?? '') == "testimonials"): ?>
+    <h1>Update testimonial</h1>
 
-  <form method="POST">
-    <div class="form-group">
-      <label for="exampleInputEmail1">First Name</label>
-      <input value="<?php echo $currentTestimonial['first_name'] ?? '' ?>" name="firstName" type="text"
-        class="form-control" placeholder="First Name" required>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Last Name</label>
-      <input value="<?php echo $currentTestimonial['last_name'] ?? '' ?>" name="lastName" type="text"
-        class="form-control" placeholder="Last Name" required>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Occupation</label>
-      <input value="<?php echo $currentTestimonial['occupation'] ?? '' ?>" name="occupation" type="text"
-        class="form-control" placeholder="Occupation" required>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Text</label>
-      <input value="<?php echo $currentTestimonial['text'] ?? '' ?>" name="text" type="text" class="form-control"
-        placeholder="Text" required>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Image</label>
-      <input value="<?php echo $currentTestimonial['image'] ?? '' ?>" name="image" type="text" class="form-control"
-        placeholder="Not required">
-    </div>
+    <form method="POST">
+      <div class="form-group">
+        <label>First Name</label>
+        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+          placeholder="First Name" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+          placeholder="Last Name" required>
+      </div>
+      <div class="form-group">
+        <label>Occupation</label>
+        <input value="<?php echo $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
+          placeholder="Occupation" required>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+          placeholder="Description" required>
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+          placeholder="Not required">
+      </div>
+      <div class="form-group">
+        <label>Active</label>
+        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+          placeholder="1 or 0" required>
+      </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Submit</button>
-  </form>
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "users"): ?>
+    <h1>Update user</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>First Name</label>
+        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+          placeholder="First Name" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+          placeholder="Last Name" required>
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <input value="<?php echo $current['role'] ?? '' ?>" name="role" type="text" class="form-control"
+          placeholder="Role" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input value="<?php echo $current['email'] ?? '' ?>" name="email" type="email" class="form-control"
+          placeholder="Email" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
 </div>
 <?php
 include_once("components/footer.php");

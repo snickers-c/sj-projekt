@@ -1,6 +1,6 @@
 <?php
 require_once("_inc/autoload.php");
-
+session_start();
 $db = new Database();
 ?>
 

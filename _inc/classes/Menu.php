@@ -15,7 +15,8 @@ class Menu
         ['label' => 'Courses', 'link' => '#courses'],
         ['label' => 'Team', 'link' => '#team'],
         ['label' => 'Events', 'link' => '#events'],
-        ['label' => 'Register Now!', 'link' => '#contact']
+        ['label' => 'Contact us', 'link' => '#contact'],
+        ['label' => 'Login', 'link' => 'login.php']
       ];
     }
 
@@ -41,6 +42,15 @@ class Menu
     $result = "";
     foreach ($this->menuItems as $item) {
       $result .= '<li class="scroll-to-section"><a href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
+    }
+    return $result;
+  }
+
+  public function getTabs($active)
+  {
+    $result = "";
+    foreach ($this->menuItems as $tab) {
+      $result .= '<a class="nav-link ' . (($active == $tab['link']) ? 'active' : '')  . '" aria-current="page" href="?tab=' . $tab['link'] . '">' . $tab['label'] . '</a>';
     }
     return $result;
   }

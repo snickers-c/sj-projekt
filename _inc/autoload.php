@@ -1,4 +1,7 @@
 <?php
-require_once("_inc/classes/Menu.php");
-require_once("_inc/classes/Database.php");
-require_once("_inc/classes/Testimonial.php");
+$path = "_inc/classes";
+include_once($path . "/Menu.php");
+require_once($path . "/Database.php");
+include_once($path . "/Testimonial.php");
+include_once($path . "/Authenticate.php");
+include_once($path . "/User.php");
