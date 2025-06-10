@@ -423,9 +423,10 @@ include_once("components/header.php");
           $testimonialItems = $testimonial->readTestimonial();
 
           foreach ($testimonialItems as $row) {
+            if ($row['active'] == 0) continue;
             echo '
             <div class="item">
-              <p>' . $row["text"] . '</p>
+              <p>' . $row["description"] . '</p>
               <div class="author">
                 <img src="' . $row["image"] . '" alt="">
                 <span class="category">' . $row["occupation"] . '</span>

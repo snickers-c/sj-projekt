@@ -62,10 +62,12 @@ if (($_GET['tab'] ?? '') == "users") {
       <thead>
         <tr>
           <th>ID</th>
+          <th>creator ID</th>
           <th>First name</th>
           <th>Last name</th>
           <th>Occupation</th>
-          <th>Text</th>
+          <th>Description</th>
+          <th>Active</th>
           <th>Image path</th>
           <th>Edit</th>
           <th>Delete</th>
@@ -77,10 +79,12 @@ if (($_GET['tab'] ?? '') == "users") {
           $id = $row['id_testimonial'];
           echo '<tr>';
           echo '<td>' . $id . '</td>';
+          echo '<td>' . $row['creator'] . '</td>';
           echo '<td>' . $row['first_name'] . '</td>';
           echo '<td>' . $row['last_name'] . '</td>';
           echo '<td>' . $row['occupation'] . '</td>';
-          echo '<td>' . $row['text'] . '</td>';
+          echo '<td>' . $row['description'] . '</td>';
+          echo '<td>' . $row['active'] . '</td>';
           echo '<td>' . $row['image'] . '</td>';
           echo '<td><a href="admin-update.php?tab=testimonials&id=' . $id . '">Edit</a></td>';
           echo '<td><a href="?tab=testimonials&delete=' . $id . '">Delete</a></td>';

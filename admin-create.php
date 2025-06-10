@@ -8,10 +8,11 @@ if (($_GET['tab'] ?? '') == "testimonials") {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $occupation = $_POST['occupation'];
-    $text = $_POST['text'];
+    $desc = $_POST['desc'];
     $image = $_POST['image'];
+    $active = $_POST['active'];
 
-    if ($testimonial->createTestimonial($firstName, $lastName, $occupation, $text, $image)) {
+    if ($testimonial->createTestimonial($_SESSION['userID'], $firstName, $lastName, $occupation, $desc, $image, $active)) {
       header('Location: admin.php?tab=testimonials');
       exit;
     } else {
@@ -51,61 +52,65 @@ if (($_GET['tab'] ?? '') == "users") {
   ?>
 
   <?php if (($_GET['tab'] ?? '') == "testimonials"): ?>
-  <h1>Create new testimonial</h1>
+    <h1>Create new testimonial</h1>
 
-  <form method="POST">
-    <div class="form-group">
-      <label>First Name</label>
-      <input name="firstName" type="text" class="form-control" placeholder="First Name" required>
-    </div>
-    <div class="form-group">
-      <label>Last Name</label>
-      <input name="lastName" type="text" class="form-control" placeholder="Last Name" required>
-    </div>
-    <div class="form-group">
-      <label>Occupation</label>
-      <input name="occupation" type="text" class="form-control" placeholder="Occupation" required>
-    </div>
-    <div class="form-group">
-      <label>Text</label>
-      <input name="text" type="text" class="form-control" placeholder="Text" required>
-    </div>
-    <div class="form-group">
-      <label>Image</label>
-      <input name="image" type="text" class="form-control" placeholder="Not required">
-    </div>
+    <form method="POST">
+      <div class="form-group">
+        <label>First Name</label>
+        <input name="firstName" type="text" class="form-control" placeholder="First Name" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input name="lastName" type="text" class="form-control" placeholder="Last Name" required>
+      </div>
+      <div class="form-group">
+        <label>Occupation</label>
+        <input name="occupation" type="text" class="form-control" placeholder="Occupation" required>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input name="desc" type="text" class="form-control" placeholder="Description" required>
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <input name="image" type="text" class="form-control" placeholder="Not required">
+      </div>
+      <div class="form-group">
+        <label>Active</label>
+        <input name="active" type="text" class="form-control" placeholder="1 or 0" required>
+      </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Submit</button>
-  </form>
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "users"): ?>
-  <h1>Create new user</h1>
+    <h1>Create new user</h1>
 
-  <form method="POST">
-    <div class="form-group">
-      <label>First Name</label>
-      <input name="firstName" type="text" class="form-control" placeholder="First Name" required>
-    </div>
-    <div class="form-group">
-      <label>Last Name</label>
-      <input name="lastName" type="text" class="form-control" placeholder="Last Name" required>
-    </div>
-    <div class="form-group">
-      <label>Role</label>
-      <input name="role" type="text" class="form-control" placeholder="Role" required>
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input name="email" type="email" class="form-control" placeholder="Email" required>
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input name="password" type="password" class="form-control" placeholder="Password" required>
-    </div>
+    <form method="POST">
+      <div class="form-group">
+        <label>First Name</label>
+        <input name="firstName" type="text" class="form-control" placeholder="First Name" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input name="lastName" type="text" class="form-control" placeholder="Last Name" required>
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <input name="role" type="text" class="form-control" placeholder="Role" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input name="email" type="email" class="form-control" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input name="password" type="password" class="form-control" placeholder="Password" required>
+      </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Submit</button>
-  </form>
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
   <?php endif ?>
 </div>
 <?php

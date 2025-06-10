@@ -57,7 +57,7 @@ class User
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
-    if ($stmt->fetch(PDO::FETCH_ASSOC)) {
+    if ($stmt->fetch()) {
       return false;
     }
 
