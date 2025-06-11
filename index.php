@@ -208,18 +208,28 @@ include_once("components/header.php");
       <li>
         <a class="is_active" href="#!" data-filter="*">Show All</a>
       </li>
-      <li>
-        <a href="#!" data-filter=".design">Webdesign</a>
-      </li>
-      <li>
+      <?php
+      $tag = new Tag($db);
+      $tagItems = $tag->readTag();
+
+      foreach ($tagItems as $row) {
+        echo '
+            <li>
+              <a href="#!" data-filter=".' . $row['name'] . '">' . $row['name'] . '</a>
+            </li>
+          ';
+      }
+      ?>
+
+      <!-- <li>
         <a href="#!" data-filter=".development">Development</a>
       </li>
       <li>
         <a href="#!" data-filter=".wordpress">Wordpress</a>
-      </li>
+      </li> -->
     </ul>
     <div class="row event_box">
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
+      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 Webdesign">
         <div class="events_item">
           <div class="thumb">
             <a href="#"><img src="assets/images/course-01.jpg" alt=""></a>
@@ -249,7 +259,7 @@ include_once("components/header.php");
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design wordpress">
+      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 Webdesign wordpress">
         <div class="events_item">
           <div class="thumb">
             <a href="#"><img src="assets/images/course-03.jpg" alt=""></a>
@@ -294,7 +304,7 @@ include_once("components/header.php");
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress design">
+      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress Webdesign">
         <div class="events_item">
           <div class="thumb">
             <a href="#"><img src="assets/images/course-06.jpg" alt=""></a>

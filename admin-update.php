@@ -50,6 +50,26 @@ if (($_GET['tab'] ?? '') == "users") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "tags") {
+  $tag = new Tag($db);
+
+  $current;
+  if (isset($id)) {
+    $current = $tag->findTag($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+
+    if ($tag->updateTag($id, $name)) {
+      header('Location: admin.php?tab=tags');
+      exit;
+    } else {
+      $err = "Update of data failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -117,6 +137,20 @@ if (($_GET['tab'] ?? '') == "users") {
         <label>Email</label>
         <input value="<?php echo $current['email'] ?? '' ?>" name="email" type="email" class="form-control"
           placeholder="Email" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "tags"): ?>
+    <h1>Update course tag</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>Tag name</label>
+        <input value="<?php echo $current['name'] ?? '' ?>" name="name" type="text" class="form-control"
+          placeholder="Tag name" required>
       </div>
 
       <button type="submit" class="btn btn-primary mt-2">Submit</button>

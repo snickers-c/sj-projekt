@@ -35,6 +35,20 @@ if (($_GET['tab'] ?? '') == "users") {
   }
 }
 
+if (($_GET['tab'] ?? '') == "tags") {
+  $tag = new Tag($db);
+  $tagItems = $tag->readTag();
+
+  if (isset($_GET['delete'])) {
+    if ($tag->deleteTag($_GET['delete'])) {
+      header("Location: admin.php?tab=tags");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
+
 
 ?>
 <div class="header-text my-5">
@@ -46,8 +60,9 @@ if (($_GET['tab'] ?? '') == "users") {
   <ul class="nav nav-tabs">
     <?php
     $tabItems = [
+      ['label' => 'Users', 'link' => 'users'],
       ['label' => 'Testimonials', 'link' => 'testimonials'],
-      ['label' => 'Users', 'link' => 'users']
+      ['label' => 'Course tags', 'link' => 'tags']
     ];
     $tabs = new Menu($tabItems);
     echo $tabs->getTabs($_GET['tab'] ?? '');
@@ -124,6 +139,34 @@ if (($_GET['tab'] ?? '') == "users") {
           echo '<td>' . $row['created_at'] . '</td>';
           echo '<td><a href="admin-update.php?tab=users&id=' . $id . '">Edit</a></td>';
           echo '<td><a href="?tab=users&delete=' . $id . '">Delete</a></td>';
+          echo '</tr>';
+        }
+        ?>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "tags"): ?>
+    <h1>Course tags</h1>
+    <a href="admin-create.php?tab=tags">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($tagItems as $row) {
+          $id = $row['id_tag'];
+          echo '<tr>';
+          echo '<td>' . $id . '</td>';
+          echo '<td>' . $row['name'] . '</td>';
+          echo '<td><a href="admin-update.php?tab=tags&id=' . $id . '">Edit</a></td>';
+          echo '<td><a href="?tab=tags&delete=' . $id . '">Delete</a></td>';
           echo '</tr>';
         }
         ?>

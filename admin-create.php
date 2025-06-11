@@ -39,6 +39,21 @@ if (($_GET['tab'] ?? '') == "users") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "tags") {
+  $tag = new Tag($db);
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+
+    if ($tag->createTag($name)) {
+      header('Location: admin.php?tab=tags');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -107,6 +122,19 @@ if (($_GET['tab'] ?? '') == "users") {
       <div class="form-group">
         <label>Password</label>
         <input name="password" type="password" class="form-control" placeholder="Password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "tags"): ?>
+    <h1>Create new tag</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>Tag name</label>
+        <input name="name" type="text" class="form-control" placeholder="Tag name" required>
       </div>
 
       <button type="submit" class="btn btn-primary mt-2">Submit</button>
