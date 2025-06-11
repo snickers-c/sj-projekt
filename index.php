@@ -479,7 +479,7 @@ include_once("components/header.php");
                     <h6>' . $row['price'] . '€</h6>
                   </li>
                 </ul>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
+                <a href="' . $row['id_event'] . '"><i class="fa fa-angle-right"></i></a>
               </div>
             </div>
           </div>

@@ -120,6 +120,31 @@ if (($_GET['tab'] ?? '') == "events") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "courses") {
+  $course = new Course($db);
+  $current;
+
+  if (isset($id)) {
+    $current = $course->findCourse($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $employee = $_POST['employee'];
+    $title = $_POST['title'];
+    $price = $_POST['price'];
+    $image = $_POST['image'];
+    $active = $_POST['active'];
+    $tags = "";
+
+    if ($course->updateCourse($id, $employee, $title, $price, $image, $active, $tags)) {
+      header('Location: admin.php?tab=courses');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -242,7 +267,7 @@ if (($_GET['tab'] ?? '') == "events") {
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "events"): ?>
-    <h1>Create new event</h1>
+    <h1>Update event</h1>
 
     <form method="POST">
       <div class="form-group">
@@ -264,6 +289,40 @@ if (($_GET['tab'] ?? '') == "events") {
         <label>Duration</label>
         <input value="<?php echo $current['duration'] ?? '' ?>" name="duration" type="text" class="form-control"
           placeholder="Duration" required>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input value="<?php echo $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
+          placeholder="Price" required>
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+          placeholder="Image" required>
+      </div>
+      <div class="form-group">
+        <label>Active</label>
+        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+          placeholder="1 or 0" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "courses"): ?>
+    <h1>Update course</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>Employee ID</label>
+        <input value="<?php echo $current['employee'] ?? '' ?>" name="employee" type="text" class="form-control"
+          placeholder="Employee ID" required>
+      </div>
+      <div class="form-group">
+        <label>Title</label>
+        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+          placeholder="Title" required>
       </div>
       <div class="form-group">
         <label>Price</label>

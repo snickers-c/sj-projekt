@@ -94,6 +94,26 @@ if (($_GET['tab'] ?? '') == "events") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "courses") {
+  $course = new Course($db);
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $employee = $_POST['employee'];
+    $title = $_POST['title'];
+    $price = $_POST['price'];
+    $image = $_POST['image'];
+    $active = $_POST['active'];
+    $tags = "";
+
+    if ($course->createCourse($_SESSION['userID'], $employee, $title, $price, $image, $active, $tags)) {
+      header('Location: admin.php?tab=courses');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -229,6 +249,35 @@ if (($_GET['tab'] ?? '') == "events") {
       <div class="form-group">
         <label>Duration</label>
         <input name="duration" type="text" class="form-control" placeholder="Duration" required>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input name="price" type="text" class="form-control" placeholder="Price" required>
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <input name="image" type="text" class="form-control" placeholder="Image" required>
+      </div>
+      <div class="form-group">
+        <label>Active</label>
+        <input name="active" type="text" class="form-control" placeholder="1 or 0" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "courses"): ?>
+    <h1>Create new course</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>Employee ID</label>
+        <input name="employee" type="text" class="form-control" placeholder="Employee ID" required>
+      </div>
+      <div class="form-group">
+        <label>Title</label>
+        <input name="title" type="text" class="form-control" placeholder="Title" required>
       </div>
       <div class="form-group">
         <label>Price</label>

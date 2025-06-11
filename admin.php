@@ -77,6 +77,20 @@ if (($_GET['tab'] ?? '') == "events") {
   }
 }
 
+if (($_GET['tab'] ?? '') == "courses") {
+  $course = new Course($db);
+  $courseItems = $course->readCourse();
+
+  if (isset($_GET['delete'])) {
+    if ($course->deleteCourse($_GET['delete'])) {
+      header("Location: admin.php?tab=courses");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
+
 
 ?>
 <div class="header-text my-5">
@@ -92,7 +106,8 @@ if (($_GET['tab'] ?? '') == "events") {
       ['label' => 'Testimonials', 'link' => 'testimonials'],
       ['label' => 'Course tags', 'link' => 'tags'],
       ['label' => 'Services', 'link' => 'services'],
-      ['label' => 'Events', 'link' => 'events']
+      ['label' => 'Events', 'link' => 'events'],
+      ['label' => 'Courses', 'link' => 'courses']
     ];
     $tabs = new Menu($tabItems);
     echo $tabs->getTabs($_GET['tab'] ?? '');
@@ -279,6 +294,82 @@ if (($_GET['tab'] ?? '') == "events") {
           echo '<td><a href="?tab=events&delete=' . $id . '">Delete</a></td>';
           echo '</tr>';
         }
+        ?>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "courses"): ?>
+    <h1>Courses</h1>
+    <a href="admin-create.php?tab=courses">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>creator ID</th>
+          <th>Employee</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+          <!-- <th>ID</th>
+          <th>creator ID</th>
+          <th>Employee</th>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Capacity</th>
+          <th>Used capacity</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($courseItems as $row) {
+          $id = $row['c.id_course'];
+          echo '<tr>';
+          echo '<td>' . $id . '</td>';
+          echo '<td>' . $row['c.creator'] . '</td>';
+          echo '<td>' . $row['e.first_name'] . $row['e.last_name'] . '</td>';
+          echo '<td>' . $row['c.title'] . '</td>';
+          echo '<td>';
+          echo '<td>' . $row['c.price'] . '</td>';
+          echo '<td>' . $row['c.image'] . '</td>';
+          echo '<td>' . $row['c.active'] . '</td>';
+          echo '<td><a href="admin-update.php?tab=courses&id=' . $id . '">Edit</a></td>';
+          echo '<td><a href="?tab=courses&delete=' . $id . '">Delete</a></td>';
+          echo '</tr>';
+        }
+        ?>
+        <?php
+        /*foreach ($courseItems as $row) {
+          $id = $row['id_course'];
+          echo '<tr>';
+          echo '<td>' . $id . '</td>';
+          echo '<td>' . $row['c.creator'] . '</td>';
+          echo '<td>' . $row['e.first_name'] . $row['e.last_name'] . '</td>';
+          echo '<td>' . $row['c.title'] . '</td>';
+          echo '<td>';
+          // $tagsResult = "";
+          // foreach ($courseTags as $cT) {
+          //   if ($id == )
+          //   $tagsResult .= $cT['name'] . ', ';
+          // }
+          echo $tagsResult . '</td>';
+          echo '<td>' . $row['date'] . '</td>';
+          echo '<td>' . $row['duration'] . '</td>';
+          echo '<td>' . $row['c.price'] . '</td>';
+          echo '<td>' . $row['c.image'] . '</td>';
+          echo '<td>' . $row['c.active'] . '</td>';
+          echo '<td><a href="admin-update.php?tab=courses&id=' . $id . '">Edit</a></td>';
+          echo '<td><a href="?tab=courses&delete=' . $id . '">Delete</a></td>';
+          echo '</tr>';
+        }*/
         ?>
       </tbody>
     </table>
