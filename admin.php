@@ -49,6 +49,20 @@ if (($_GET['tab'] ?? '') == "tags") {
   }
 }
 
+if (($_GET['tab'] ?? '') == "services") {
+  $service = new Service($db);
+  $serviceItems = $service->readService();
+
+  if (isset($_GET['delete'])) {
+    if ($service->deleteService($_GET['delete'])) {
+      header("Location: admin.php?tab=services");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
+
 
 ?>
 <div class="header-text my-5">
@@ -62,7 +76,8 @@ if (($_GET['tab'] ?? '') == "tags") {
     $tabItems = [
       ['label' => 'Users', 'link' => 'users'],
       ['label' => 'Testimonials', 'link' => 'testimonials'],
-      ['label' => 'Course tags', 'link' => 'tags']
+      ['label' => 'Course tags', 'link' => 'tags'],
+      ['label' => 'Services', 'link' => 'services']
     ];
     $tabs = new Menu($tabItems);
     echo $tabs->getTabs($_GET['tab'] ?? '');
@@ -167,6 +182,44 @@ if (($_GET['tab'] ?? '') == "tags") {
           echo '<td>' . $row['name'] . '</td>';
           echo '<td><a href="admin-update.php?tab=tags&id=' . $id . '">Edit</a></td>';
           echo '<td><a href="?tab=tags&delete=' . $id . '">Delete</a></td>';
+          echo '</tr>';
+        }
+        ?>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "services"): ?>
+    <h1>Services</h1>
+    <a href="admin-create.php?tab=services">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>creator ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Button_link</th>
+          <th>Image</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($serviceItems as $row) {
+          $id = $row['id_service'];
+          echo '<tr>';
+          echo '<td>' . $id . '</td>';
+          echo '<td>' . $row['creator'] . '</td>';
+          echo '<td>' . $row['title'] . '</td>';
+          echo '<td>' . $row['description'] . '</td>';
+          echo '<td>' . $row['button_link'] . '</td>';
+          echo '<td>' . $row['image'] . '</td>';
+          echo '<td>' . $row['active'] . '</td>';
+          echo '<td><a href="admin-update.php?tab=services&id=' . $id . '">Edit</a></td>';
+          echo '<td><a href="?tab=services&delete=' . $id . '">Delete</a></td>';
           echo '</tr>';
         }
         ?>

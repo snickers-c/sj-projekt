@@ -70,6 +70,30 @@ if (($_GET['tab'] ?? '') == "tags") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "services") {
+  $service = new Service($db);
+
+  $current;
+  if (isset($id)) {
+    $current = $service->findService($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $title = $_POST['title'];
+    $desc = $_POST['desc'];
+    $button_link = $_POST['button_link'];
+    $image = $_POST['image'];
+    $active = $_POST['active'];
+
+    if ($service->updateService($id, $title, $desc, $button_link, $image, $active)) {
+      header('Location: admin.php?tab=services');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -151,6 +175,40 @@ if (($_GET['tab'] ?? '') == "tags") {
         <label>Tag name</label>
         <input value="<?php echo $current['name'] ?? '' ?>" name="name" type="text" class="form-control"
           placeholder="Tag name" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "services"): ?>
+    <h1>Update service</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>Title</label>
+        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+          placeholder="Title" required>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+          placeholder="Description" required>
+      </div>
+      <div class="form-group">
+        <label>Button link</label>
+        <input value="<?php echo $current['button_link'] ?? '' ?>" name="button_link" type="text" class="form-control"
+          placeholder="Not Required">
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+          placeholder="Image" required>
+      </div>
+      <div class="form-group">
+        <label>Active</label>
+        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+          placeholder="1 or 0" required>
       </div>
 
       <button type="submit" class="btn btn-primary mt-2">Submit</button>

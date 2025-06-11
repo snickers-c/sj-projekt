@@ -64,48 +64,30 @@ include_once("components/header.php");
 <div class="services section" id="services">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-md-6">
-        <div class="service-item">
-          <div class="icon">
-            <img src="assets/images/service-01.png" alt="online degrees">
-          </div>
-          <div class="main-content">
-            <h4>Online Degrees</h4>
-            <p>Whenever you need free templates in HTML CSS, you just remember TemplateMo website.</p>
-            <div class="main-button">
-              <a href="#">Read More</a>
+      <?php
+      $service = new Service($db);
+      $serviceItems = $service->readService();
+
+      foreach ($serviceItems as $row) {
+        if ($row['active'] == 0) continue;
+        echo '
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <div class="icon">
+                <img src="' . $row['image'] . '" alt="' . $row['title'] . '">
+              </div>
+              <div class="main-content">
+                <h4>' . $row['title'] . '</h4>
+                <p>' . $row['description'] . '</p>
+                <div class="main-button">
+                  <a href="' . $row['button_link'] . '">Read More</a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="service-item">
-          <div class="icon">
-            <img src="assets/images/service-02.png" alt="short courses">
-          </div>
-          <div class="main-content">
-            <h4>Short Courses</h4>
-            <p>You can browse free templates based on different tags such as digital marketing, etc.</p>
-            <div class="main-button">
-              <a href="#">Read More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="service-item">
-          <div class="icon">
-            <img src="assets/images/service-03.png" alt="web experts">
-          </div>
-          <div class="main-content">
-            <h4>Web Experts</h4>
-            <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
-            <div class="main-button">
-              <a href="#">Read More</a>
-            </div>
-          </div>
-        </div>
-      </div>
+          ';
+      }
+      ?>
     </div>
   </div>
 </div>
@@ -220,13 +202,6 @@ include_once("components/header.php");
           ';
       }
       ?>
-
-      <!-- <li>
-        <a href="#!" data-filter=".development">Development</a>
-      </li>
-      <li>
-        <a href="#!" data-filter=".wordpress">Wordpress</a>
-      </li> -->
     </ul>
     <div class="row event_box">
       <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 Webdesign">

@@ -39,7 +39,7 @@ class Testimonial
     $stmt->bindParam(':occupation', $occupation, PDO::PARAM_STR);
     $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
-    $stmt->bindParam(':active', $active, PDO::PARAM_STR);
+    $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
     return $stmt->execute();
   }
