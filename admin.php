@@ -63,6 +63,20 @@ if (($_GET['tab'] ?? '') == "services") {
   }
 }
 
+if (($_GET['tab'] ?? '') == "events") {
+  $event = new Event($db);
+  $eventItems = $event->readEvent();
+
+  if (isset($_GET['delete'])) {
+    if ($event->deleteEvent($_GET['delete'])) {
+      header("Location: admin.php?tab=events");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
+
 
 ?>
 <div class="header-text my-5">
@@ -77,7 +91,8 @@ if (($_GET['tab'] ?? '') == "services") {
       ['label' => 'Users', 'link' => 'users'],
       ['label' => 'Testimonials', 'link' => 'testimonials'],
       ['label' => 'Course tags', 'link' => 'tags'],
-      ['label' => 'Services', 'link' => 'services']
+      ['label' => 'Services', 'link' => 'services'],
+      ['label' => 'Events', 'link' => 'events']
     ];
     $tabs = new Menu($tabItems);
     echo $tabs->getTabs($_GET['tab'] ?? '');
@@ -220,6 +235,48 @@ if (($_GET['tab'] ?? '') == "services") {
           echo '<td>' . $row['active'] . '</td>';
           echo '<td><a href="admin-update.php?tab=services&id=' . $id . '">Edit</a></td>';
           echo '<td><a href="?tab=services&delete=' . $id . '">Delete</a></td>';
+          echo '</tr>';
+        }
+        ?>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "events"): ?>
+    <h1>Events</h1>
+    <a href="admin-create.php?tab=events">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>creator ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($eventItems as $row) {
+          $id = $row['id_event'];
+          echo '<tr>';
+          echo '<td>' . $id . '</td>';
+          echo '<td>' . $row['creator'] . '</td>';
+          echo '<td>' . $row['title'] . '</td>';
+          echo '<td>' . $row['category'] . '</td>';
+          echo '<td>' . $row['date'] . '</td>';
+          echo '<td>' . $row['duration'] . '</td>';
+          echo '<td>' . $row['price'] . '</td>';
+          echo '<td>' . $row['image'] . '</td>';
+          echo '<td>' . $row['active'] . '</td>';
+          echo '<td><a href="admin-update.php?tab=events&id=' . $id . '">Edit</a></td>';
+          echo '<td><a href="?tab=events&delete=' . $id . '">Delete</a></td>';
           echo '</tr>';
         }
         ?>

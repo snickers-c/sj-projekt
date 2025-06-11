@@ -444,39 +444,51 @@ include_once("components/header.php");
           <h2>Upcoming Events</h2>
         </div>
       </div>
-      <div class="col-lg-12 col-md-6">
-        <div class="item">
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="image">
-                <img src="assets/images/event-01.jpg" alt="">
+
+      <?php
+      $event = new Event($db);
+      $eventItems = $event->readEvent();
+
+      foreach ($eventItems as $row) {
+        if ($row['active'] == 0) continue;
+        echo '
+        <div class="col-lg-12 col-md-6">
+          <div class="item">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="image">
+                  <img src="' . $row['image'] . '" alt="' . $row['title'] . '">
+                </div>
               </div>
-            </div>
-            <div class="col-lg-9">
-              <ul>
-                <li>
-                  <span class="category">Web Design</span>
-                  <h4>UI Best Practices</h4>
-                </li>
-                <li>
-                  <span>Date:</span>
-                  <h6>16 Feb 2036</h6>
-                </li>
-                <li>
-                  <span>Duration:</span>
-                  <h6>22 Hours</h6>
-                </li>
-                <li>
-                  <span>Price:</span>
-                  <h6>$120</h6>
-                </li>
-              </ul>
-              <a href="#"><i class="fa fa-angle-right"></i></a>
+              <div class="col-lg-9">
+                <ul>
+                  <li>
+                    <span class="category">' . $row['category'] . '</span>
+                    <h4>' . $row['title'] . '</h4>
+                  </li>
+                  <li>
+                    <span>Date:</span>
+                    <h6>' . $row['date'] . '</h6>
+                  </li>
+                  <li>
+                    <span>Duration:</span>
+                    <h6>' . $row['duration'] . '</h6>
+                  </li>
+                  <li>
+                    <span>Price:</span>
+                    <h6>' . $row['price'] . '€</h6>
+                  </li>
+                </ul>
+                <a href="#"><i class="fa fa-angle-right"></i></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-12 col-md-6">
+          ';
+      }
+      ?>
+
+      <!-- <div class="col-lg-12 col-md-6">
         <div class="item">
           <div class="row">
             <div class="col-lg-3">
@@ -539,7 +551,7 @@ include_once("components/header.php");
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

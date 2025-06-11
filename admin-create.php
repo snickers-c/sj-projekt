@@ -73,6 +73,27 @@ if (($_GET['tab'] ?? '') == "services") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "events") {
+  $event = new Event($db);
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $title = $_POST['title'];
+    $category = $_POST['category'];
+    $date = $_POST['date'];
+    $duration = $_POST['duration'];
+    $price = $_POST['price'];
+    $image = $_POST['image'];
+    $active = $_POST['active'];
+
+    if ($event->createEvent($_SESSION['userID'], $title, $category, $date, $duration, $price, $image, $active)) {
+      header('Location: admin.php?tab=events');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -175,6 +196,43 @@ if (($_GET['tab'] ?? '') == "services") {
       <div class="form-group">
         <label>Button link</label>
         <input name="button_link" type="text" class="form-control" placeholder="Not Required">
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <input name="image" type="text" class="form-control" placeholder="Image" required>
+      </div>
+      <div class="form-group">
+        <label>Active</label>
+        <input name="active" type="text" class="form-control" placeholder="1 or 0" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "events"): ?>
+    <h1>Create new event</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>Title</label>
+        <input name="title" type="text" class="form-control" placeholder="Title" required>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <input name="category" type="text" class="form-control" placeholder="Category" required>
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input name="date" type="text" class="form-control" placeholder="yyyy-mm-dd hh:mm:ss" required>
+      </div>
+      <div class="form-group">
+        <label>Duration</label>
+        <input name="duration" type="text" class="form-control" placeholder="Duration" required>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input name="price" type="text" class="form-control" placeholder="Price" required>
       </div>
       <div class="form-group">
         <label>Image</label>
