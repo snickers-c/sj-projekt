@@ -91,6 +91,20 @@ if (($_GET['tab'] ?? '') == "courses") {
   }
 }
 
+if (($_GET['tab'] ?? '') == "employees") {
+  $employee = new Employee($db);
+  $employeeItems = $employee->readEmployee();
+
+  if (isset($_GET['delete'])) {
+    if ($employee->deleteEmployee($_GET['delete'])) {
+      header("Location: admin.php?tab=employees");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
+
 
 ?>
 <div class="header-text my-5">
@@ -107,7 +121,8 @@ if (($_GET['tab'] ?? '') == "courses") {
       ['label' => 'Course tags', 'link' => 'tags'],
       ['label' => 'Services', 'link' => 'services'],
       ['label' => 'Events', 'link' => 'events'],
-      ['label' => 'Courses', 'link' => 'courses']
+      ['label' => 'Courses', 'link' => 'courses'],
+      ['label' => 'Employees', 'link' => 'employees']
     ];
     $tabs = new Menu($tabItems);
     echo $tabs->getTabs($_GET['tab'] ?? '');
@@ -331,16 +346,15 @@ if (($_GET['tab'] ?? '') == "courses") {
       <tbody>
         <?php
         foreach ($courseItems as $row) {
-          $id = $row['c.id_course'];
+          $id = $row['id_course'];
           echo '<tr>';
           echo '<td>' . $id . '</td>';
-          echo '<td>' . $row['c.creator'] . '</td>';
-          echo '<td>' . $row['e.first_name'] . $row['e.last_name'] . '</td>';
-          echo '<td>' . $row['c.title'] . '</td>';
-          echo '<td>';
-          echo '<td>' . $row['c.price'] . '</td>';
-          echo '<td>' . $row['c.image'] . '</td>';
-          echo '<td>' . $row['c.active'] . '</td>';
+          echo '<td>' . $row['creator'] . '</td>';
+          echo '<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>';
+          echo '<td>' . $row['title'] . '</td>';
+          echo '<td>' . $row['price'] . '</td>';
+          echo '<td>' . $row['image'] . '</td>';
+          echo '<td>' . $row['active'] . '</td>';
           echo '<td><a href="admin-update.php?tab=courses&id=' . $id . '">Edit</a></td>';
           echo '<td><a href="?tab=courses&delete=' . $id . '">Delete</a></td>';
           echo '</tr>';
@@ -370,6 +384,46 @@ if (($_GET['tab'] ?? '') == "courses") {
           echo '<td><a href="?tab=courses&delete=' . $id . '">Delete</a></td>';
           echo '</tr>';
         }*/
+        ?>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "employees"): ?>
+    <h1>Employees</h1>
+    <a href="admin-create.php?tab=employees">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Occupation</th>
+          <th>Image</th>
+          <th>Facebook</th>
+          <th>Twitter</th>
+          <th>LinkedIn</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($employeeItems as $row) {
+          $id = $row['id_employee'];
+          echo '<tr>';
+          echo '<td>' . $id . '</td>';
+          echo '<td>' . $row['first_name'] . '</td>';
+          echo '<td>' . $row['last_name'] . '</td>';
+          echo '<td>' . $row['occupation'] . '</td>';
+          echo '<td>' . $row['image'] . '</td>';
+          echo '<td>' . $row['facebook'] . '</td>';
+          echo '<td>' . $row['twitter'] . '</td>';
+          echo '<td>' . $row['linkedin'] . '</td>';
+          echo '<td><a href="admin-update.php?tab=employees&id=' . $id . '">Edit</a></td>';
+          echo '<td><a href="?tab=employees&delete=' . $id . '">Delete</a></td>';
+          echo '</tr>';
+        }
         ?>
       </tbody>
     </table>

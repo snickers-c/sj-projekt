@@ -114,6 +114,27 @@ if (($_GET['tab'] ?? '') == "courses") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "employees") {
+  $employee = new Employee($db);
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $occupation = $_POST['occupation'];
+    $image = $_POST['image'];
+    $facebook = $_POST['facebook'];
+    $twitter = $_POST['twitter'];
+    $linkedIn = $_POST['linkedIn'];
+
+    if ($employee->createEmployee($firstName, $lastName, $occupation, $image, $facebook, $twitter, $linkedIn)) {
+      header('Location: admin.php?tab=employees');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -290,6 +311,43 @@ if (($_GET['tab'] ?? '') == "courses") {
       <div class="form-group">
         <label>Active</label>
         <input name="active" type="text" class="form-control" placeholder="1 or 0" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "employees"): ?>
+    <h1>Create new Employee</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>First Name</label>
+        <input name="firstName" type="text" class="form-control" placeholder="First Name" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input name="lastName" type="text" class="form-control" placeholder="Last Name" required>
+      </div>
+      <div class="form-group">
+        <label>Occupation</label>
+        <input name="occupation" type="text" class="form-control" placeholder="Occupation" required>
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <input name="image" type="text" class="form-control" placeholder="Not required">
+      </div>
+      <div class="form-group">
+        <label>Facebook</label>
+        <input name="facebook" type="text" class="form-control" placeholder="Not required">
+      </div>
+      <div class="form-group">
+        <label>Twitter</label>
+        <input name="twitter" type="text" class="form-control" placeholder="Not required">
+      </div>
+      <div class="form-group">
+        <label>LinkedIn</label>
+        <input name="linkedIn" type="text" class="form-control" placeholder="Not required">
       </div>
 
       <button type="submit" class="btn btn-primary mt-2">Submit</button>

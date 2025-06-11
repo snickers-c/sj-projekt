@@ -45,7 +45,7 @@ class Course
   public function readCourse()
   {
     $stmt = $this->db->prepare("SELECT c.id_course, c.creator, e.first_name, e.last_name, c.title, c.price, c.image, c.active FROM course c 
-JOIN employee e ON c.employee = e.id_employee");
+    JOIN employee e ON c.employee = e.id_employee");
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

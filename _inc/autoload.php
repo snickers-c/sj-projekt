@@ -9,3 +9,4 @@ include_once($path . "/Tag.php");
 include_once($path . "/Service.php");
 include_once($path . "/Event.php");
 include_once($path . "/Course.php");
+include_once($path . "/Employee.php");

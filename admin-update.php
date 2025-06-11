@@ -145,6 +145,32 @@ if (($_GET['tab'] ?? '') == "courses") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "employees") {
+  $employee = new Employee($db);
+  $current;
+
+  if (isset($id)) {
+    $current = $employee->findEmployee($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $occupation = $_POST['occupation'];
+    $image = $_POST['image'];
+    $facebook = $_POST['facebook'];
+    $twitter = $_POST['twitter'];
+    $linkedIn = $_POST['linkedIn'];
+
+    if ($employee->updateEmployee($id, $firstName, $lastName, $occupation, $image, $facebook, $twitter, $linkedIn)) {
+      header('Location: admin.php?tab=employees');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -338,6 +364,50 @@ if (($_GET['tab'] ?? '') == "courses") {
         <label>Active</label>
         <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
           placeholder="1 or 0" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "employees"): ?>
+    <h1>Update Employee</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>First Name</label>
+        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+          placeholder="First Name" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+          placeholder="Last Name" required>
+      </div>
+      <div class="form-group">
+        <label>Occupation</label>
+        <input value="<?php echo $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
+          placeholder="Occupation" required>
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+          placeholder="Not required">
+      </div>
+      <div class="form-group">
+        <label>Facebook</label>
+        <input value="<?php echo $current['facebook'] ?? '' ?>" name="facebook" type="text" class="form-control"
+          placeholder="Not required">
+      </div>
+      <div class="form-group">
+        <label>Twitter</label>
+        <input value="<?php echo $current['twitter'] ?? '' ?>" name="twitter" type="text" class="form-control"
+          placeholder="Not required">
+      </div>
+      <div class="form-group">
+        <label>LinkedIn</label>
+        <input value="<?php echo $current['linkedin'] ?? '' ?>" name="linkedIn" type="text" class="form-control"
+          placeholder="Not required">
       </div>
 
       <button type="submit" class="btn btn-primary mt-2">Submit</button>

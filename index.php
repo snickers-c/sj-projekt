@@ -337,79 +337,65 @@ include_once("components/header.php");
 
 <div class="team section" id="team">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6">
-        <div class="team-member">
-          <div class="main-content">
-            <img src="assets/images/member-01.jpg" alt="">
-            <span class="category">UX Teacher</span>
-            <h4>Sophia Rose</h4>
-            <ul class="social-icons">
-              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            </ul>
+    <div class="row" style="margin-bottom: 130px;">
+      <?php
+      $employee = new Employee($db);
+      $employeeItems = $employee->readEmployee();
+      $employeeArray = [];
+
+      foreach ($employeeItems as $row) {
+        $employeeArray[] = '
+        <div class="col-lg-3 col-md-6">
+          <div class="team-member">
+            <div class="main-content">
+              <img src="' . $row['image'] . '" alt="' . $row['first_name'] . ' ' . $row['last_name'] . '">
+              <span class="category">' . $row['occupation'] . '</span>
+              <h4>' . $row['first_name'] . ' ' . $row['last_name'] . '</h4>
+              <ul class="social-icons">
+                <li><a href="' . $row['facebook'] . '"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="' . $row['twitter'] . '"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="' . $row['linkedin'] . '"><i class="fab fa-linkedin"></i></a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="team-member">
-          <div class="main-content">
-            <img src="assets/images/member-02.jpg" alt="">
-            <span class="category">Graphic Teacher</span>
-            <h4>Cindy Walker</h4>
-            <ul class="social-icons">
-              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="team-member">
-          <div class="main-content">
-            <img src="assets/images/member-03.jpg" alt="">
-            <span class="category">Full Stack Master</span>
-            <h4>David Hutson</h4>
-            <ul class="social-icons">
-              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="team-member">
-          <div class="main-content">
-            <img src="assets/images/member-04.jpg" alt="">
-            <span class="category">Digital Animator</span>
-            <h4>Stella Blair</h4>
-            <ul class="social-icons">
-              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+
+          ';
+      }
+      $i = 0;
+      $reachedClosure = false;
+      foreach ($employeeArray as $row) {
+        echo $row;
+        $i++;
+        if ($i == 4) {
+          $reachedClosure = true;
+          $i = 0;
+          if ($reachedClosure) {
+            echo '</div>';
+            echo '<div class="row" style="margin-bottom: 130px;">';
+            $reachedClosure = false;
+          }
+        }
+      }
+      if ($i > 0 && $reachedClosure == false) {
+        echo '</div>';
+      }
+      ?>
     </div>
   </div>
-</div>
 
-<div class="section testimonials">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-7">
-        <div class="owl-carousel owl-testimonials">
-          <?php
-          $testimonial = new Testimonial($db);
-          $testimonialItems = $testimonial->readTestimonial();
+  <div class=" section testimonials">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="owl-carousel owl-testimonials">
+            <?php
+            $testimonial = new Testimonial($db);
+            $testimonialItems = $testimonial->readTestimonial();
 
-          foreach ($testimonialItems as $row) {
-            if ($row['active'] == 0) continue;
-            echo '
+            foreach ($testimonialItems as $row) {
+              if ($row['active'] == 0) continue;
+              echo '
             <div class="item">
               <p>' . $row["description"] . '</p>
               <div class="author">
@@ -419,39 +405,39 @@ include_once("components/header.php");
               </div>
             </div>
             ';
-          }
-          ?>
+            }
+            ?>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-5 align-self-center">
-        <div class="section-heading">
-          <h6>TESTIMONIALS</h6>
-          <h2>What they say about us?</h2>
-          <p>You can search free CSS templates on Google using different keywords such as templatemo portfolio,
-            templatemo gallery, templatemo blue color, etc.</p>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h6>TESTIMONIALS</h6>
+            <h2>What they say about us?</h2>
+            <p>You can search free CSS templates on Google using different keywords such as templatemo portfolio,
+              templatemo gallery, templatemo blue color, etc.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="section events" id="events">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <div class="section-heading">
-          <h6>Schedule</h6>
-          <h2>Upcoming Events</h2>
+  <div class="section events" id="events">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Schedule</h6>
+            <h2>Upcoming Events</h2>
+          </div>
         </div>
-      </div>
 
-      <?php
-      $event = new Event($db);
-      $eventItems = $event->readEvent();
+        <?php
+        $event = new Event($db);
+        $eventItems = $event->readEvent();
 
-      foreach ($eventItems as $row) {
-        if ($row['active'] == 0) continue;
-        echo '
+        foreach ($eventItems as $row) {
+          if ($row['active'] == 0) continue;
+          echo '
         <div class="col-lg-12 col-md-6">
           <div class="item">
             <div class="row">
@@ -485,10 +471,10 @@ include_once("components/header.php");
           </div>
         </div>
           ';
-      }
-      ?>
+        }
+        ?>
 
-      <!-- <div class="col-lg-12 col-md-6">
+        <!-- <div class="col-lg-12 col-md-6">
         <div class="item">
           <div class="row">
             <div class="col-lg-3">
@@ -552,46 +538,47 @@ include_once("components/header.php");
           </div>
         </div>
       </div> -->
+      </div>
     </div>
   </div>
-</div>
 
-<div class="contact-us section" id="contact">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6  align-self-center">
-        <div class="section-heading">
-          <h6>Contact Us</h6>
-          <h2>Feel free to contact us anytime</h2>
-          <p>Thank you for choosing our templates. We provide you best CSS templates at absolutely 100% free of charge.
-            You may support us by sharing our website to your friends.</p>
-          <div class="special-offer">
-            <span class="offer">off<br><em>50%</em></span>
-            <h6>Valide: <em>24 April 2036</em></h6>
-            <h4>Special Offer <em>50%</em> OFF!</h4>
-            <a href="#"><i class="fa fa-angle-right"></i></a>
+  <div class="contact-us section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6  align-self-center">
+          <div class="section-heading">
+            <h6>Contact Us</h6>
+            <h2>Feel free to contact us anytime</h2>
+            <p>Thank you for choosing our templates. We provide you best CSS templates at absolutely 100% free of
+              charge.
+              You may support us by sharing our website to your friends.</p>
+            <div class="special-offer">
+              <span class="offer">off<br><em>50%</em></span>
+              <h6>Valide: <em>24 April 2036</em></h6>
+              <h4>Special Offer <em>50%</em> OFF!</h4>
+              <a href="#"><i class="fa fa-angle-right"></i></a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="contact-us-content">
+        <div class="col-lg-6">
+          <div class="contact-us-content">
 
-          <form id="contact-form" action="thankyou.php" method="POST">
-            <div class="row">
-              <div class="col-lg-12">
-                <fieldset>
-                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..."
-                    required="">
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <textarea name="message" id="message" placeholder="Your Message"></textarea required>
+            <form id="contact-form" action="thankyou.php" method="POST">
+              <div class="row">
+                <div class="col-lg-12">
+                  <fieldset>
+                    <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..."
+                      required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <textarea name="message" id="message" placeholder="Your Message"></textarea required>
                 </fieldset>
               </div>
               <div class="col-lg-12">
