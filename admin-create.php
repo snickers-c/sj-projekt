@@ -104,7 +104,7 @@ if (($_GET['tab'] ?? '') == "courses") {
     $price = $_POST['price'];
     $image = $_POST['image'];
     $active = $_POST['active'];
-    $tags = "";
+    $tags = $_POST['tags'];
 
     if ($course->createCourse($_SESSION['userID'], $employee, $title, $price, $image, $active, $tags)) {
       header('Location: admin.php?tab=courses');
@@ -312,6 +312,21 @@ if (($_GET['tab'] ?? '') == "employees") {
         <label>Active</label>
         <input name="active" type="text" class="form-control" placeholder="1 or 0" required>
       </div>
+      <br>
+      <h2>Tags:</h2>
+      <?php
+      $tag = new Tag($db);
+      $tagItems = $tag->readTag();
+
+      foreach ($tagItems as $row) {
+        echo '
+        <div class="form-check">
+          <label class="form-check-label">' . $row['name'] . '</label>
+          <input name="tags[]" type="checkbox" class="form-check-input" value="' . $row['id_tag'] . '">
+        </div>
+        ';
+      }
+      ?>
 
       <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>

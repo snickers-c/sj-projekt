@@ -204,96 +204,39 @@ include_once("components/header.php");
       ?>
     </ul>
     <div class="row event_box">
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 Webdesign">
-        <div class="events_item">
-          <div class="thumb">
-            <a href="#"><img src="assets/images/course-01.jpg" alt=""></a>
-            <span class="category">Webdesign</span>
-            <span class="price">
-              <h6><em>$</em>160</h6>
-            </span>
+
+      <?php
+      $course = new Course($db);
+      $courseItems = $course->readCourse();
+
+      foreach ($courseItems as $row) {
+        if ($row['active'] == 0) continue;
+
+        $courseId = $row['id_course'];
+        $courseTags = $course->readCourseTags($courseId);
+
+        echo '<div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 ';
+        foreach ($courseTags as $tagRow) {
+          echo $tagRow['name'] . ' ';
+        }
+        echo '">
+            <div class="events_item">
+              <div class="thumb">
+                <a href="#"><img src="' . $row['image'] . '" alt="' . $row['title'] . '"></a>
+                <span class="category">' . $tagRow['name'] . '</span>
+                <span class="price">
+                  <h6>' . $row['price'] . '<em>€</em></h6>
+                </span>
+              </div>
+              <div class="down-content">
+                <span class="author">' . $row['first_name'] . ' ' . $row['last_name'] . '</span>
+                <h4>' . $row['title'] . '</h4>
+              </div>
+            </div>
           </div>
-          <div class="down-content">
-            <span class="author">Stella Blair</span>
-            <h4>Learn Web Design</h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6  development">
-        <div class="events_item">
-          <div class="thumb">
-            <a href="#"><img src="assets/images/course-02.jpg" alt=""></a>
-            <span class="category">Development</span>
-            <span class="price">
-              <h6><em>$</em>340</h6>
-            </span>
-          </div>
-          <div class="down-content">
-            <span class="author">Cindy Walker</span>
-            <h4>Web Development Tips</h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 Webdesign wordpress">
-        <div class="events_item">
-          <div class="thumb">
-            <a href="#"><img src="assets/images/course-03.jpg" alt=""></a>
-            <span class="category">Wordpress</span>
-            <span class="price">
-              <h6><em>$</em>640</h6>
-            </span>
-          </div>
-          <div class="down-content">
-            <span class="author">David Hutson</span>
-            <h4>Latest Web Trends</h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 development">
-        <div class="events_item">
-          <div class="thumb">
-            <a href="#"><img src="assets/images/course-04.jpg" alt=""></a>
-            <span class="category">Development</span>
-            <span class="price">
-              <h6><em>$</em>450</h6>
-            </span>
-          </div>
-          <div class="down-content">
-            <span class="author">Stella Blair</span>
-            <h4>Online Learning Steps</h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress development">
-        <div class="events_item">
-          <div class="thumb">
-            <a href="#"><img src="assets/images/course-05.jpg" alt=""></a>
-            <span class="category">Wordpress</span>
-            <span class="price">
-              <h6><em>$</em>320</h6>
-            </span>
-          </div>
-          <div class="down-content">
-            <span class="author">Sophia Rose</span>
-            <h4>Be a WordPress Master</h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress Webdesign">
-        <div class="events_item">
-          <div class="thumb">
-            <a href="#"><img src="assets/images/course-06.jpg" alt=""></a>
-            <span class="category">Webdesign</span>
-            <span class="price">
-              <h6><em>$</em>240</h6>
-            </span>
-          </div>
-          <div class="down-content">
-            <span class="author">David Hutson</span>
-            <h4>Full Stack Developer</h4>
-          </div>
-        </div>
-      </div>
+          ';
+      }
+      ?>
     </div>
   </div>
 </section>

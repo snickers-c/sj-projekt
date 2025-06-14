@@ -30,16 +30,13 @@ class Course
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
     $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
-    return $stmt->execute();
-
-    /*
-      if ($stmt->execute()) {
-      $id = PDO::lastInsertId();
-      $stmt = $this->db->prepare("INSERT INTO tag_has_course(id_course, id_tag) VALUES (:id_course, :id_tag");
-      $stmt->bindParam(':creator', $creator, PDO::PARAM_INT);
-      $stmt->bindParam(':employee', $tags, PDO::PARAM_INT);
+    if ($stmt->execute()) {
+      $idCourse = $this->db->lastInsertId();
+      $this->insertTagHasCourse($idCourse, $tags);
+      return true;
     }
-  */
+
+    return false;
   }
 
   public function readCourse()
@@ -63,7 +60,18 @@ class Course
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
     $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
-    return $stmt->execute();
+    if ($stmt->execute()) {
+      $idCourse = $id;
+      $stmt = $this->db->prepare("DELETE FROM tag_has_course WHERE id_course = :idCourse");
+      $stmt->bindParam(':idCourse', $idCourse, PDO::PARAM_INT);
+
+      if ($stmt->execute()) {
+        $this->insertTagHasCourse($idCourse, $tags);
+        return true;
+      }
+    }
+
+    return false;
   }
 
   public function deleteCourse($id)
@@ -72,5 +80,25 @@ class Course
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
     return $stmt->execute();
+  }
+
+  public function insertTagHasCourse($idCourse, $tags)
+  {
+    $stmt = $this->db->prepare("INSERT INTO tag_has_course(id_course, id_tag) VALUES (:idCourse, :idTag)");
+
+    foreach ($tags as $idTag) {
+      $stmt->bindParam(':idCourse', $idCourse, PDO::PARAM_INT);
+      $stmt->bindParam(':idTag', $idTag, PDO::PARAM_INT);
+      $stmt->execute();
+    }
+  }
+
+  public function readCourseTags($id)
+  {
+    $stmt = $this->db->prepare("SELECT t.name FROM tag t JOIN tag_has_course tg ON t.id_tag = tg.id_tag WHERE tg.id_course = :id");
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }
