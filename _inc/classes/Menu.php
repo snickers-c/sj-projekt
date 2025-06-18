@@ -10,13 +10,14 @@ class Menu
   {
     if (empty($menuItems)) {
       $menuItems = [
-        ['label' => 'Home', 'link' => '#top'],
-        ['label' => 'Services', 'link' => '#services'],
-        ['label' => 'Courses', 'link' => '#courses'],
-        ['label' => 'Team', 'link' => '#team'],
-        ['label' => 'Events', 'link' => '#events'],
-        ['label' => 'Contact us', 'link' => '#contact'],
-        ['label' => 'Login', 'link' => 'login.php']
+        ['label' => 'Home', 'link' => '/#top'],
+        ['label' => 'Services', 'link' => '/#services'],
+        ['label' => 'Courses', 'link' => '/#courses'],
+        ['label' => 'Team', 'link' => '/#team'],
+        ['label' => 'Events', 'link' => '/#events'],
+        ['label' => 'Contact us', 'link' => '/#contact'],
+        ['label' => 'Log in', 'link' => 'login.php'],
+        ['label' => 'Sign up', 'link' => 'signup.php']
       ];
     }
 

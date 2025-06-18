@@ -56,7 +56,7 @@ https://templatemo.com/tm-586-scholar
       <div class="col-12">
         <nav class="main-nav">
           <!-- ***** Logo Start ***** -->
-          <a href="index.php" class="logo">
+          <a href="/" class="logo">
             <h1>Scholar</h1>
           </a>
           <!-- ***** Logo End ***** -->
@@ -73,10 +73,6 @@ https://templatemo.com/tm-586-scholar
           <ul class="nav">
             <?php
             echo $menu->getMenu();
-            // $menuItems = $menu->getMenu();
-            // foreach ($menuItems as $item) {
-            //   echo '<li class="scroll-to-section"><a href="' . $item['link'] . '">' . $item['label'] . '</a></li>';
-            // }
             ?>
           </ul>
           <a class='menu-trigger'>

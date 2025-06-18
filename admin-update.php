@@ -171,203 +171,225 @@ if (($_GET['tab'] ?? '') == "employees") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "qnas") {
+  $qna = new Qna($db);
+  $current;
+
+  if (isset($id)) {
+    $current = $qna->findQna($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $title = $_POST['title'];
+    $desc = $_POST['desc'];
+    $active = $_POST['active'];
+
+    if ($qna->updateQna($id, $title, $desc, $active)) {
+      header('Location: admin.php?tab=qnas');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
 </div>
 <div class="container">
   <?php if (($_GET['tab'] ?? '') == "testimonials"): ?>
-    <h1>Update testimonial</h1>
+  <h1>Update testimonial</h1>
 
-    <form method="POST">
-      <div class="form-group">
-        <label>First Name</label>
-        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
-          placeholder="First Name" required>
-      </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
-          placeholder="Last Name" required>
-      </div>
-      <div class="form-group">
-        <label>Occupation</label>
-        <input value="<?php echo $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
-          placeholder="Occupation" required>
-      </div>
-      <div class="form-group">
-        <label>Description</label>
-        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
-          placeholder="Description" required>
-      </div>
-      <div class="form-group">
-        <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
-          placeholder="Not required">
-      </div>
-      <div class="form-group">
-        <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
-          placeholder="1 or 0" required>
-      </div>
+  <form method="POST">
+    <div class="form-group">
+      <label>First Name</label>
+      <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+        placeholder="First Name" required>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+        placeholder="Last Name" required>
+    </div>
+    <div class="form-group">
+      <label>Occupation</label>
+      <input value="<?php echo $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
+        placeholder="Occupation" required>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        placeholder="Description" required>
+    </div>
+    <div class="form-group">
+      <label>Image</label>
+      <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        placeholder="Not required">
+    </div>
+    <div class="form-group">
+      <label>Active</label>
+      <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        placeholder="1 or 0" required>
+    </div>
 
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </form>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "users"): ?>
-    <h1>Update user</h1>
+  <h1>Update user</h1>
 
-    <form method="POST">
-      <div class="form-group">
-        <label>First Name</label>
-        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
-          placeholder="First Name" required>
-      </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
-          placeholder="Last Name" required>
-      </div>
-      <div class="form-group">
-        <label>Role</label>
-        <input value="<?php echo $current['role'] ?? '' ?>" name="role" type="text" class="form-control"
-          placeholder="Role" required>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input value="<?php echo $current['email'] ?? '' ?>" name="email" type="email" class="form-control"
-          placeholder="Email" required>
-      </div>
+  <form method="POST">
+    <div class="form-group">
+      <label>First Name</label>
+      <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+        placeholder="First Name" required>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+        placeholder="Last Name" required>
+    </div>
+    <div class="form-group">
+      <label>Role</label>
+      <input value="<?php echo $current['role'] ?? '' ?>" name="role" type="text" class="form-control"
+        placeholder="Role" required>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input value="<?php echo $current['email'] ?? '' ?>" name="email" type="email" class="form-control"
+        placeholder="Email" required>
+    </div>
 
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </form>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "tags"): ?>
-    <h1>Update course tag</h1>
+  <h1>Update course tag</h1>
 
-    <form method="POST">
-      <div class="form-group">
-        <label>Tag name</label>
-        <input value="<?php echo $current['name'] ?? '' ?>" name="name" type="text" class="form-control"
-          placeholder="Tag name" required>
-      </div>
+  <form method="POST">
+    <div class="form-group">
+      <label>Tag name</label>
+      <input value="<?php echo $current['name'] ?? '' ?>" name="name" type="text" class="form-control"
+        placeholder="Tag name" required>
+    </div>
 
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </form>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "services"): ?>
-    <h1>Update service</h1>
+  <h1>Update service</h1>
 
-    <form method="POST">
-      <div class="form-group">
-        <label>Title</label>
-        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
-          placeholder="Title" required>
-      </div>
-      <div class="form-group">
-        <label>Description</label>
-        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
-          placeholder="Description" required>
-      </div>
-      <div class="form-group">
-        <label>Button link</label>
-        <input value="<?php echo $current['button_link'] ?? '' ?>" name="button_link" type="text" class="form-control"
-          placeholder="Not Required">
-      </div>
-      <div class="form-group">
-        <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
-          placeholder="Image" required>
-      </div>
-      <div class="form-group">
-        <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
-          placeholder="1 or 0" required>
-      </div>
+  <form method="POST">
+    <div class="form-group">
+      <label>Title</label>
+      <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        placeholder="Title" required>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        placeholder="Description" required>
+    </div>
+    <div class="form-group">
+      <label>Button link</label>
+      <input value="<?php echo $current['button_link'] ?? '' ?>" name="button_link" type="text" class="form-control"
+        placeholder="Not Required">
+    </div>
+    <div class="form-group">
+      <label>Image</label>
+      <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        placeholder="Image" required>
+    </div>
+    <div class="form-group">
+      <label>Active</label>
+      <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        placeholder="1 or 0" required>
+    </div>
 
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </form>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "events"): ?>
-    <h1>Update event</h1>
+  <h1>Update event</h1>
 
-    <form method="POST">
-      <div class="form-group">
-        <label>Title</label>
-        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
-          placeholder="Title" required>
-      </div>
-      <div class="form-group">
-        <label>Category</label>
-        <input value="<?php echo $current['category'] ?? '' ?>" name="category" type="text" class="form-control"
-          placeholder="Category" required>
-      </div>
-      <div class="form-group">
-        <label>Date</label>
-        <input value="<?php echo $current['date'] ?? '' ?>" name="date" type="text" class="form-control"
-          placeholder="yyyy-mm-dd hh:mm:ss" required>
-      </div>
-      <div class="form-group">
-        <label>Duration</label>
-        <input value="<?php echo $current['duration'] ?? '' ?>" name="duration" type="text" class="form-control"
-          placeholder="Duration" required>
-      </div>
-      <div class="form-group">
-        <label>Price</label>
-        <input value="<?php echo $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
-          placeholder="Price" required>
-      </div>
-      <div class="form-group">
-        <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
-          placeholder="Image" required>
-      </div>
-      <div class="form-group">
-        <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
-          placeholder="1 or 0" required>
-      </div>
+  <form method="POST">
+    <div class="form-group">
+      <label>Title</label>
+      <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        placeholder="Title" required>
+    </div>
+    <div class="form-group">
+      <label>Category</label>
+      <input value="<?php echo $current['category'] ?? '' ?>" name="category" type="text" class="form-control"
+        placeholder="Category" required>
+    </div>
+    <div class="form-group">
+      <label>Date</label>
+      <input value="<?php echo $current['date'] ?? '' ?>" name="date" type="text" class="form-control"
+        placeholder="yyyy-mm-dd hh:mm:ss" required>
+    </div>
+    <div class="form-group">
+      <label>Duration</label>
+      <input value="<?php echo $current['duration'] ?? '' ?>" name="duration" type="text" class="form-control"
+        placeholder="Duration" required>
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input value="<?php echo $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
+        placeholder="Price" required>
+    </div>
+    <div class="form-group">
+      <label>Image</label>
+      <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        placeholder="Image" required>
+    </div>
+    <div class="form-group">
+      <label>Active</label>
+      <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        placeholder="1 or 0" required>
+    </div>
 
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </form>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "courses"): ?>
-    <h1>Update course</h1>
+  <h1>Update course</h1>
 
-    <form method="POST">
-      <div class="form-group">
-        <label>Employee ID</label>
-        <input value="<?php echo $current['employee'] ?? '' ?>" name="employee" type="text" class="form-control"
-          placeholder="Employee ID" required>
-      </div>
-      <div class="form-group">
-        <label>Title</label>
-        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
-          placeholder="Title" required>
-      </div>
-      <div class="form-group">
-        <label>Price</label>
-        <input value="<?php echo $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
-          placeholder="Price" required>
-      </div>
-      <div class="form-group">
-        <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
-          placeholder="Image" required>
-      </div>
-      <div class="form-group">
-        <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
-          placeholder="1 or 0" required>
-      </div>
-      <br>
-      <h2>Tags:</h2>
-      <?php
+  <form method="POST">
+    <div class="form-group">
+      <label>Employee ID</label>
+      <input value="<?php echo $current['employee'] ?? '' ?>" name="employee" type="text" class="form-control"
+        placeholder="Employee ID" required>
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        placeholder="Title" required>
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input value="<?php echo $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
+        placeholder="Price" required>
+    </div>
+    <div class="form-group">
+      <label>Image</label>
+      <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        placeholder="Image" required>
+    </div>
+    <div class="form-group">
+      <label>Active</label>
+      <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        placeholder="1 or 0" required>
+    </div>
+    <br>
+    <h2>Tags:</h2>
+    <?php
       $tag = new Tag($db);
       $tagItems = $tag->readTag();
 
@@ -381,52 +403,76 @@ if (($_GET['tab'] ?? '') == "employees") {
       }
       ?>
 
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </form>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "employees"): ?>
-    <h1>Update Employee</h1>
+  <h1>Update Employee</h1>
 
-    <form method="POST">
-      <div class="form-group">
-        <label>First Name</label>
-        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
-          placeholder="First Name" required>
-      </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
-          placeholder="Last Name" required>
-      </div>
-      <div class="form-group">
-        <label>Occupation</label>
-        <input value="<?php echo $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
-          placeholder="Occupation" required>
-      </div>
-      <div class="form-group">
-        <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
-          placeholder="Not required">
-      </div>
-      <div class="form-group">
-        <label>Facebook</label>
-        <input value="<?php echo $current['facebook'] ?? '' ?>" name="facebook" type="text" class="form-control"
-          placeholder="Not required">
-      </div>
-      <div class="form-group">
-        <label>Twitter</label>
-        <input value="<?php echo $current['twitter'] ?? '' ?>" name="twitter" type="text" class="form-control"
-          placeholder="Not required">
-      </div>
-      <div class="form-group">
-        <label>LinkedIn</label>
-        <input value="<?php echo $current['linkedin'] ?? '' ?>" name="linkedIn" type="text" class="form-control"
-          placeholder="Not required">
-      </div>
+  <form method="POST">
+    <div class="form-group">
+      <label>First Name</label>
+      <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+        placeholder="First Name" required>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+        placeholder="Last Name" required>
+    </div>
+    <div class="form-group">
+      <label>Occupation</label>
+      <input value="<?php echo $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
+        placeholder="Occupation" required>
+    </div>
+    <div class="form-group">
+      <label>Image</label>
+      <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        placeholder="Not required">
+    </div>
+    <div class="form-group">
+      <label>Facebook</label>
+      <input value="<?php echo $current['facebook'] ?? '' ?>" name="facebook" type="text" class="form-control"
+        placeholder="Not required">
+    </div>
+    <div class="form-group">
+      <label>Twitter</label>
+      <input value="<?php echo $current['twitter'] ?? '' ?>" name="twitter" type="text" class="form-control"
+        placeholder="Not required">
+    </div>
+    <div class="form-group">
+      <label>LinkedIn</label>
+      <input value="<?php echo $current['linkedin'] ?? '' ?>" name="linkedIn" type="text" class="form-control"
+        placeholder="Not required">
+    </div>
 
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </form>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "qnas"): ?>
+  <h1>Update QnA</h1>
+
+  <form method="POST">
+    <div class="form-group">
+      <label>Title</label>
+      <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        placeholder="Title" required>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        placeholder="Description" required>
+    </div>
+    <div class="form-group">
+      <label>Active</label>
+      <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        placeholder="1 or 0" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
   <?php endif ?>
 </div>
 <?php

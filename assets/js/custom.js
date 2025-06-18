@@ -149,7 +149,17 @@
 		var scrollPos = $(document).scrollTop();
 		$('.nav a').each(function () {
 			var currLink = $(this);
-			var refElement = $(currLink.attr("href"));
+			var refElement = currLink.attr("href");
+
+			if (refElement.startsWith("/#")) {
+				refElement = refElement.substring(1);
+			}
+			else {
+				return true;
+			}
+
+			refElement = $(refElement);
+
 			if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
 				$('.nav ul li a').removeClass("active");
 				currLink.addClass("active");
