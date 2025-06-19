@@ -11,3 +11,4 @@ include_once($path . "Event.php");
 include_once($path . "Course.php");
 include_once($path . "Employee.php");
 include_once($path . "Qna.php");
+include_once($path . "Banner.php");

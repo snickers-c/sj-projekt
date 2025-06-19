@@ -61,11 +61,11 @@ if (($_GET['tab'] ?? '') == "services") {
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = $_POST['title'];
     $desc = $_POST['desc'];
-    $button_link = $_POST['button_link'];
+    $buttonLink = $_POST['buttonLink'];
     $image = $_POST['image'];
     $active = $_POST['active'];
 
-    if ($service->createService($_SESSION['userID'], $title, $desc, $button_link, $image, $active)) {
+    if ($service->createService($_SESSION['userID'], $title, $desc, $buttonLink, $image, $active)) {
       header('Location: admin.php?tab=services');
       exit;
     } else {
@@ -146,6 +146,26 @@ if (($_GET['tab'] ?? '') == "qnas") {
 
     if ($qna->createQna($_SESSION['userID'], $title, $desc, $active)) {
       header('Location: admin.php?tab=qnas');
+      exit;
+    } else {
+      $err = "Inserting failed";
+    }
+  }
+}
+
+if (($_GET['tab'] ?? '') == "banners") {
+  $banner = new Banner($db);
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $tag = $_POST['tag'];
+    $title = $_POST['title'];
+    $desc = $_POST['desc'];
+    $image = $_POST['image'];
+    $buttonLink = $_POST['buttonLink'];
+    $active = $_POST['active'];
+
+    if ($banner->createBanner($_SESSION['userID'], $tag, $title, $desc, $image, $buttonLink, $active)) {
+      header('Location: admin.php?tab=banners');
       exit;
     } else {
       $err = "Inserting failed";
@@ -253,7 +273,7 @@ if (($_GET['tab'] ?? '') == "qnas") {
     </div>
     <div class="form-group">
       <label>Button link</label>
-      <input name="button_link" type="text" class="form-control" placeholder="Not Required">
+      <input name="buttonLink" type="text" class="form-control" placeholder="Not Required">
     </div>
     <div class="form-group">
       <label>Image</label>
@@ -397,6 +417,39 @@ if (($_GET['tab'] ?? '') == "qnas") {
     <div class="form-group">
       <label>Description</label>
       <input name="desc" type="text" class="form-control" placeholder="Description" required>
+    </div>
+    <div class="form-group">
+      <label>Active</label>
+      <input name="active" type="text" class="form-control" placeholder="1 or 0" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "banners"): ?>
+  <h1>Create new banner</h1>
+
+  <form method="POST">
+    <div class="form-group">
+      <label>Tag</label>
+      <input name="tag" type="text" class="form-control" placeholder="Tag" required>
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input name="title" type="text" class="form-control" placeholder="Title" required>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input name="desc" type="text" class="form-control" placeholder="Description" required>
+    </div>
+    <div class="form-group">
+      <label>Image</label>
+      <input name="image" type="text" class="form-control" placeholder="Image" required>
+    </div>
+    <div class="form-group">
+      <label>Button Link</label>
+      <input name="buttonLink" type="text" class="form-control" placeholder="Button Link">
     </div>
     <div class="form-group">
       <label>Active</label>

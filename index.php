@@ -7,45 +7,29 @@ include_once("components/header.php");
     <div class="row">
       <div class="col-lg-12">
         <div class="owl-carousel owl-banner">
-          <div class="item item-1">
-            <div class="header-text">
-              <span class="category">Our Courses</span>
-              <h2>With Scholar Teachers, Everything Is Easier</h2>
-              <p>Scholar is free CSS template designed by TemplateMo for online educational related websites. This
-                layout is based on the famous Bootstrap v5.3.0 framework.</p>
-              <div class="buttons">
-                <div class="main-button">
-                  <a href="#">Request Demo</a>
+          <?php
+          $banner = new Banner($db);
+          $bannerItems = $banner->readBanner();
+
+          foreach ($bannerItems as $row) {
+            if ($row['active'] == 0) continue;
+            echo '
+              <div class="item item-1">
+                <img src="' . $row['image'] . '" alt="' . $row['title'] . '">
+                <div class="header-text">
+                  <span class="category">' . $row['tag'] . '</span>
+                  <h2>' . $row['title'] . '</h2>
+                  <p>' . $row['description'] . '</p>
+                  <div class="buttons">
+                    <div class="main-button">
+                      <a href="' . $row['button_link'] . '">Request Demo</a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="item item-2">
-            <div class="header-text">
-              <span class="category">Best Result</span>
-              <h2>Get the best result out of your effort</h2>
-              <p>You are allowed to use this template for any educational or commercial purpose. You are not allowed to
-                re-distribute the template ZIP file on any other website.</p>
-              <div class="buttons">
-                <div class="main-button">
-                  <a href="#">Request Demo</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item item-3">
-            <div class="header-text">
-              <span class="category">Online Learning</span>
-              <h2>Online Learning helps you save the time</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporious incididunt ut labore
-                et dolore magna aliqua suspendisse.</p>
-              <div class="buttons">
-                <div class="main-button">
-                  <a href="#">Request Demo</a>
-                </div>
-              </div>
-            </div>
-          </div>
+              ';
+          }
+          ?>
         </div>
       </div>
     </div>
@@ -370,71 +354,6 @@ include_once("components/header.php");
           ';
         }
         ?>
-
-        <!-- <div class="col-lg-12 col-md-6">
-        <div class="item">
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="image">
-                <img src="assets/images/event-02.jpg" alt="">
-              </div>
-            </div>
-            <div class="col-lg-9">
-              <ul>
-                <li>
-                  <span class="category">Front End</span>
-                  <h4>New Design Trend</h4>
-                </li>
-                <li>
-                  <span>Date:</span>
-                  <h6>24 Feb 2036</h6>
-                </li>
-                <li>
-                  <span>Duration:</span>
-                  <h6>30 Hours</h6>
-                </li>
-                <li>
-                  <span>Price:</span>
-                  <h6>$320</h6>
-                </li>
-              </ul>
-              <a href="#"><i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-12 col-md-6">
-        <div class="item">
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="image">
-                <img src="assets/images/event-03.jpg" alt="">
-              </div>
-            </div>
-            <div class="col-lg-9">
-              <ul>
-                <li>
-                  <span class="category">Full Stack</span>
-                  <h4>Web Programming</h4>
-                </li>
-                <li>
-                  <span>Date:</span>
-                  <h6>12 Mar 2036</h6>
-                </li>
-                <li>
-                  <span>Duration:</span>
-                  <h6>48 Hours</h6>
-                </li>
-                <li>
-                  <span>Price:</span>
-                  <h6>$440</h6>
-                </li>
-              </ul>
-              <a href="#"><i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div> -->
       </div>
     </div>
   </div>

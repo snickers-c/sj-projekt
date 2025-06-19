@@ -118,6 +118,20 @@ if (($_GET['tab'] ?? '') == "qnas") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "banners") {
+  $banner = new Banner($db);
+  $bannerItems = $banner->readBanner();
+
+  if (isset($_GET['delete'])) {
+    if ($banner->deleteBanner($_GET['delete'])) {
+      header("Location: admin.php?tab=banners");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -135,7 +149,8 @@ if (($_GET['tab'] ?? '') == "qnas") {
       ['label' => 'Events', 'link' => 'events'],
       ['label' => 'Courses', 'link' => 'courses'],
       ['label' => 'Employees', 'link' => 'employees'],
-      ['label' => 'Qna', 'link' => 'qnas']
+      ['label' => 'Qna', 'link' => 'qnas'],
+      ['label' => 'Banners', 'link' => 'banners']
     ];
     $tabs = new Menu($tabItems);
     echo $tabs->getTabs($_GET['tab'] ?? '');
@@ -150,7 +165,7 @@ if (($_GET['tab'] ?? '') == "qnas") {
     <thead>
       <tr>
         <th>ID</th>
-        <th>creator ID</th>
+        <th>Creator ID</th>
         <th>First name</th>
         <th>Last name</th>
         <th>Occupation</th>
@@ -260,10 +275,10 @@ if (($_GET['tab'] ?? '') == "qnas") {
     <thead>
       <tr>
         <th>ID</th>
-        <th>creator ID</th>
+        <th>Creator ID</th>
         <th>Title</th>
         <th>Description</th>
-        <th>Button_link</th>
+        <th>Button link</th>
         <th>Image</th>
         <th>Active</th>
         <th>Edit</th>
@@ -300,7 +315,7 @@ if (($_GET['tab'] ?? '') == "qnas") {
     <thead>
       <tr>
         <th>ID</th>
-        <th>creator ID</th>
+        <th>Creator ID</th>
         <th>Title</th>
         <th>Category</th>
         <th>Date</th>
@@ -344,7 +359,7 @@ if (($_GET['tab'] ?? '') == "qnas") {
     <thead>
       <tr>
         <th>ID</th>
-        <th>creator ID</th>
+        <th>Creator ID</th>
         <th>Employee</th>
         <th>Title</th>
         <th>Price</th>
@@ -466,7 +481,7 @@ if (($_GET['tab'] ?? '') == "qnas") {
         <th>Creator ID</th>
         <th>Title</th>
         <th>Description</th>
-        <th>active</th>
+        <th>Active</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -484,6 +499,48 @@ if (($_GET['tab'] ?? '') == "qnas") {
             <td>' . $row['active'] . '</td>
             <td><a href="admin-update.php?tab=qnas&id=' . $id . '">Edit</a></td>
             <td><a href="?tab=qnas&delete=' . $id . '">Delete</a></td>
+          </tr>
+          ';
+        }
+        ?>
+    </tbody>
+  </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "banners"): ?>
+  <h1>Banners</h1>
+  <a href="admin-create.php?tab=banners">Create</a>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Creator ID</th>
+        <th>Tag</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Button link</th>
+        <th>Active</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+        foreach ($bannerItems as $row) {
+          $id = $row['id_banner'];
+          echo '
+          <tr>
+            <td>' . $id . '</td>
+            <td>' . $row['creator'] . '</td>
+            <td>' . $row['tag'] . '</td>
+            <td>' . $row['title'] . '</td>
+            <td>' . $row['description'] . '</td>
+            <td>' . $row['image'] . '</td>
+            <td>' . $row['button_link'] . '</td>
+            <td>' . $row['active'] . '</td>
+            <td><a href="admin-update.php?tab=banners&id=' . $id . '">Edit</a></td>
+            <td><a href="?tab=banners&delete=' . $id . '">Delete</a></td>
           </tr>
           ';
         }

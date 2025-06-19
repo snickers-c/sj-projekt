@@ -774,7 +774,18 @@ Banner Style
   padding: 170px 0px 120px 0px;
 }
 
-.main-banner .item-1 {
+.main-banner .item img {
+  /* pridane */
+  display: flex;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  object-fit: contain;
+  z-index: -1;
+  border-radius: 25px;
+}
+
+/* .main-banner .item-1 {
   background-image: url(../images/banner-item-01.jpg);
 }
 
@@ -784,15 +795,20 @@ Banner Style
 
 .main-banner .item-3 {
   background-image: url(../images/banner-item-03.jpg);
-}
+} */
 
 .main-banner .item {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   border-radius: 25px;
-  padding: 100px 100px;
+  /* padding: 100px 100px; */
   margin-left: 130px;
+}
+
+.main-banner .header-text {
+  /* pridane */
+  padding: 100px 100px;
 }
 
 .main-banner .item span.category {

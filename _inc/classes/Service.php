@@ -20,18 +20,18 @@ class Service
     return $stmt->fetch();
   }
 
-  public function createService($creator, $title, $desc, $button_link, $image, $active)
+  public function createService($creator, $title, $desc, $buttonLink, $image, $active)
   {
-    if (empty($button_link)) {
-      $button_link = $this->defaultLink;
+    if (empty($buttonLink)) {
+      $buttonLink = $this->defaultLink;
     }
 
     $stmt = $this->db->prepare("INSERT INTO service(creator, title, description, button_link, image, active)
-     VALUES (:creator, :title, :desc, :button_link, :image, :active)");
+     VALUES (:creator, :title, :desc, :buttonLink, :image, :active)");
     $stmt->bindParam(':creator', $creator, PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
-    $stmt->bindParam(':button_link', $button_link, PDO::PARAM_STR);
+    $stmt->bindParam(':buttonLink', $buttonLink, PDO::PARAM_STR);
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
     $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
@@ -46,19 +46,19 @@ class Service
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function updateService($id, $title, $desc, $button_link, $image, $active)
+  public function updateService($id, $title, $desc, $buttonLink, $image, $active)
   {
-    if (empty($button_link)) {
-      $button_link = $this->defaultLink;
+    if (empty($buttonLink)) {
+      $buttonLink = $this->defaultLink;
     }
 
     $stmt = $this->db->prepare("UPDATE service 
-      SET title = :title, description = :desc, button_link = :button_link, image = :image, active = :active
+      SET title = :title, description = :desc, button_link = :buttonLink, image = :image, active = :active
       WHERE id_service = :id");
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
-    $stmt->bindParam(':button_link', $button_link, PDO::PARAM_STR);
+    $stmt->bindParam(':buttonLink', $buttonLink, PDO::PARAM_STR);
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
     $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
