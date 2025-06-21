@@ -2,23 +2,30 @@
 class Menu
 {
 
-
   private $menuItems;
 
 
   public function __construct($menuItems = [])
   {
     if (empty($menuItems)) {
+      $db = new Database();
+      $auth = new Authenticate($db);
+
       $menuItems = [
         ['label' => 'Home', 'link' => '/#top'],
         ['label' => 'Services', 'link' => '/#services'],
         ['label' => 'Courses', 'link' => '/#courses'],
         ['label' => 'Team', 'link' => '/#team'],
         ['label' => 'Events', 'link' => '/#events'],
-        ['label' => 'Contact us', 'link' => '/#contact'],
-        ['label' => 'Log in', 'link' => 'login.php'],
-        ['label' => 'Sign up', 'link' => 'signup.php']
+        ['label' => 'Contact us', 'link' => '/#contact']
       ];
+
+      if ($auth->isLoggedIn()) {
+        $menuItems[] = ['label' => 'Admin', 'link' => 'admin.php'];
+      } else {
+        $menuItems[] = ['label' => 'Log in', 'link' => 'login.php'];
+        $menuItems[] = ['label' => 'Sign up', 'link' => 'signup.php'];
+      }
     }
 
     $this->menuItems = $menuItems;

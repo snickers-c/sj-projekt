@@ -132,6 +132,20 @@ if (($_GET['tab'] ?? '') == "banners") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "dates") {
+  $date = new Date($db);
+  $dateItems = $date->readDate();
+
+  if (isset($_GET['delete'])) {
+    if ($date->deleteDate($_GET['delete'])) {
+      header("Location: admin.php?tab=dates");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -150,7 +164,9 @@ if (($_GET['tab'] ?? '') == "banners") {
       ['label' => 'Courses', 'link' => 'courses'],
       ['label' => 'Employees', 'link' => 'employees'],
       ['label' => 'Qna', 'link' => 'qnas'],
-      ['label' => 'Banners', 'link' => 'banners']
+      ['label' => 'Banners', 'link' => 'banners'],
+      ['label' => 'Dates', 'link' => 'dates'],
+      ['label' => 'Orders', 'link' => 'orders']
     ];
     $tabs = new Menu($tabItems);
     echo $tabs->getTabs($_GET['tab'] ?? '');
@@ -159,25 +175,25 @@ if (($_GET['tab'] ?? '') == "banners") {
   <br>
 
   <?php if (($_GET['tab'] ?? '') == "testimonials"): ?>
-  <h1>Testimonials</h1>
-  <a href="admin-create.php?tab=testimonials">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Creator ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Occupation</th>
-        <th>Description</th>
-        <th>Active</th>
-        <th>Image path</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <h1>Testimonials</h1>
+    <a href="admin-create.php?tab=testimonials">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Creator ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Occupation</th>
+          <th>Description</th>
+          <th>Active</th>
+          <th>Image path</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($testimonialItems as $row) {
           $id = $row['id_testimonial'];
           echo '
@@ -196,28 +212,28 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "users"): ?>
-  <h1>Users</h1>
-  <a href="admin-create.php?tab=users">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Role</th>
-        <th>Email</th>
-        <th>Created at</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <h1>Users</h1>
+    <a href="admin-create.php?tab=users">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Role</th>
+          <th>Email</th>
+          <th>Created at</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($userItems as $row) {
           $id = $row['id_user'];
           echo '
@@ -234,24 +250,24 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "tags"): ?>
-  <h1>Course tags</h1>
-  <a href="admin-create.php?tab=tags">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <h1>Course tags</h1>
+    <a href="admin-create.php?tab=tags">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($tagItems as $row) {
           $id = $row['id_tag'];
           echo '
@@ -264,29 +280,29 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "services"): ?>
-  <h1>Services</h1>
-  <a href="admin-create.php?tab=services">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Creator ID</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Button link</th>
-        <th>Image</th>
-        <th>Active</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <h1>Services</h1>
+    <a href="admin-create.php?tab=services">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Creator ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Button link</th>
+          <th>Image</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($serviceItems as $row) {
           $id = $row['id_service'];
           echo '
@@ -304,31 +320,31 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "events"): ?>
-  <h1>Events</h1>
-  <a href="admin-create.php?tab=events">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Creator ID</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Date</th>
-        <th>Duration</th>
-        <th>Price</th>
-        <th>Image</th>
-        <th>Active</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <h1>Events</h1>
+    <a href="admin-create.php?tab=events">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Creator ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($eventItems as $row) {
           $id = $row['id_event'];
           echo '
@@ -348,26 +364,27 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "courses"): ?>
-  <h1>Courses</h1>
-  <a href="admin-create.php?tab=courses">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Creator ID</th>
-        <th>Employee</th>
-        <th>Title</th>
-        <th>Price</th>
-        <th>Image</th>
-        <th>Active</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <!-- <th>ID</th>
+    <h1>Courses</h1>
+    <a href="admin-create.php?tab=courses">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Creator ID</th>
+          <th>Employee</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+          <!-- <th>ID</th>
           <th>creator ID</th>
           <th>Employee</th>
           <th>Title</th>
@@ -379,10 +396,10 @@ if (($_GET['tab'] ?? '') == "banners") {
           <th>Active</th>
           <th>Edit</th>
           <th>Delete</th> -->
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($courseItems as $row) {
           $id = $row['id_course'];
           echo '
@@ -393,6 +410,7 @@ if (($_GET['tab'] ?? '') == "banners") {
             <td>' . $row['title'] . '</td>
             <td>' . $row['price'] . '</td>
             <td>' . $row['image'] . '</td>
+            <td>Check in edit</td>
             <td>' . $row['active'] . '</td>
             <td><a href="admin-update.php?tab=courses&id=' . $id . '">Edit</a></td>
             <td><a href="?tab=courses&delete=' . $id . '">Delete</a></td>
@@ -400,7 +418,7 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-      <?php
+        <?php
         /*foreach ($courseItems as $row) {
           $id = $row['id_course'];
           echo '<tr>';
@@ -425,30 +443,30 @@ if (($_GET['tab'] ?? '') == "banners") {
           echo '</tr>';
         }*/
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "employees"): ?>
-  <h1>Employees</h1>
-  <a href="admin-create.php?tab=employees">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Occupation</th>
-        <th>Image</th>
-        <th>Facebook</th>
-        <th>Twitter</th>
-        <th>LinkedIn</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <h1>Employees</h1>
+    <a href="admin-create.php?tab=employees">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Occupation</th>
+          <th>Image</th>
+          <th>Facebook</th>
+          <th>Twitter</th>
+          <th>LinkedIn</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($employeeItems as $row) {
           $id = $row['id_employee'];
           echo '
@@ -467,27 +485,27 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "qnas"): ?>
-  <h1>QnA's</h1>
-  <a href="admin-create.php?tab=qnas">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Creator ID</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Active</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <h1>QnA's</h1>
+    <a href="admin-create.php?tab=qnas">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Creator ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($qnaItems as $row) {
           $id = $row['id_about_us'];
           echo '
@@ -503,30 +521,30 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "banners"): ?>
-  <h1>Banners</h1>
-  <a href="admin-create.php?tab=banners">Create</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Creator ID</th>
-        <th>Tag</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Image</th>
-        <th>Button link</th>
-        <th>Active</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <h1>Banners</h1>
+    <a href="admin-create.php?tab=banners">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Creator ID</th>
+          <th>Tag</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Button link</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($bannerItems as $row) {
           $id = $row['id_banner'];
           echo '
@@ -545,8 +563,46 @@ if (($_GET['tab'] ?? '') == "banners") {
           ';
         }
         ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "dates"): ?>
+    <h1>Dates</h1>
+    <a href="admin-create.php?tab=dates">Create</a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Course ID</th>
+          <th>Course title</th>
+          <th>Date</th>
+          <th>Capacity</th>
+          <th>Slots</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($dateItems as $row) {
+          $id = $row['id_date'];
+          echo '
+          <tr>
+            <td>' . $id . '</td>
+            <td>' . $row['course'] . '</td>
+            <td>' . $row['title'] . '</td>
+            <td>' . $row['date'] . '</td>
+            <td>' . $row['capacity'] . '</td>
+            <td>' . $row['slots'] . '</td>
+            <td><a href="admin-update.php?tab=dates&id=' . $id . '">Edit</a></td>
+            <td><a href="?tab=dates&delete=' . $id . '">Delete</a></td>
+          </tr>
+          ';
+        }
+        ?>
+      </tbody>
+    </table>
   <?php endif ?>
 </div>
 <?php

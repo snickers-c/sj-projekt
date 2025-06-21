@@ -775,39 +775,22 @@ Banner Style
 }
 
 .main-banner .item img {
-  /* pridane */
-  display: flex;
-  width: inherit;
-  height: inherit;
   position: absolute;
-  object-fit: contain;
   z-index: -1;
   border-radius: 25px;
 }
-
-/* .main-banner .item-1 {
-  background-image: url(../images/banner-item-01.jpg);
-}
-
-.main-banner .item-2 {
-  background-image: url(../images/banner-item-02.jpg);
-}
-
-.main-banner .item-3 {
-  background-image: url(../images/banner-item-03.jpg);
-} */
 
 .main-banner .item {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   border-radius: 25px;
-  /* padding: 100px 100px; */
+  position: relative;
+  overflow: hidden;
   margin-left: 130px;
 }
 
 .main-banner .header-text {
-  /* pridane */
   padding: 100px 100px;
 }
 
@@ -1126,6 +1109,18 @@ Courses Style
   display: inline-block;
 }
 
+.register-course>span.category {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--main-color);
+  background-color: rgba(241, 240, 254, 0.95);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 500;
+  display: inline-block;
+  margin-right: 10px;
+}
+
 .events_item .thumb span.price {
   position: absolute;
   right: -30px;
@@ -1256,6 +1251,9 @@ Facts Style
 Team Style
 --------------------------------------------- 
 */
+.empl {
+  margin-top: 130px;
+}
 
 .team {
   margin-top: 100px;

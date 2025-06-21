@@ -62,7 +62,7 @@ class Event
 
   public function deleteEvent($id)
   {
-    $stmt = $this->db->prepare("DELETE FROM event WHERE id_service = :id");
+    $stmt = $this->db->prepare("DELETE FROM event WHERE id_event = :id");
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
     return $stmt->execute();

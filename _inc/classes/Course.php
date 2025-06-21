@@ -19,15 +19,16 @@ class Course
     return $stmt->fetch();
   }
 
-  public function createCourse($creator, $employee, $title, $price, $image, $active, $tags)
+  public function createCourse($creator, $employee, $title, $price, $image, $desc, $active, $tags)
   {
-    $stmt = $this->db->prepare("INSERT INTO course(creator, employee, title, price, image, active)
-     VALUES (:creator, :employee, :title, :price, :image, :active)");
+    $stmt = $this->db->prepare("INSERT INTO course(creator, employee, title, price, image, description, active)
+     VALUES (:creator, :employee, :title, :price, :image, :desc, :active)");
     $stmt->bindParam(':creator', $creator, PDO::PARAM_INT);
     $stmt->bindParam(':employee', $employee, PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':price', $price, PDO::PARAM_INT);
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+    $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
     $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
@@ -48,16 +49,17 @@ class Course
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function updateCourse($id, $employee, $title, $price, $image, $active, $tags)
+  public function updateCourse($id, $employee, $title, $price, $image, $desc, $active, $tags)
   {
     $stmt = $this->db->prepare("UPDATE course 
-      SET employee = :employee, title = :title, price = :price, image = :image, active = :active
+      SET employee = :employee, title = :title, price = :price, image = :image, description = :desc, active = :active
       WHERE id_course = :id");
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->bindParam(':employee', $employee, PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':price', $price, PDO::PARAM_INT);
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+    $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
     $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
@@ -99,6 +101,13 @@ class Course
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
 
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getCourseIds()
+  {
+    $stmt = $this->db->prepare("SELECT id_course FROM course WHERE active = 1");
+    $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }
