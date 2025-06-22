@@ -781,7 +781,7 @@ if ($isAdmin) {
             <td>' . $row['price'] . '</td>
             <td>' . $row['date'] . '</td>
             <td>' . $row['registered_at'] . '</td>
-            <td>' . $row['paid'] . '</td>
+            <td>' . (($row['paid'] == 1) ? 'Yes' : 'no') . '</td>
           </tr>
           ';
           }
@@ -811,7 +811,7 @@ if ($isAdmin) {
             <td>' . $row['price'] . '</td>
             <td>' . $row['date'] . '</td>
             <td>' . $row['registered_at'] . '</td>
-            <td>' . $row['paid'] . '</td>
+            <td>' . (($row['paid'] == 1) ? 'Yes' : 'No') . '</td>
           </tr>
           ';
           }
