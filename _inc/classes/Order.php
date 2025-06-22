@@ -48,7 +48,7 @@ class Order
 
   public function readOrder()
   {
-    $stmt = $this->db->prepare("SELECT ud.id_order, d.id_date, u.first_name, u.last_name, u.email, c.title, d.date, ud.registered_at, ud.paid 
+    $stmt = $this->db->prepare("SELECT ud.id_order, d.id_date, u.first_name, u.last_name, u.email, c.title, c.price, d.date, ud.registered_at, ud.paid 
       FROM user u 
       JOIN user_has_date ud ON u.id_user = ud.id_user
       JOIN date d ON ud.id_date = d.id_date
@@ -213,5 +213,31 @@ class Order
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
     return $stmt->execute();
+  }
+
+  public function readOrderMyCourses($id)
+  {
+    $stmt = $this->db->prepare("SELECT e.first_name, e.last_name, c.title, c.price, d.date, ud.registered_at, ud.paid 
+      FROM user_has_date ud
+      JOIN date d ON ud.id_date = d.id_date
+      JOIN course c ON d.course = c.id_course
+      JOIN employee e ON e.id_employee = c.employee
+      WHERE ud.id_user = :id");
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function readOrderMyEvents($id)
+  {
+    $stmt = $this->db->prepare("SELECT e.title, e.price, e.date, ue.registered_at, ue.paid 
+      FROM user_has_event ue
+      JOIN event e ON e.id_event = ue.id_event
+      WHERE ue.id_user = :id");
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }
