@@ -63,7 +63,7 @@ class Date
 
   public function readCourseDates($idCourse)
   {
-    $stmt = $this->db->prepare("SELECT * FROM date WHERE course = :id");
+    $stmt = $this->db->prepare("SELECT * FROM date WHERE course = :id AND slots < capacity");
     $stmt->bindParam(":id", $idCourse, PDO::PARAM_INT);
     $stmt->execute();
 
