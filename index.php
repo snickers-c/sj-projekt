@@ -380,9 +380,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="contact-us section" id="contact">
       <?php
-      if ($err) {
-        echo $err;
-      }
+      echo $err;
       ?>
       <div class="container">
         <div class="row">

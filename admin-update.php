@@ -90,7 +90,7 @@ if (($_GET['tab'] ?? '') == "services") {
       header('Location: admin.php?tab=services');
       exit;
     } else {
-      $err = "Inserting failed";
+      $err = "Update of data failed";
     }
   }
 }
@@ -116,7 +116,7 @@ if (($_GET['tab'] ?? '') == "events") {
       header('Location: admin.php?tab=events');
       exit;
     } else {
-      $err = "Inserting failed";
+      $err = "Update of data failed";
     }
   }
 }
@@ -142,7 +142,7 @@ if (($_GET['tab'] ?? '') == "courses") {
       header('Location: admin.php?tab=courses');
       exit;
     } else {
-      $err = "Inserting failed";
+      $err = "Update of data failed";
     }
   }
 }
@@ -168,7 +168,7 @@ if (($_GET['tab'] ?? '') == "employees") {
       header('Location: admin.php?tab=employees');
       exit;
     } else {
-      $err = "Inserting failed";
+      $err = "Update of data failed";
     }
   }
 }
@@ -190,7 +190,7 @@ if (($_GET['tab'] ?? '') == "qnas") {
       header('Location: admin.php?tab=qnas');
       exit;
     } else {
-      $err = "Inserting failed";
+      $err = "Update of data failed";
     }
   }
 }
@@ -215,7 +215,7 @@ if (($_GET['tab'] ?? '') == "banners") {
       header('Location: admin.php?tab=banners');
       exit;
     } else {
-      $err = "Inserting failed";
+      $err = "Update of data failed";
     }
   }
 }
@@ -237,7 +237,27 @@ if (($_GET['tab'] ?? '') == "dates") {
       header('Location: admin.php?tab=dates');
       exit;
     } else {
-      $err = "Inserting failed";
+      $err = "Update of data failed";
+    }
+  }
+}
+
+if (($_GET['tab'] ?? '') == "orders") {
+  $order = new Order($db);
+  $current;
+
+  if (isset($id)) {
+    $current = $order->findOrder($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $paid = $_POST['paid'];
+
+    if ($order->updateOrder($id, $paid)) {
+      header('Location: admin.php?tab=orders');
+      exit;
+    } else {
+      $err = "Update of data failed";
     }
   }
 }
@@ -606,6 +626,20 @@ if (($_GET['tab'] ?? '') == "dates") {
         <label>Capacity</label>
         <input value="<?php echo $current['capacity'] ?? '' ?>" name="capacity" type="text" class="form-control"
           placeholder="Capacity" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "orders"): ?>
+    <h1>Update order</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>Paid</label>
+        <input value="<?php echo $current['paid'] ?? '' ?>" name="paid" type="text" class="form-control"
+          placeholder="1 or 0" required>
       </div>
 
       <button type="submit" class="btn btn-primary mt-2">Submit</button>

@@ -18,8 +18,21 @@ foreach ($validIds as $row) {
   }
 }
 
+$err = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $date = $_POST['date'];
+
+  $order = new Order($db);
+  if ($order->createOrder($_SESSION['userID'], $date)) {
+    header("Location: admin.php");
+    exit;
+  } else {
+    $err = '
+      <div class="alert alert-danger" role="alert">
+        Failed to register course to your account, try again later.
+      </div>
+    ';
+  }
 }
 ?>
 
@@ -29,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="container register-course">
   <?php if ($courseItem): ?>
-  <h1 class="mb-4"><?php echo $courseItem['title']; ?></h1>
-  <?php
+    <h1 class="mb-4"><?php echo $courseItem['title']; ?></h1>
+    <?php
     $courseTags = $course->readCourseTags($id);
 
     foreach ($courseTags as $tag) {
@@ -38,13 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     ?>
 
-  <h3 class="mt-4 mb-4"><?php echo $courseItem['price']; ?>€</h3>
+    <h3 class="mt-4 mb-4"><?php echo $courseItem['price']; ?>€</h3>
 
 
-  <p><?php echo $courseItem['description']; ?></p>
+    <p><?php echo $courseItem['description']; ?></p>
 
-  <h2>Lector:</h2>
-  <?php
+    <h2>Lector:</h2>
+    <?php
     $employee = new Employee($db);
     $employeeId = $courseItem['employee'];
     $employeeItem = $employee->findEmployee($employeeId);
@@ -69,16 +82,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     ?>
 
-  <h2 class="mt-4">Available dates:</h2>
-  <form method="POST">
+    <h2 class="mt-4">Available dates:</h2>
     <?php
+    echo $err;
+    ?>
+    <form method="POST">
+      <?php
       $dateObject = new Date($db);
       $dateItems = $dateObject->readCourseDates($id);
       foreach ($dateItems as $row) {
         $trimmedDate = substr($row['date'], 0, 10);
         echo '
           <div class="form-check">
-            <input class="form-check-input" value="' . $row['id_date'] . '" type="radio" name="date">
+            <input class="form-check-input" value="' . $row['id_date'] . '" type="radio" name="date" required>
             <label class="form-check-label">
               ' . $trimmedDate . ' (' . $row['slots'] . '/' . $row['capacity'] . ' slots available)
             </label>
@@ -87,21 +103,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
       ?>
 
-    <?php
+      <?php
       $auth = new Authenticate($db);
-      if ($auth->isLoggedIn()): ?>
-    <button type="submit" class="mt-4 btn btn-primary">Register</button>
+      if ($auth->isLoggedIn() && $auth->getUserRole() == 1): ?>
+        <button type="submit" class="mt-4 btn btn-primary">Register</button>
 
-    <?php else: ?>
-    <div class="mt-4 alert alert-primary" role="alert">
-      To register a course, you have to create account
-    </div>
-    <a href="signup.php">sign up</a>
-    <?php endif ?>
-  </form>
+      <?php else: ?>
+        <div class="mt-4 alert alert-primary" role="alert">
+          To register a course, you have to be logged in your account or create one.
+        </div>
+        <a href="signup.php">sign up</a>
+      <?php endif ?>
+    </form>
 
   <?php else: ?>
-  <h1>Course was not found</h1>
+    <h1>Course was not found</h1>
   <?php endif ?>
 </div>
 

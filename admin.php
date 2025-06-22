@@ -147,6 +147,20 @@ if (($_GET['tab'] ?? '') == "dates") {
   }
 }
 
+if (($_GET['tab'] ?? '') == "orders") {
+  $order = new Order($db);
+  $orderItems = $order->readOrder();
+
+  if (isset($_GET['delete'])) {
+    if ($order->deleteOrder($_GET['delete'])) {
+      header("Location: admin.php?tab=orders");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
+
 if (($_GET['tab'] ?? '') == "messages") {
   $message = new Message($db);
   $messageItems = $message->readMessage();
@@ -612,6 +626,47 @@ if (($_GET['tab'] ?? '') == "messages") {
             <td>' . $row['slots'] . '</td>
             <td><a href="admin-update.php?tab=dates&id=' . $id . '">Edit</a></td>
             <td><a href="?tab=dates&delete=' . $id . '">Delete</a></td>
+          </tr>
+          ';
+        }
+        ?>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "orders"): ?>
+    <h1>Orders</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Registered at</th>
+          <th>Paid</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($orderItems as $row) {
+          $id = $row['id_order'];
+          echo '
+          <tr>
+            <td>' . $id . '</td>
+            <td>' . $row['first_name'] . '</td>
+            <td>' . $row['last_name'] . '</td>
+            <td>' . $row['email'] . '</td>
+            <td>' . $row['title'] . '</td>
+            <td>' . $row['date'] . '</td>
+            <td>' . $row['registered_at'] . '</td>
+            <td>' . $row['paid'] . '</td>
+            <td><a href="admin-update.php?tab=orders&id=' . $id . '">Edit</a></td>
+            <td><a href="?tab=orders&delete=' . $id . '-' . $row['id_date'] . '">Delete</a></td>
           </tr>
           ';
         }

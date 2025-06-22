@@ -14,3 +14,4 @@ include_once($path . "Qna.php");
 include_once($path . "Banner.php");
 include_once($path . "Date.php");
 include_once($path . "Message.php");
+include_once($path . "Order.php");
