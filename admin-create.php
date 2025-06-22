@@ -84,9 +84,10 @@ if (($_GET['tab'] ?? '') == "events") {
     $duration = $_POST['duration'];
     $price = $_POST['price'];
     $image = $_POST['image'];
+    $desc = $_POST['desc'];
     $active = $_POST['active'];
 
-    if ($event->createEvent($_SESSION['userID'], $title, $category, $date, $duration, $price, $image, $active)) {
+    if ($event->createEvent($_SESSION['userID'], $title, $category, $date, $duration, $price, $image, $desc, $active)) {
       header('Location: admin.php?tab=events');
       exit;
     } else {
@@ -333,6 +334,10 @@ if (($_GET['tab'] ?? '') == "dates") {
       <div class="form-group">
         <label>Image</label>
         <input name="image" type="text" class="form-control" placeholder="Image" required>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input name="desc" type="text" class="form-control" placeholder="Description" required>
       </div>
       <div class="form-group">
         <label>Active</label>

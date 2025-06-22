@@ -19,10 +19,12 @@ class Event
     return $stmt->fetch();
   }
 
-  public function createEvent($creator, $title, $category, $date, $duration, $price, $image, $active)
+  public function createEvent($creator, $title, $category, $date, $duration, $price, $image, $desc, $active)
   {
-    $stmt = $this->db->prepare("INSERT INTO event(creator, title, category, date, duration, price, image, active)
-     VALUES (:creator, :title, :category, :date, :duration, :price, :image, :active)");
+    $usersCount = 0;
+
+    $stmt = $this->db->prepare("INSERT INTO event(creator, title, category, date, duration, price, image, users_count, description, active)
+     VALUES (:creator, :title, :category, :date, :duration, :price, :image, :usersCount, :desc, :active)");
     $stmt->bindParam(':creator', $creator, PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':category', $category, PDO::PARAM_STR);
@@ -30,6 +32,8 @@ class Event
     $stmt->bindParam(':duration', $duration, PDO::PARAM_INT);
     $stmt->bindParam(':price', $price, PDO::PARAM_INT);
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+    $stmt->bindParam(':usersCount', $usersCount, PDO::PARAM_INT);
+    $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
     $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
     return $stmt->execute();
@@ -43,10 +47,10 @@ class Event
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function updateEvent($id, $title, $category, $date, $duration, $price, $image, $active)
+  public function updateEvent($id, $title, $category, $date, $duration, $price, $image, $desc, $active)
   {
     $stmt = $this->db->prepare("UPDATE event 
-      SET title = :title, category = :category, date = :date, duration = :duration, price = :price, image = :image, active = :active
+      SET title = :title, category = :category, date = :date, duration = :duration, price = :price, image = :image, description = :desc, active = :active
       WHERE id_event = :id");
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
@@ -55,6 +59,7 @@ class Event
     $stmt->bindParam(':duration', $duration, PDO::PARAM_INT);
     $stmt->bindParam(':price', $price, PDO::PARAM_INT);
     $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+    $stmt->bindParam(':desc', $desc, PDO::PARAM_STR);
     $stmt->bindParam(':active', $active, PDO::PARAM_INT);
 
     return $stmt->execute();
@@ -66,5 +71,12 @@ class Event
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
     return $stmt->execute();
+  }
+
+  public function getEventIds()
+  {
+    $stmt = $this->db->prepare("SELECT id_event FROM event WHERE active = 1");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }

@@ -110,9 +110,10 @@ if (($_GET['tab'] ?? '') == "events") {
     $duration = $_POST['duration'];
     $price = $_POST['price'];
     $image = $_POST['image'];
+    $desc = $_POST['desc'];
     $active = $_POST['active'];
 
-    if ($event->updateEvent($id, $title, $category, $date, $duration, $price, $image, $active)) {
+    if ($event->updateEvent($id, $title, $category, $date, $duration, $price, $image, $desc, $active)) {
       header('Location: admin.php?tab=events');
       exit;
     } else {
@@ -255,6 +256,26 @@ if (($_GET['tab'] ?? '') == "orders") {
 
     if ($order->updateOrder($id, $paid)) {
       header('Location: admin.php?tab=orders');
+      exit;
+    } else {
+      $err = "Update of data failed";
+    }
+  }
+}
+
+if (($_GET['tab'] ?? '') == "eventOrders") {
+  $order = new Order($db);
+  $current;
+
+  if (isset($id)) {
+    $current = $order->findOrderEvent($id);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $paid = $_POST['paid'];
+
+    if ($order->updateOrderEvent($id, $paid)) {
+      header('Location: admin.php?tab=eventOrders');
       exit;
     } else {
       $err = "Update of data failed";
@@ -415,6 +436,11 @@ if (($_GET['tab'] ?? '') == "orders") {
         <label>Image</label>
         <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
           placeholder="Image" required>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+          placeholder="Description" required>
       </div>
       <div class="form-group">
         <label>Active</label>
@@ -634,6 +660,20 @@ if (($_GET['tab'] ?? '') == "orders") {
 
   <?php if (($_GET['tab'] ?? '') == "orders"): ?>
     <h1>Update order</h1>
+
+    <form method="POST">
+      <div class="form-group">
+        <label>Paid</label>
+        <input value="<?php echo $current['paid'] ?? '' ?>" name="paid" type="text" class="form-control"
+          placeholder="1 or 0" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "eventOrders"): ?>
+    <h1>Update event order</h1>
 
     <form method="POST">
       <div class="form-group">

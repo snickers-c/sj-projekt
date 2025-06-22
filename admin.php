@@ -161,6 +161,20 @@ if (($_GET['tab'] ?? '') == "orders") {
   }
 }
 
+if (($_GET['tab'] ?? '') == "eventOrders") {
+  $order = new Order($db);
+  $orderItems = $order->readOrderEvent();
+
+  if (isset($_GET['delete'])) {
+    if ($order->deleteOrderEvent($_GET['delete'])) {
+      header("Location: admin.php?tab=eventOrders");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
+
 if (($_GET['tab'] ?? '') == "messages") {
   $message = new Message($db);
   $messageItems = $message->readMessage();
@@ -195,6 +209,7 @@ if (($_GET['tab'] ?? '') == "messages") {
       ['label' => 'Banners', 'link' => 'banners'],
       ['label' => 'Dates', 'link' => 'dates'],
       ['label' => 'Orders', 'link' => 'orders'],
+      ['label' => 'Event orders', 'link' => 'eventOrders'],
       ['label' => 'Messages', 'link' => 'messages']
     ];
     $tabs = new Menu($tabItems);
@@ -367,6 +382,8 @@ if (($_GET['tab'] ?? '') == "messages") {
           <th>Duration</th>
           <th>Price</th>
           <th>Image</th>
+          <th>Description</th>
+          <th>Users count</th>
           <th>Active</th>
           <th>Edit</th>
           <th>Delete</th>
@@ -386,6 +403,8 @@ if (($_GET['tab'] ?? '') == "messages") {
             <td>' . $row['duration'] . '</td>
             <td>' . $row['price'] . '</td>
             <td>' . $row['image'] . '</td>
+            <td>Check in edit</td>
+            <td>' . $row['users_count'] . '</td>
             <td>' . $row['active'] . '</td>
             <td><a href="admin-update.php?tab=events&id=' . $id . '">Edit</a></td>
             <td><a href="?tab=events&delete=' . $id . '">Delete</a></td>
@@ -667,6 +686,47 @@ if (($_GET['tab'] ?? '') == "messages") {
             <td>' . $row['paid'] . '</td>
             <td><a href="admin-update.php?tab=orders&id=' . $id . '">Edit</a></td>
             <td><a href="?tab=orders&delete=' . $id . '-' . $row['id_date'] . '">Delete</a></td>
+          </tr>
+          ';
+        }
+        ?>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "eventOrders"): ?>
+    <h1>Event orders</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Registered at</th>
+          <th>Paid</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($orderItems as $row) {
+          $id = $row['id_order_event'];
+          echo '
+          <tr>
+            <td>' . $id . '</td>
+            <td>' . $row['first_name'] . '</td>
+            <td>' . $row['last_name'] . '</td>
+            <td>' . $row['email'] . '</td>
+            <td>' . $row['title'] . '</td>
+            <td>' . $row['date'] . '</td>
+            <td>' . $row['registered_at'] . '</td>
+            <td>' . $row['paid'] . '</td>
+            <td><a href="admin-update.php?tab=eventOrders&id=' . $id . '">Edit</a></td>
+            <td><a href="?tab=eventOrders&delete=' . $id . '-' . $row['id_event'] . '">Delete</a></td>
           </tr>
           ';
         }

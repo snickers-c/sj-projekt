@@ -366,7 +366,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <h6>' . $row['price'] . '€</h6>
                   </li>
                 </ul>
-                <a href="' . $row['id_event'] . '"><i class="fa fa-angle-right"></i></a>
+                <a href="register-event.php?id=' . $row['id_event'] . '"><i class="fa fa-angle-right"></i></a>
               </div>
             </div>
           </div>
