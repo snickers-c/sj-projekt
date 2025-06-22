@@ -35,9 +35,8 @@ class Order
 
       if ($stmt->execute()) {
         $this->increaseSlot($dateId);
+        return $this->db->commit();
       }
-
-      return $this->db->commit();
     } catch (Exception $e) {
       $this->db->rollBack();
       return false;
@@ -79,9 +78,8 @@ class Order
 
       if ($stmt->execute()) {
         $this->decreaseSlot($ids[1]);
+        return $this->db->commit();
       }
-
-      return $this->db->commit();
     } catch (Exception $e) {
       $this->db->rollBack();
       return false;
@@ -129,9 +127,8 @@ class Order
 
       if ($stmt->execute()) {
         $this->increaseCount($eventId);
+        return $this->db->commit();
       }
-
-      return $this->db->commit();
     } catch (Exception $e) {
       $this->db->rollBack();
       return false;
@@ -172,9 +169,8 @@ class Order
 
       if ($stmt->execute()) {
         $this->decreaseCount($ids[1]);
+        return $this->db->commit();
       }
-
-      return $this->db->commit();
     } catch (Exception $e) {
       $this->db->rollBack();
       return false;
