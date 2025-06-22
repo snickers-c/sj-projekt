@@ -8,12 +8,7 @@ class Testimonial
 
   public function __construct(Database $database)
   {
-    try {
-      $this->db = $database->getConnection();
-    } catch (PDOException $e) {
-      echo "acquiring connection failed " . $e->getMessage();
-      exit;
-    }
+    $this->db = $database->getConnection();
   }
 
   public function findTestimonial($id)

@@ -146,6 +146,20 @@ if (($_GET['tab'] ?? '') == "dates") {
     }
   }
 }
+
+if (($_GET['tab'] ?? '') == "messages") {
+  $message = new Message($db);
+  $messageItems = $message->readMessage();
+
+  if (isset($_GET['delete'])) {
+    if ($message->deleteMessage($_GET['delete'])) {
+      header("Location: admin.php?tab=messages");
+      exit;
+    } else {
+      echo "Record failed to be deleted.";
+    }
+  }
+}
 ?>
 <div class="header-text my-5">
   <br>
@@ -166,7 +180,8 @@ if (($_GET['tab'] ?? '') == "dates") {
       ['label' => 'Qna', 'link' => 'qnas'],
       ['label' => 'Banners', 'link' => 'banners'],
       ['label' => 'Dates', 'link' => 'dates'],
-      ['label' => 'Orders', 'link' => 'orders']
+      ['label' => 'Orders', 'link' => 'orders'],
+      ['label' => 'Messages', 'link' => 'messages']
     ];
     $tabs = new Menu($tabItems);
     echo $tabs->getTabs($_GET['tab'] ?? '');
@@ -597,6 +612,41 @@ if (($_GET['tab'] ?? '') == "dates") {
             <td>' . $row['slots'] . '</td>
             <td><a href="admin-update.php?tab=dates&id=' . $id . '">Edit</a></td>
             <td><a href="?tab=dates&delete=' . $id . '">Delete</a></td>
+          </tr>
+          ';
+        }
+        ?>
+      </tbody>
+    </table>
+  <?php endif ?>
+
+  <?php if (($_GET['tab'] ?? '') == "messages"): ?>
+    <h1>Messages</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Created at</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($messageItems as $row) {
+          $id = $row['id_message'];
+          echo '
+          <tr>
+            <td>' . $id . '</td>
+            <td>' . $row['first_name'] . '</td>
+            <td>' . $row['last_name'] . '</td>
+            <td>' . $row['email'] . '</td>
+            <td>' . $row['message'] . '</td>
+            <td>' . $row['created_at'] . '</td>
+            <td><a href="?tab=messages&delete=' . $id . '">Delete</a></td>
           </tr>
           ';
         }

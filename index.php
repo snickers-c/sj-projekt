@@ -1,5 +1,25 @@
 <?php
 include_once("components/header.php");
+
+$err = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $firstName = $_POST['firstName'];
+  $lastName = $_POST['lastName'];
+  $email = $_POST['email'];
+  $message = $_POST['message'];
+
+  $messageObject = new Message($db);
+  if ($messageObject->createMessage($firstName, $lastName, $email, $message)) {
+    header("Location: /index.php#contact");
+    exit;
+  } else {
+    $err = '
+      <div class="alert alert-danger" role="alert">
+        Failed to send your message.
+      </div>
+    ';
+  }
+}
 ?>
 
 <div class="main-banner" id="top">
@@ -359,6 +379,11 @@ include_once("components/header.php");
     </div>
 
     <div class="contact-us section" id="contact">
+      <?php
+      if ($err) {
+        echo $err;
+      }
+      ?>
       <div class="container">
         <div class="row">
           <div class="col-lg-6  align-self-center">
@@ -378,23 +403,26 @@ include_once("components/header.php");
           </div>
           <div class="col-lg-6">
             <div class="contact-us-content">
-
-              <form id="contact-form" action="thankyou.php" method="POST">
+              <form id="contact-form" method="POST">
                 <div class="row">
                   <div class="col-lg-12">
                     <fieldset>
-                      <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                      <input type="text" name="firstName" placeholder="Your First Name..." autocomplete="on" required>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..."
-                        required="">
+                      <input type="text" name="lastName" placeholder="Your Last Name..." autocomplete="on" required>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <textarea name="message" id="message" placeholder="Your Message"></textarea required>
+                      <input type="email" name="email" placeholder="Your E-mail..." required>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <textarea name="message" placeholder="Your Message"></textarea required>
                 </fieldset>
               </div>
               <div class="col-lg-12">
