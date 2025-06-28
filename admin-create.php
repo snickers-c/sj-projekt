@@ -1,6 +1,7 @@
 <?php
 include_once("components/header.php");
 
+$err = false;
 if (($_GET['tab'] ?? '') == "testimonials") {
   $testimonial = new Testimonial($db);
 
@@ -196,12 +197,10 @@ if (($_GET['tab'] ?? '') == "dates") {
   <br>
 </div>
 <div class="container">
-  <?php
-  if (isset($err)) {
-    echo '<br><div class="alert alert-danger" role="alert">' . $err . '</div>';
-    $err = null;
-  }
-  ?>
+  <?php if ($err): ?>
+    <br>
+    <div class="alert alert-danger" role="alert"><?php echo $err ?></div>
+  <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "testimonials"): ?>
     <h1>Create new testimonial</h1>
@@ -382,15 +381,12 @@ if (($_GET['tab'] ?? '') == "dates") {
       $tag = new Tag($db);
       $tagItems = $tag->readTag();
 
-      foreach ($tagItems as $row) {
-        echo '
+      foreach ($tagItems as $row): ?>
         <div class="form-check">
-          <label class="form-check-label">' . $row['name'] . '</label>
-          <input name="tags[]" type="checkbox" class="form-check-input" value="' . $row['id_tag'] . '">
+          <label class="form-check-label"><?php echo $row['name'] ?></label>
+          <input name="tags[]" type="checkbox" class="form-check-input" value="<?php echo $row['id_tag'] ?>">
         </div>
-        ';
-      }
-      ?>
+      <?php endforeach ?>
 
       <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>
@@ -498,10 +494,9 @@ if (($_GET['tab'] ?? '') == "dates") {
           $course = new Course($db);
           $courseItems = $course->readCourse();
 
-          foreach ($courseItems as $row) {
-            echo '<option value="' . $row['id_course'] . '">' . $row['title'] . '</option>';
-          }
-          ?>
+          foreach ($courseItems as $row): ?>
+            <option value="<?php echo $row['id_course'] ?>"><?php echo $row['title'] ?></option>
+          <?php endforeach ?>
         </select>
       </div>
       <div class="form-group">

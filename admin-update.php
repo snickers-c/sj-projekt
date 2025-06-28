@@ -637,10 +637,12 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
           $course = new Course($db);
           $courseItems = $course->readCourse();
 
-          foreach ($courseItems as $row) {
-            echo '<option value="' . $row['id_course'] . '"' . (($row['id_course'] == $current['course']) ? 'selected' : '') . '>' . $row['title'] . '</option>';
-          }
-          ?>
+          foreach ($courseItems as $row): ?>
+            <option value="<?php echo $row['id_course'] ?>"
+              <?php echo (($row['id_course'] == $current['course']) ? 'selected' : '') ?>>
+              <?php echo $row['title'] ?>
+            </option>
+          <?php endforeach ?>
         </select>
       </div>
       <div class="form-group">

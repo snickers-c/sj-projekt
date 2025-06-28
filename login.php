@@ -8,8 +8,8 @@ if ($auth->isLoggedIn()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $email = $_POST['email'] ?? '';
-  $password = $_POST['password'] ?? '';
+  $email = $_POST['email'];
+  $password = $_POST['password'];
 
   if ($auth->login($email, $password)) {
     header("Location: admin.php");
@@ -23,20 +23,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="header-text my-5">
   <br>
 </div>
+
 <div class="container">
   <h1>Log in</h1>
 
-  <?php
-  if (isset($err)) {
-    echo '<br><div class="alert alert-danger" role="alert">' . $err . '</div>';
-    $err = null;
-  }
-  ?>
+  <?php if (isset($err)): ?>
+    <br>
+    <div class="alert alert-danger" role="alert"><?php echo $err ?></div>
+  <?php endif ?>
 
   <form method="POST">
     <div class="form-group">
       <label>Email</label>
-      <input name="email" type="text" class="form-control" placeholder="Email" required>
+      <input name="email" value="<?php echo $email ?? '' ?>" type="text" class="form-control" placeholder="Email"
+        required>
     </div>
     <div class="form-group">
       <label>Password</label>

@@ -19,17 +19,13 @@ foreach ($validIds as $row) {
   }
 }
 
-$err = '';
+$err = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($order->createOrderEvent($_SESSION['userID'], $id)) {
     header("Location: admin.php");
     exit;
   } else {
-    $err = '
-      <div class="alert alert-danger" role="alert">
-        Failed to register event to your account, try again later.
-      </div>
-    ';
+    $err = 'Failed to register event to your account, try again later.';
   }
 }
 ?>
@@ -40,18 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="container register-course">
   <?php if ($eventItem): ?>
-    <h1 class="mb-4"><?php echo $eventItem['title']; ?></h1>
+    <h1 class="mb-4"><?php echo $eventItem['title'] ?></h1>
 
-    <span class="category"><?php echo $eventItem['category']; ?></span>
+    <span class="category"><?php echo $eventItem['category'] ?></span>
 
-    <h3 class="mt-4 mb-4"><?php echo $eventItem['price']; ?>€</h3>
+    <h3 class="mt-4 mb-4"><?php echo $eventItem['price'] ?>€</h3>
 
 
-    <p><?php echo $eventItem['description']; ?></p>
+    <p><?php echo $eventItem['description'] ?></p>
 
-    <?php
-    echo $err;
-    ?>
+    <?php if ($err): ?>
+      <div class="alert alert-danger" role="alert">
+        <?php echo $err ?>
+      </div>
+    <?php endif ?>
+
     <form method="POST">
       <?php
       $auth = new Authenticate($db);
@@ -61,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $disabled = ' disabled';
         }
       ?>
-        <button type="submit" class="mt-4 btn btn-primary" <?php echo $disabled; ?>>Register</button>
+        <button type="submit" class="mt-4 btn btn-primary" <?php echo $disabled ?>>Register</button>
 
       <?php else: ?>
         <div class="mt-4 alert alert-primary" role="alert">
