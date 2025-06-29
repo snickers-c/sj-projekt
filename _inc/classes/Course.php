@@ -49,8 +49,11 @@ class Course
 
   public function readCourse()
   {
-    $stmt = $this->db->prepare("SELECT c.id_course, c.creator, e.first_name, e.last_name, c.title, c.price, c.image, c.active FROM course c 
-    JOIN employee e ON c.employee = e.id_employee");
+    $stmt = $this->db->prepare("SELECT c.*, e.first_name, e.last_name, GROUP_CONCAT(t.name SEPARATOR ' ') as tags FROM course c 
+    JOIN employee e ON c.employee = e.id_employee
+    JOIN tag_has_course tc ON c.id_course = tc.id_course
+	  JOIN tag t ON t.id_tag = tc.id_tag
+	  GROUP BY id_course");
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

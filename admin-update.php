@@ -500,22 +500,19 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
 
       $numberOfTags = count($currentTags);
       $i = 0;
-      foreach ($tagItems as $row) {
+      foreach ($tagItems as $row):
         $checked = '';
         if ($i < $numberOfTags && $currentTags[$i] == $row['name']) {
           $checked = 'checked';
           $i++;
-        }
-        echo '
+        } ?>
         <div class="form-check">
-          <label class="form-check-label">' . $row['name'] . '</label>
-          <input name="tags[]" type="checkbox" class="form-check-input" value="' . $row['id_tag'] . '" ' . $checked . '>
+          <label class="form-check-label"><?php echo $row['name'] ?></label>
+          <input name="tags[]" type="checkbox" class="form-check-input" value="<?php echo $row['id_tag'] . '" ' . $checked ?>>
         </div>
-        ';
-      }
-      ?>
+      <?php endforeach ?>
 
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+      <button type=" submit" class="btn btn-primary mt-2">Submit</button>
     </form>
   <?php endif ?>
 
