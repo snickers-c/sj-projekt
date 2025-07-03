@@ -293,32 +293,32 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>First Name</label>
-        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+        <input value="<?= $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
           placeholder="First Name" required>
       </div>
       <div class="form-group">
         <label>Last Name</label>
-        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+        <input value="<?= $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
           placeholder="Last Name" required>
       </div>
       <div class="form-group">
         <label>Occupation</label>
-        <input value="<?php echo $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
+        <input value="<?= $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
           placeholder="Occupation" required>
       </div>
       <div class="form-group">
         <label>Description</label>
-        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        <input value="<?= $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
           placeholder="Description" required>
       </div>
       <div class="form-group">
         <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        <input value="<?= $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
           placeholder="Not required">
       </div>
       <div class="form-group">
         <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        <input value="<?= $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
           placeholder="1 or 0" required>
       </div>
 
@@ -332,22 +332,22 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>First Name</label>
-        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+        <input value="<?= $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
           placeholder="First Name" required>
       </div>
       <div class="form-group">
         <label>Last Name</label>
-        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+        <input value="<?= $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
           placeholder="Last Name" required>
       </div>
       <div class="form-group">
         <label>Role</label>
-        <input value="<?php echo $current['role'] ?? '' ?>" name="role" type="text" class="form-control"
+        <input value="<?= $current['role'] ?? '' ?>" name="role" type="text" class="form-control"
           placeholder="Role" required>
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input value="<?php echo $current['email'] ?? '' ?>" name="email" type="email" class="form-control"
+        <input value="<?= $current['email'] ?? '' ?>" name="email" type="email" class="form-control"
           placeholder="Email" required>
       </div>
 
@@ -361,7 +361,7 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>Tag name</label>
-        <input value="<?php echo $current['name'] ?? '' ?>" name="name" type="text" class="form-control"
+        <input value="<?= $current['name'] ?? '' ?>" name="name" type="text" class="form-control"
           placeholder="Tag name" required>
       </div>
 
@@ -375,27 +375,27 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>Title</label>
-        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        <input value="<?= $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
           placeholder="Title" required>
       </div>
       <div class="form-group">
         <label>Description</label>
-        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        <input value="<?= $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
           placeholder="Description" required>
       </div>
       <div class="form-group">
         <label>Button link</label>
-        <input value="<?php echo $current['button_link'] ?? '' ?>" name="buttonLink" type="text" class="form-control"
+        <input value="<?= $current['button_link'] ?? '' ?>" name="buttonLink" type="text" class="form-control"
           placeholder="Not Required">
       </div>
       <div class="form-group">
         <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        <input value="<?= $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
           placeholder="Image" required>
       </div>
       <div class="form-group">
         <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        <input value="<?= $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
           placeholder="1 or 0" required>
       </div>
 
@@ -409,42 +409,42 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>Title</label>
-        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        <input value="<?= $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
           placeholder="Title" required>
       </div>
       <div class="form-group">
         <label>Category</label>
-        <input value="<?php echo $current['category'] ?? '' ?>" name="category" type="text" class="form-control"
+        <input value="<?= $current['category'] ?? '' ?>" name="category" type="text" class="form-control"
           placeholder="Category" required>
       </div>
       <div class="form-group">
         <label>Date</label>
-        <input value="<?php echo $current['date'] ?? '' ?>" name="date" type="text" class="form-control"
+        <input value="<?= $current['date'] ?? '' ?>" name="date" type="text" class="form-control"
           placeholder="yyyy-mm-dd hh:mm:ss" required>
       </div>
       <div class="form-group">
         <label>Duration</label>
-        <input value="<?php echo $current['duration'] ?? '' ?>" name="duration" type="text" class="form-control"
+        <input value="<?= $current['duration'] ?? '' ?>" name="duration" type="text" class="form-control"
           placeholder="Duration" required>
       </div>
       <div class="form-group">
         <label>Price</label>
-        <input value="<?php echo $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
+        <input value="<?= $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
           placeholder="Price" required>
       </div>
       <div class="form-group">
         <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        <input value="<?= $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
           placeholder="Image" required>
       </div>
       <div class="form-group">
         <label>Description</label>
-        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        <input value="<?= $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
           placeholder="Description" required>
       </div>
       <div class="form-group">
         <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        <input value="<?= $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
           placeholder="1 or 0" required>
       </div>
 
@@ -458,32 +458,32 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>Employee ID</label>
-        <input value="<?php echo $current['employee'] ?? '' ?>" name="employee" type="text" class="form-control"
+        <input value="<?= $current['employee'] ?? '' ?>" name="employee" type="text" class="form-control"
           placeholder="Employee ID" required>
       </div>
       <div class="form-group">
         <label>Title</label>
-        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        <input value="<?= $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
           placeholder="Title" required>
       </div>
       <div class="form-group">
         <label>Price</label>
-        <input value="<?php echo $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
+        <input value="<?= $current['price'] ?? '' ?>" name="price" type="text" class="form-control"
           placeholder="Price" required>
       </div>
       <div class="form-group">
         <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        <input value="<?= $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
           placeholder="Image" required>
       </div>
       <div class="form-group">
         <label>Description</label>
-        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        <input value="<?= $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
           placeholder="Description" required>
       </div>
       <div class="form-group">
         <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        <input value="<?= $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
           placeholder="1 or 0" required>
       </div>
       <br>
@@ -507,8 +507,8 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
           $i++;
         } ?>
         <div class="form-check">
-          <label class="form-check-label"><?php echo $row['name'] ?></label>
-          <input name="tags[]" type="checkbox" class="form-check-input" value="<?php echo $row['id_tag'] . '" ' . $checked ?>>
+          <label class="form-check-label"><?= $row['name'] ?></label>
+          <input name="tags[]" type="checkbox" class="form-check-input" value="<?= $row['id_tag'] . '" ' . $checked ?>>
         </div>
       <?php endforeach ?>
 
@@ -522,37 +522,37 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>First Name</label>
-        <input value="<?php echo $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
+        <input value="<?= $current['first_name'] ?? '' ?>" name="firstName" type="text" class="form-control"
           placeholder="First Name" required>
       </div>
       <div class="form-group">
         <label>Last Name</label>
-        <input value="<?php echo $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
+        <input value="<?= $current['last_name'] ?? '' ?>" name="lastName" type="text" class="form-control"
           placeholder="Last Name" required>
       </div>
       <div class="form-group">
         <label>Occupation</label>
-        <input value="<?php echo $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
+        <input value="<?= $current['occupation'] ?? '' ?>" name="occupation" type="text" class="form-control"
           placeholder="Occupation" required>
       </div>
       <div class="form-group">
         <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        <input value="<?= $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
           placeholder="Not required">
       </div>
       <div class="form-group">
         <label>Facebook</label>
-        <input value="<?php echo $current['facebook'] ?? '' ?>" name="facebook" type="text" class="form-control"
+        <input value="<?= $current['facebook'] ?? '' ?>" name="facebook" type="text" class="form-control"
           placeholder="Not required">
       </div>
       <div class="form-group">
         <label>Twitter</label>
-        <input value="<?php echo $current['twitter'] ?? '' ?>" name="twitter" type="text" class="form-control"
+        <input value="<?= $current['twitter'] ?? '' ?>" name="twitter" type="text" class="form-control"
           placeholder="Not required">
       </div>
       <div class="form-group">
         <label>LinkedIn</label>
-        <input value="<?php echo $current['linkedin'] ?? '' ?>" name="linkedIn" type="text" class="form-control"
+        <input value="<?= $current['linkedin'] ?? '' ?>" name="linkedIn" type="text" class="form-control"
           placeholder="Not required">
       </div>
 
@@ -566,17 +566,17 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>Title</label>
-        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        <input value="<?= $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
           placeholder="Title" required>
       </div>
       <div class="form-group">
         <label>Description</label>
-        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        <input value="<?= $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
           placeholder="Description" required>
       </div>
       <div class="form-group">
         <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        <input value="<?= $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
           placeholder="1 or 0" required>
       </div>
 
@@ -590,32 +590,32 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>Tag</label>
-        <input value="<?php echo $current['tag'] ?? '' ?>" name="tag" type="text" class="form-control" placeholder="Tag"
+        <input value="<?= $current['tag'] ?? '' ?>" name="tag" type="text" class="form-control" placeholder="Tag"
           required>
       </div>
       <div class="form-group">
         <label>Title</label>
-        <input value="<?php echo $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
+        <input value="<?= $current['title'] ?? '' ?>" name="title" type="text" class="form-control"
           placeholder="Title" required>
       </div>
       <div class="form-group">
         <label>Description</label>
-        <input value="<?php echo $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
+        <input value="<?= $current['description'] ?? '' ?>" name="desc" type="text" class="form-control"
           placeholder="Description" required>
       </div>
       <div class="form-group">
         <label>Image</label>
-        <input value="<?php echo $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
+        <input value="<?= $current['image'] ?? '' ?>" name="image" type="text" class="form-control"
           placeholder="Image" required>
       </div>
       <div class="form-group">
         <label>Button Link</label>
-        <input value="<?php echo $current['button_link'] ?? '' ?>" name="buttonLink" type="text" class="form-control"
+        <input value="<?= $current['button_link'] ?? '' ?>" name="buttonLink" type="text" class="form-control"
           placeholder="Button Link" required>
       </div>
       <div class="form-group">
         <label>Active</label>
-        <input value="<?php echo $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
+        <input value="<?= $current['active'] ?? '' ?>" name="active" type="text" class="form-control"
           placeholder="1 or 0" required>
       </div>
 
@@ -635,21 +635,21 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
           $courseItems = $course->readCourse();
 
           foreach ($courseItems as $row): ?>
-            <option value="<?php echo $row['id_course'] ?>"
-              <?php echo (($row['id_course'] == $current['course']) ? 'selected' : '') ?>>
-              <?php echo $row['title'] ?>
+            <option value="<?= $row['id_course'] ?>"
+              <?= (($row['id_course'] == $current['course']) ? 'selected' : '') ?>>
+              <?= $row['title'] ?>
             </option>
           <?php endforeach ?>
         </select>
       </div>
       <div class="form-group">
         <label>Date</label>
-        <input value="<?php echo $current['date'] ?? '' ?>" name="date" type="text" class="form-control"
+        <input value="<?= $current['date'] ?? '' ?>" name="date" type="text" class="form-control"
           placeholder="yyyy-mm-dd hh:mm:ss" required>
       </div>
       <div class="form-group">
         <label>Capacity</label>
-        <input value="<?php echo $current['capacity'] ?? '' ?>" name="capacity" type="text" class="form-control"
+        <input value="<?= $current['capacity'] ?? '' ?>" name="capacity" type="text" class="form-control"
           placeholder="Capacity" required>
       </div>
 
@@ -663,7 +663,7 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>Paid</label>
-        <input value="<?php echo $current['paid'] ?? '' ?>" name="paid" type="text" class="form-control"
+        <input value="<?= $current['paid'] ?? '' ?>" name="paid" type="text" class="form-control"
           placeholder="1 or 0" required>
       </div>
 
@@ -677,7 +677,7 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     <form method="POST">
       <div class="form-group">
         <label>Paid</label>
-        <input value="<?php echo $current['paid'] ?? '' ?>" name="paid" type="text" class="form-control"
+        <input value="<?= $current['paid'] ?? '' ?>" name="paid" type="text" class="form-control"
           placeholder="1 or 0" required>
       </div>
 

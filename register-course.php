@@ -38,19 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="container register-course">
   <?php if ($courseItem): ?>
-    <h1 class="mb-4"><?php echo $courseItem['title'] ?></h1>
+    <h1 class="mb-4"><?= $courseItem['title'] ?></h1>
 
     <?php
     $courseTags = $course->readCourseTags($id);
 
     foreach ($courseTags as $tag): ?>
-      <span class="category"><?php echo $tag['name'] ?></span>
+      <span class="category"><?= $tag['name'] ?></span>
     <?php endforeach ?>
 
-    <h3 class="mt-4 mb-4"><?php echo $courseItem['price'] ?>€</h3>
+    <h3 class="mt-4 mb-4"><?= $courseItem['price'] ?>€</h3>
 
 
-    <p><?php echo $courseItem['description'] ?></p>
+    <p><?= $courseItem['description'] ?></p>
 
     <h2>Lector:</h2>
     <?php
@@ -62,14 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="empl col-lg-3 col-md-6">
         <div class="team-member">
           <div class="main-content">
-            <img src="<?php echo $employeeItem['image'] ?>"
-              alt="<?php echo $employeeItem['first_name'] . $employeeItem['last_name'] ?>">
-            <span class="category"><?php echo $employeeItem['occupation'] ?></span>
-            <h4><?php echo $employeeItem['first_name'] . $employeeItem['last_name'] ?></h4>
+            <img src="<?= $employeeItem['image'] ?>"
+              alt="<?= $employeeItem['first_name'] . $employeeItem['last_name'] ?>">
+            <span class="category"><?= $employeeItem['occupation'] ?></span>
+            <h4><?= $employeeItem['first_name'] . $employeeItem['last_name'] ?></h4>
             <ul class="social-icons">
-              <li><a href="<?php echo $employeeItem['facebook'] ?>"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="<?php echo $employeeItem['twitter'] ?>"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="<?php echo $employeeItem['linkedin'] ?>"><i class="fab fa-linkedin"></i></a></li>
+              <li><a href="<?= $employeeItem['facebook'] ?>"><i class="fab fa-facebook"></i></a></li>
+              <li><a href="<?= $employeeItem['twitter'] ?>"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="<?= $employeeItem['linkedin'] ?>"><i class="fab fa-linkedin"></i></a></li>
             </ul>
           </div>
         </div>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h2 class="mt-4">Available dates:</h2>
     <?php if ($err): ?>
       <div class="alert alert-danger" role="alert">
-        <?php echo $err ?>
+        <?= $err ?>
       </div>
     <?php endif ?>
 
@@ -91,9 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       foreach ($dateItems as $row):
         $trimmedDate = substr($row['date'], 0, 10); ?>
         <div class="form-check">
-          <input class="form-check-input" value="<?php echo $row['id_date'] ?>" type="radio" name="date" required>
+          <input class="form-check-input" value="<?= $row['id_date'] ?>" type="radio" name="date" required>
           <label class="form-check-label">
-            <?php echo $trimmedDate . ' (' . $row['slots'] . '/' . $row['capacity'] . ' slots available)' ?>
+            <?= $trimmedDate . ' (' . $row['slots'] . '/' . $row['capacity'] . ' slots available)' ?>
           </label>
         </div>
       <?php endforeach ?>

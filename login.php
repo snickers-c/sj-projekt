@@ -29,13 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <?php if (isset($err)): ?>
     <br>
-    <div class="alert alert-danger" role="alert"><?php echo $err ?></div>
+    <div class="alert alert-danger" role="alert"><?= $err ?></div>
   <?php endif ?>
 
   <form method="POST">
     <div class="form-group">
       <label>Email</label>
-      <input name="email" value="<?php echo $email ?? '' ?>" type="text" class="form-control" placeholder="Email"
+      <input name="email" value="<?= $email ?? '' ?>" type="text" class="form-control" placeholder="Email"
         required>
     </div>
     <div class="form-group">

@@ -263,16 +263,16 @@ if ($isAdmin) {
           foreach ($testimonialItems as $row):
             $id = $row['id_testimonial']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['creator'] ?></td>
-              <td><?php echo $row['first_name'] ?></td>
-              <td><?php echo $row['last_name'] ?></td>
-              <td><?php echo $row['occupation'] ?></td>
-              <td><?php echo $row['description'] ?></td>
-              <td><?php echo $row['active'] ?></td>
-              <td><?php echo $row['image'] ?></td>
-              <td><a href="admin-update.php?tab=testimonials&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=testimonials&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['creator'] ?></td>
+              <td><?= $row['first_name'] ?></td>
+              <td><?= $row['last_name'] ?></td>
+              <td><?= $row['occupation'] ?></td>
+              <td><?= $row['description'] ?></td>
+              <td><?= $row['active'] ?></td>
+              <td><?= $row['image'] ?></td>
+              <td><a href="admin-update.php?tab=testimonials&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=testimonials&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -300,14 +300,14 @@ if ($isAdmin) {
           foreach ($userItems as $row):
             $id = $row['id_user']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['first_name'] ?></td>
-              <td><?php echo $row['last_name'] ?></td>
-              <td><?php echo $row['role'] ?></td>
-              <td><?php echo $row['email'] ?></td>
-              <td><?php echo $row['created_at'] ?></td>
-              <td><a href="admin-update.php?tab=users&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=users&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['first_name'] ?></td>
+              <td><?= $row['last_name'] ?></td>
+              <td><?= $row['role'] ?></td>
+              <td><?= $row['email'] ?></td>
+              <td><?= $row['created_at'] ?></td>
+              <td><a href="admin-update.php?tab=users&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=users&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -331,10 +331,10 @@ if ($isAdmin) {
           foreach ($tagItems as $row):
             $id = $row['id_tag']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['name'] ?></td>
-              <td><a href="admin-update.php?tab=tags&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=tags&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['name'] ?></td>
+              <td><a href="admin-update.php?tab=tags&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=tags&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -363,15 +363,15 @@ if ($isAdmin) {
           foreach ($serviceItems as $row):
             $id = $row['id_service']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['creator'] ?></td>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['description'] ?></td>
-              <td><?php echo $row['button_link'] ?></td>
-              <td><?php echo $row['image'] ?></td>
-              <td><?php echo $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=services&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=services&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['creator'] ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['description'] ?></td>
+              <td><?= $row['button_link'] ?></td>
+              <td><?= $row['image'] ?></td>
+              <td><?= $row['active'] ?></td>
+              <td><a href="admin-update.php?tab=services&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=services&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -404,19 +404,19 @@ if ($isAdmin) {
           foreach ($eventItems as $row):
             $id = $row['id_event']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['creator'] ?></td>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['category'] ?></td>
-              <td><?php echo $row['date'] ?></td>
-              <td><?php echo $row['duration'] ?></td>
-              <td><?php echo $row['price'] ?></td>
-              <td><?php echo $row['image'] ?></td>
+              <td><?= $id ?></td>
+              <td><?= $row['creator'] ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['category'] ?></td>
+              <td><?= $row['date'] ?></td>
+              <td><?= $row['duration'] ?></td>
+              <td><?= $row['price'] ?></td>
+              <td><?= $row['image'] ?></td>
               <td>Check in edit</td>
-              <td><?php echo $row['users_count'] ?></td>
-              <td><?php echo $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=events&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=events&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $row['users_count'] ?></td>
+              <td><?= $row['active'] ?></td>
+              <td><a href="admin-update.php?tab=events&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=events&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -446,16 +446,16 @@ if ($isAdmin) {
           foreach ($courseItems as $row):
             $id = $row['id_course']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['creator'] ?></td>
-              <td><?php echo $row['first_name'] . ' ' . $row['last_name'] ?></td>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['price'] ?></td>
-              <td><?php echo $row['image'] ?></td>
+              <td><?= $id ?></td>
+              <td><?= $row['creator'] ?></td>
+              <td><?= $row['first_name'] . ' ' . $row['last_name'] ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['price'] ?></td>
+              <td><?= $row['image'] ?></td>
               <td>Check in edit</td>
-              <td><?php echo $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=courses&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=courses&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $row['active'] ?></td>
+              <td><a href="admin-update.php?tab=courses&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=courses&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
           <?php
@@ -487,16 +487,16 @@ if ($isAdmin) {
           foreach ($employeeItems as $row):
             $id = $row['id_employee']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['first_name'] ?></td>
-              <td><?php echo $row['last_name'] ?></td>
-              <td><?php echo $row['occupation'] ?></td>
-              <td><?php echo $row['image'] ?></td>
-              <td><?php echo $row['facebook'] ?></td>
-              <td><?php echo $row['twitter'] ?></td>
-              <td><?php echo $row['linkedin'] ?></td>
-              <td><a href="admin-update.php?tab=employees&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=employees&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['first_name'] ?></td>
+              <td><?= $row['last_name'] ?></td>
+              <td><?= $row['occupation'] ?></td>
+              <td><?= $row['image'] ?></td>
+              <td><?= $row['facebook'] ?></td>
+              <td><?= $row['twitter'] ?></td>
+              <td><?= $row['linkedin'] ?></td>
+              <td><a href="admin-update.php?tab=employees&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=employees&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -523,13 +523,13 @@ if ($isAdmin) {
           foreach ($qnaItems as $row):
             $id = $row['id_about_us']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['creator'] ?></td>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['description'] ?></td>
-              <td><?php echo $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=qnas&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=qnas&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['creator'] ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['description'] ?></td>
+              <td><?= $row['active'] ?></td>
+              <td><a href="admin-update.php?tab=qnas&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=qnas&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -559,16 +559,16 @@ if ($isAdmin) {
           foreach ($bannerItems as $row):
             $id = $row['id_banner']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['creator'] ?></td>
-              <td><?php echo $row['tag'] ?></td>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['description'] ?></td>
-              <td><?php echo $row['image'] ?></td>
-              <td><?php echo $row['button_link'] ?></td>
-              <td><?php echo $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=banners&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=banners&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['creator'] ?></td>
+              <td><?= $row['tag'] ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['description'] ?></td>
+              <td><?= $row['image'] ?></td>
+              <td><?= $row['button_link'] ?></td>
+              <td><?= $row['active'] ?></td>
+              <td><a href="admin-update.php?tab=banners&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=banners&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -596,14 +596,14 @@ if ($isAdmin) {
           foreach ($dateItems as $row):
             $id = $row['id_date']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['course'] ?></td>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['date'] ?></td>
-              <td><?php echo $row['capacity'] ?></td>
-              <td><?php echo $row['slots'] ?></td>
-              <td><a href="admin-update.php?tab=dates&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=dates&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['course'] ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['date'] ?></td>
+              <td><?= $row['capacity'] ?></td>
+              <td><?= $row['slots'] ?></td>
+              <td><a href="admin-update.php?tab=dates&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=dates&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -632,16 +632,16 @@ if ($isAdmin) {
           foreach ($orderItems as $row):
             $id = $row['id_order']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['first_name'] ?></td>
-              <td><?php echo $row['last_name'] ?></td>
-              <td><?php echo $row['email'] ?></td>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['date'] ?></td>
-              <td><?php echo $row['registered_at'] ?></td>
-              <td><?php echo $row['paid'] ?></td>
-              <td><a href="admin-update.php?tab=orders&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=orders&delete=<?php echo $id . '-' . $row['id_date'] ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['first_name'] ?></td>
+              <td><?= $row['last_name'] ?></td>
+              <td><?= $row['email'] ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['date'] ?></td>
+              <td><?= $row['registered_at'] ?></td>
+              <td><?= $row['paid'] ?></td>
+              <td><a href="admin-update.php?tab=orders&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=orders&delete=<?= $id . '-' . $row['id_date'] ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -670,16 +670,16 @@ if ($isAdmin) {
           foreach ($orderItems as $row):
             $id = $row['id_order_event']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['first_name'] ?></td>
-              <td><?php echo $row['last_name'] ?></td>
-              <td><?php echo $row['email'] ?></td>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['date'] ?></td>
-              <td><?php echo $row['registered_at'] ?></td>
-              <td><?php echo $row['paid'] ?></td>
-              <td><a href="admin-update.php?tab=eventOrders&id=<?php echo $id ?>">Edit</a></td>
-              <td><a href="?tab=eventOrders&delete=<?php echo $id . '-' . $row['id_event'] ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['first_name'] ?></td>
+              <td><?= $row['last_name'] ?></td>
+              <td><?= $row['email'] ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['date'] ?></td>
+              <td><?= $row['registered_at'] ?></td>
+              <td><?= $row['paid'] ?></td>
+              <td><a href="admin-update.php?tab=eventOrders&id=<?= $id ?>">Edit</a></td>
+              <td><a href="?tab=eventOrders&delete=<?= $id . '-' . $row['id_event'] ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -705,13 +705,13 @@ if ($isAdmin) {
           foreach ($messageItems as $row):
             $id = $row['id_message']; ?>
             <tr>
-              <td><?php echo $id ?></td>
-              <td><?php echo $row['first_name'] ?></td>
-              <td><?php echo $row['last_name'] ?></td>
-              <td><?php echo $row['email'] ?></td>
-              <td><?php echo $row['message'] ?></td>
-              <td><?php echo $row['created_at'] ?></td>
-              <td><a href="?tab=messages&delete=<?php echo $id ?>">Delete</a></td>
+              <td><?= $id ?></td>
+              <td><?= $row['first_name'] ?></td>
+              <td><?= $row['last_name'] ?></td>
+              <td><?= $row['email'] ?></td>
+              <td><?= $row['message'] ?></td>
+              <td><?= $row['created_at'] ?></td>
+              <td><a href="?tab=messages&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -736,12 +736,12 @@ if ($isAdmin) {
           <?php
           foreach ($orderItems as $row): ?>
             <tr>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['first_name'] . ' ' . $row['last_name'] ?></td>
-              <td><?php echo $row['price'] ?></td>
-              <td><?php echo $row['date'] ?></td>
-              <td><?php echo $row['registered_at'] ?></td>
-              <td><?php echo (($row['paid'] == 1) ? 'Yes' : 'no') ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['first_name'] . ' ' . $row['last_name'] ?></td>
+              <td><?= $row['price'] ?></td>
+              <td><?= $row['date'] ?></td>
+              <td><?= $row['registered_at'] ?></td>
+              <td><?= (($row['paid'] == 1) ? 'Yes' : 'no') ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -764,11 +764,11 @@ if ($isAdmin) {
           <?php
           foreach ($orderItems as $row): ?>
             <tr>
-              <td><?php echo $row['title'] ?></td>
-              <td><?php echo $row['price'] ?></td>
-              <td><?php echo $row['date'] ?></td>
-              <td><?php echo $row['registered_at'] ?></td>
-              <td><?php echo (($row['paid'] == 1) ? 'Yes' : 'No') ?></td>
+              <td><?= $row['title'] ?></td>
+              <td><?= $row['price'] ?></td>
+              <td><?= $row['date'] ?></td>
+              <td><?= $row['registered_at'] ?></td>
+              <td><?= (($row['paid'] == 1) ? 'Yes' : 'No') ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>

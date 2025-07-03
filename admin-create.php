@@ -199,7 +199,7 @@ if (($_GET['tab'] ?? '') == "dates") {
 <div class="container">
   <?php if ($err): ?>
     <br>
-    <div class="alert alert-danger" role="alert"><?php echo $err ?></div>
+    <div class="alert alert-danger" role="alert"><?= $err ?></div>
   <?php endif ?>
 
   <?php if (($_GET['tab'] ?? '') == "testimonials"): ?>
@@ -383,8 +383,8 @@ if (($_GET['tab'] ?? '') == "dates") {
 
       foreach ($tagItems as $row): ?>
         <div class="form-check">
-          <label class="form-check-label"><?php echo $row['name'] ?></label>
-          <input name="tags[]" type="checkbox" class="form-check-input" value="<?php echo $row['id_tag'] ?>">
+          <label class="form-check-label"><?= $row['name'] ?></label>
+          <input name="tags[]" type="checkbox" class="form-check-input" value="<?= $row['id_tag'] ?>">
         </div>
       <?php endforeach ?>
 
@@ -495,7 +495,7 @@ if (($_GET['tab'] ?? '') == "dates") {
           $courseItems = $course->readCourse();
 
           foreach ($courseItems as $row): ?>
-            <option value="<?php echo $row['id_course'] ?>"><?php echo $row['title'] ?></option>
+            <option value="<?= $row['id_course'] ?>"><?= $row['title'] ?></option>
           <?php endforeach ?>
         </select>
       </div>

@@ -1,10 +1,6 @@
 <?php
 include_once("components/header.php");
 
-// echo __DIR__;
-// echo "<br>";
-// echo $_SERVER['DOCUMENT_ROOT'];
-
 $err = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $firstName = $_POST['firstName'];
@@ -14,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $messageObject = new Message($db);
   if ($messageObject->createMessage($firstName, $lastName, $email, $message)) {
-    header("Location: /index.php#contact");
+    header("Location: /#contact");
     exit;
   } else {
     $err = 'Failed to send your message.';
@@ -33,15 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
           foreach ($bannerItems as $row):
             if ($row['active'] == 0) continue; ?>
-            <div class="item item-<?php echo $row['id_banner'] ?>">
-              <img src="<?php echo $row['image'] ?>" alt="<?php echo $row['title'] ?>">
+            <div class="item item-<?= $row['id_banner'] ?>">
+              <img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
               <div class="header-text">
-                <span class="category"><?php echo $row['tag'] ?></span>
-                <h2><?php echo $row['title'] ?></h2>
-                <p><?php echo $row['description'] ?></p>
+                <span class="category"><?= $row['tag'] ?></span>
+                <h2><?= $row['title'] ?></h2>
+                <p><?= $row['description'] ?></p>
                 <div class="buttons">
                   <div class="main-button">
-                    <a href="<?php echo $row['button_link'] ?>">Request Demo</a>
+                    <a href="<?= $row['button_link'] ?>">Request Demo</a>
                   </div>
                 </div>
               </div>
@@ -65,13 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="col-lg-4 col-md-6">
           <div class="service-item">
             <div class="icon">
-              <img src="<?php echo $row['image'] ?>" alt="<?php echo $row['title'] ?>">
+              <img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
             </div>
             <div class="main-content">
-              <h4><?php echo $row['title'] ?></h4>
-              <p><?php echo $row['description'] ?></p>
+              <h4><?= $row['title'] ?></h4>
+              <p><?= $row['description'] ?></p>
               <div class="main-button">
-                <a href="<?php echo $row['button_link'] ?>">Read More</a>
+                <a href="<?= $row['button_link'] ?>">Read More</a>
               </div>
             </div>
           </div>
@@ -94,17 +90,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($row['active'] == 0) continue;
             $id = $row['id_about_us']; ?>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="heading<?php echo $id ?>">
+              <h2 class="accordion-header" id="heading<?= $id ?>">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse<?php echo $id ?>" aria-expanded="false"
-                  aria-controls="collapse<?php echo $id ?>">
-                  <?php echo $row['title'] ?>
+                  data-bs-target="#collapse<?= $id ?>" aria-expanded="false"
+                  aria-controls="collapse<?= $id ?>">
+                  <?= $row['title'] ?>
                 </button>
               </h2>
-              <div id="collapse<?php echo $id ?>" class="accordion-collapse collapse"
-                aria-labelledby="heading<?php echo $id ?>" data-bs-parent="#accordionExample">
+              <div id="collapse<?= $id ?>" class="accordion-collapse collapse"
+                aria-labelledby="heading<?= $id ?>" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <?php echo $row['description'] ?>
+                  <?= $row['description'] ?>
                 </div>
               </div>
             </div>
@@ -146,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       foreach ($tagItems as $row): ?>
         <li>
-          <a href="#!" data-filter=".<?php echo $row['name'] ?>"><?php echo $row['name'] ?></a>
+          <a href="#!" data-filter=".<?= $row['name'] ?>"><?= $row['name'] ?></a>
         </li>
       <?php endforeach ?>
     </ul>
@@ -162,19 +158,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $spaceExists = strpos($tags, ' ');
         $firstTag = substr($tags, 0, $spaceExists ? $spaceExists : strlen($tags)) ?>
 
-        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 <?php echo $row['tags'] ?>">
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 <?= $row['tags'] ?>">
           <div class="events_item">
             <div class="thumb">
-              <a href="register-course.php?id=<?php echo $row['id_course'] ?>"><img src="<?php echo $row['image'] ?>"
-                  alt="<?php echo $row['title'] ?>"></a>
-              <span class="category"><?php echo $firstTag ?></span>
+              <a href="register-course.php?id=<?= $row['id_course'] ?>"><img src="<?= $row['image'] ?>"
+                  alt="<?= $row['title'] ?>"></a>
+              <span class="category"><?= $firstTag ?></span>
               <span class="price">
-                <h6><?php echo $row['price'] ?><em>€</em></h6>
+                <h6><?= $row['price'] ?><em>€</em></h6>
               </span>
             </div>
             <div class="down-content">
-              <span class="author"><?php echo $row['first_name'] . ' ' . $row['last_name'] ?></span>
-              <h4><?php echo $row['title'] ?></h4>
+              <span class="author"><?= $row['first_name'] . ' ' . $row['last_name'] ?></span>
+              <h4><?= $row['title'] ?></h4>
             </div>
           </div>
         </div>
@@ -233,13 +229,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class=" col-lg-3 col-md-6">
       <div class="team-member">
         <div class="main-content">
-          <img src="<?php echo $row['image'] ?>" alt="<?php echo $row['first_name'] ?> <?php echo $row['last_name'] ?>">
-          <span class="category"><?php echo $row['occupation'] ?></span>
-          <h4><?php echo $row['first_name'] ?> <?php echo $row['last_name'] ?></h4>
+          <img src="<?= $row['image'] ?>" alt="<?= $row['first_name'] ?> <?= $row['last_name'] ?>">
+          <span class="category"><?= $row['occupation'] ?></span>
+          <h4><?= $row['first_name'] ?> <?= $row['last_name'] ?></h4>
           <ul class="social-icons">
-            <li><a href="<?php echo $row['facebook'] ?>"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="<?php echo $row['twitter'] ?>"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="<?php echo $row['linkedin'] ?>"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="<?= $row['facebook'] ?>"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="<?= $row['twitter'] ?>"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="<?= $row['linkedin'] ?>"><i class="fab fa-linkedin"></i></a></li>
           </ul>
         </div>
       </div>
@@ -275,11 +271,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           foreach ($testimonialItems as $row):
             if ($row['active'] == 0) continue; ?>
             <div class="item">
-              <p><?php echo $row["description"] ?></p>
+              <p><?= $row["description"] ?></p>
               <div class="author">
-                <img src="<?php echo $row["image"] ?>" alt="">
-                <span class="category"><?php echo $row["occupation"] ?></span>
-                <h4><?php echo $row["first_name"] . ' ' . $row["last_name"] ?></h4>
+                <img src="<?= $row["image"] ?>" alt="">
+                <span class="category"><?= $row["occupation"] ?></span>
+                <h4><?= $row["first_name"] . ' ' . $row["last_name"] ?></h4>
               </div>
             </div>
           <?php endforeach ?>
@@ -318,29 +314,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="row">
               <div class="col-lg-3">
                 <div class="image">
-                  <img src="<?php echo $row['image'] ?>" alt="<?php echo $row['title'] ?>">
+                  <img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
                 </div>
               </div>
               <div class="col-lg-9">
                 <ul>
                   <li>
-                    <span class="category"><?php echo $row['category'] ?></span>
-                    <h4><?php echo $row['title'] ?></h4>
+                    <span class="category"><?= $row['category'] ?></span>
+                    <h4><?= $row['title'] ?></h4>
                   </li>
                   <li>
                     <span>Date:</span>
-                    <h6><?php echo $row['date'] ?></h6>
+                    <h6><?= $row['date'] ?></h6>
                   </li>
                   <li>
                     <span>Duration:</span>
-                    <h6><?php echo $row['duration'] ?></h6>
+                    <h6><?= $row['duration'] ?></h6>
                   </li>
                   <li>
                     <span>Price:</span>
-                    <h6><?php echo $row['price'] ?>€</h6>
+                    <h6><?= $row['price'] ?>€</h6>
                   </li>
                 </ul>
-                <a href="register-event.php?id=<?php echo $row['id_event'] ?>"><i class="fa fa-angle-right"></i></a>
+                <a href="register-event.php?id=<?= $row['id_event'] ?>"><i class="fa fa-angle-right"></i></a>
               </div>
             </div>
           </div>
@@ -353,7 +349,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="contact-us section" id="contact">
   <?php if ($err): ?>
     <div class="alert alert-danger" role="alert">
-      <?php echo $err ?>
+      <?= $err ?>
     </div>
   <?php endif ?>
   <div class="container">

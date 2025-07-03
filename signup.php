@@ -48,23 +48,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <?php if (isset($err)): ?>
     <br>
-    <div class="alert alert-danger" role="alert"><?php echo $err ?></div>
+    <div class="alert alert-danger" role="alert"><?= $err ?></div>
   <?php endif ?>
 
   <form method="POST">
     <div class="form-group">
       <label>First name</label>
-      <input name="firstName" value="<?php echo $firstName ?? '' ?>" type="text" class="form-control"
+      <input name="firstName" value="<?= $firstName ?? '' ?>" type="text" class="form-control"
         placeholder="First Name" required>
     </div>
     <div class="form-group">
       <label>Last name</label>
-      <input name="lastName" value="<?php echo $lastName ?? '' ?>" type="text" class="form-control"
+      <input name="lastName" value="<?= $lastName ?? '' ?>" type="text" class="form-control"
         placeholder="Last name" required>
     </div>
     <div class="form-group">
       <label>Email</label>
-      <input name="email" value="<?php echo $email ?? '' ?>" type="email" class="form-control" placeholder="Email"
+      <input name="email" value="<?= $email ?? '' ?>" type="email" class="form-control" placeholder="Email"
         required>
     </div>
     <div class="form-group">

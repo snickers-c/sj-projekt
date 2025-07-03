@@ -36,18 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="container register-course">
   <?php if ($eventItem): ?>
-    <h1 class="mb-4"><?php echo $eventItem['title'] ?></h1>
+    <h1 class="mb-4"><?= $eventItem['title'] ?></h1>
 
-    <span class="category"><?php echo $eventItem['category'] ?></span>
+    <span class="category"><?= $eventItem['category'] ?></span>
 
-    <h3 class="mt-4 mb-4"><?php echo $eventItem['price'] ?>€</h3>
+    <h3 class="mt-4 mb-4"><?= $eventItem['price'] ?>€</h3>
 
 
-    <p><?php echo $eventItem['description'] ?></p>
+    <p><?= $eventItem['description'] ?></p>
 
     <?php if ($err): ?>
       <div class="alert alert-danger" role="alert">
-        <?php echo $err ?>
+        <?= $err ?>
       </div>
     <?php endif ?>
 
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $disabled = ' disabled';
         }
       ?>
-        <button type="submit" class="mt-4 btn btn-primary" <?php echo $disabled ?>>Register</button>
+        <button type="submit" class="mt-4 btn btn-primary" <?= $disabled ?>>Register</button>
 
       <?php else: ?>
         <div class="mt-4 alert alert-primary" role="alert">
