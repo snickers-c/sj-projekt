@@ -22,7 +22,7 @@ foreach ($validIds as $row) {
 $err = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($order->createOrderEvent($_SESSION['userID'], $id)) {
-    header("Location: admin.php");
+    header("Location: admin");
     exit;
   } else {
     $err = 'Failed to register event to your account, try again later.';

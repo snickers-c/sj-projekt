@@ -14,7 +14,7 @@ if (($_GET['tab'] ?? '') == "testimonials") {
     $active = $_POST['active'];
 
     if ($testimonial->createTestimonial($_SESSION['userID'], $firstName, $lastName, $occupation, $desc, $image, $active)) {
-      header('Location: admin.php?tab=testimonials');
+      header('Location: admin?tab=testimonials');
       exit;
     } else {
       $err = "Inserting failed";
@@ -33,7 +33,7 @@ if (($_GET['tab'] ?? '') == "users") {
     $password = $_POST['password'];
 
     if ($user->createUser($firstName, $lastName, $role, $email, $password)) {
-      header('Location: admin.php?tab=users');
+      header('Location: admin?tab=users');
       exit;
     } else {
       $err = "Inserting failed";
@@ -48,7 +48,7 @@ if (($_GET['tab'] ?? '') == "tags") {
     $name = $_POST['name'];
 
     if ($tag->createTag($name)) {
-      header('Location: admin.php?tab=tags');
+      header('Location: admin?tab=tags');
       exit;
     } else {
       $err = "Inserting failed";
@@ -67,7 +67,7 @@ if (($_GET['tab'] ?? '') == "services") {
     $active = $_POST['active'];
 
     if ($service->createService($_SESSION['userID'], $title, $desc, $buttonLink, $image, $active)) {
-      header('Location: admin.php?tab=services');
+      header('Location: admin?tab=services');
       exit;
     } else {
       $err = "Inserting failed";
@@ -89,7 +89,7 @@ if (($_GET['tab'] ?? '') == "events") {
     $active = $_POST['active'];
 
     if ($event->createEvent($_SESSION['userID'], $title, $category, $date, $duration, $price, $image, $desc, $active)) {
-      header('Location: admin.php?tab=events');
+      header('Location: admin?tab=events');
       exit;
     } else {
       $err = "Inserting failed";
@@ -110,7 +110,7 @@ if (($_GET['tab'] ?? '') == "courses") {
     $desc = $_POST['desc'];
 
     if ($course->createCourse($_SESSION['userID'], $employee, $title, $price, $image, $active, $desc, $tags)) {
-      header('Location: admin.php?tab=courses');
+      header('Location: admin?tab=courses');
       exit;
     } else {
       $err = "Inserting failed";
@@ -131,7 +131,7 @@ if (($_GET['tab'] ?? '') == "employees") {
     $linkedIn = $_POST['linkedIn'];
 
     if ($employee->createEmployee($firstName, $lastName, $occupation, $image, $facebook, $twitter, $linkedIn)) {
-      header('Location: admin.php?tab=employees');
+      header('Location: admin?tab=employees');
       exit;
     } else {
       $err = "Inserting failed";
@@ -148,7 +148,7 @@ if (($_GET['tab'] ?? '') == "qnas") {
     $active = $_POST['active'];
 
     if ($qna->createQna($_SESSION['userID'], $title, $desc, $active)) {
-      header('Location: admin.php?tab=qnas');
+      header('Location: admin?tab=qnas');
       exit;
     } else {
       $err = "Inserting failed";
@@ -168,7 +168,7 @@ if (($_GET['tab'] ?? '') == "banners") {
     $active = $_POST['active'];
 
     if ($banner->createBanner($_SESSION['userID'], $tag, $title, $desc, $image, $buttonLink, $active)) {
-      header('Location: admin.php?tab=banners');
+      header('Location: admin?tab=banners');
       exit;
     } else {
       $err = "Inserting failed";
@@ -185,7 +185,7 @@ if (($_GET['tab'] ?? '') == "dates") {
     $capacity = $_POST['capacity'];
 
     if ($dateObject->createDate($course, $date, $capacity)) {
-      header('Location: admin.php?tab=dates');
+      header('Location: admin?tab=dates');
       exit;
     } else {
       $err = "Inserting failed";

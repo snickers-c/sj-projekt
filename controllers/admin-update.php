@@ -20,7 +20,7 @@ if (($_GET['tab'] ?? '') == "testimonials") {
     $active = $_POST['active'];
 
     if ($testimonial->updateTestimonial($id, $firstName, $lastName, $occupation, $desc, $image, $active)) {
-      header('Location: admin.php?tab=testimonials');
+      header('Location: admin?tab=testimonials');
       exit;
     } else {
       $err = "Update of data failed";
@@ -43,7 +43,7 @@ if (($_GET['tab'] ?? '') == "users") {
     $email = $_POST['email'];
 
     if ($user->updateUser($id, $firstName, $lastName, $role, $email)) {
-      header('Location: admin.php?tab=users');
+      header('Location: admin?tab=users');
       exit;
     } else {
       $err = "Update of data failed";
@@ -63,7 +63,7 @@ if (($_GET['tab'] ?? '') == "tags") {
     $name = $_POST['name'];
 
     if ($tag->updateTag($id, $name)) {
-      header('Location: admin.php?tab=tags');
+      header('Location: admin?tab=tags');
       exit;
     } else {
       $err = "Update of data failed";
@@ -87,7 +87,7 @@ if (($_GET['tab'] ?? '') == "services") {
     $active = $_POST['active'];
 
     if ($service->updateService($id, $title, $desc, $buttonLink, $image, $active)) {
-      header('Location: admin.php?tab=services');
+      header('Location: admin?tab=services');
       exit;
     } else {
       $err = "Update of data failed";
@@ -114,7 +114,7 @@ if (($_GET['tab'] ?? '') == "events") {
     $active = $_POST['active'];
 
     if ($event->updateEvent($id, $title, $category, $date, $duration, $price, $image, $desc, $active)) {
-      header('Location: admin.php?tab=events');
+      header('Location: admin?tab=events');
       exit;
     } else {
       $err = "Update of data failed";
@@ -140,7 +140,7 @@ if (($_GET['tab'] ?? '') == "courses") {
     $desc = $_POST['desc'];
 
     if ($course->updateCourse($id, $employee, $title, $price, $image, $desc, $active, $tags)) {
-      header('Location: admin.php?tab=courses');
+      header('Location: admin?tab=courses');
       exit;
     } else {
       $err = "Update of data failed";
@@ -166,7 +166,7 @@ if (($_GET['tab'] ?? '') == "employees") {
     $linkedIn = $_POST['linkedIn'];
 
     if ($employee->updateEmployee($id, $firstName, $lastName, $occupation, $image, $facebook, $twitter, $linkedIn)) {
-      header('Location: admin.php?tab=employees');
+      header('Location: admin?tab=employees');
       exit;
     } else {
       $err = "Update of data failed";
@@ -188,7 +188,7 @@ if (($_GET['tab'] ?? '') == "qnas") {
     $active = $_POST['active'];
 
     if ($qna->updateQna($id, $title, $desc, $active)) {
-      header('Location: admin.php?tab=qnas');
+      header('Location: admin?tab=qnas');
       exit;
     } else {
       $err = "Update of data failed";
@@ -213,7 +213,7 @@ if (($_GET['tab'] ?? '') == "banners") {
     $active = $_POST['active'];
 
     if ($banner->updateBanner($id, $tag, $title, $desc, $image, $buttonLink, $active)) {
-      header('Location: admin.php?tab=banners');
+      header('Location: admin?tab=banners');
       exit;
     } else {
       $err = "Update of data failed";
@@ -235,7 +235,7 @@ if (($_GET['tab'] ?? '') == "dates") {
     $capacity = $_POST['capacity'];
 
     if ($dateObject->updateDate($id, $course, $date, $capacity)) {
-      header('Location: admin.php?tab=dates');
+      header('Location: admin?tab=dates');
       exit;
     } else {
       $err = "Update of data failed";
@@ -255,7 +255,7 @@ if (($_GET['tab'] ?? '') == "orders") {
     $paid = $_POST['paid'];
 
     if ($order->updateOrder($id, $paid)) {
-      header('Location: admin.php?tab=orders');
+      header('Location: admin?tab=orders');
       exit;
     } else {
       $err = "Update of data failed";
@@ -275,7 +275,7 @@ if (($_GET['tab'] ?? '') == "eventOrders") {
     $paid = $_POST['paid'];
 
     if ($order->updateOrderEvent($id, $paid)) {
-      header('Location: admin.php?tab=eventOrders');
+      header('Location: admin?tab=eventOrders');
       exit;
     } else {
       $err = "Update of data failed";

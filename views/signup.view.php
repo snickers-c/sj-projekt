@@ -34,7 +34,7 @@
       <input name="repeatPassword" type="password" class="form-control" placeholder="Repeat password" required>
     </div>
 
-    <a href="login.php">I have account.</a><br>
+    <a href="login">I have account.</a><br>
     <button type="submit" class="btn btn-primary mt-2">Submit</button>
   </form>
 </div>

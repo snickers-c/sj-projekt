@@ -21,10 +21,10 @@ class Menu
       ];
 
       if ($auth->isLoggedIn()) {
-        $menuItems[] = ['label' => 'Admin', 'link' => 'admin.php'];
+        $menuItems[] = ['label' => 'Admin', 'link' => 'admin'];
       } else {
-        $menuItems[] = ['label' => 'Log in', 'link' => 'login.php'];
-        $menuItems[] = ['label' => 'Sign up', 'link' => 'signup.php'];
+        $menuItems[] = ['label' => 'Log in', 'link' => 'login'];
+        $menuItems[] = ['label' => 'Sign up', 'link' => 'signup'];
       }
     }
 
@@ -33,10 +33,10 @@ class Menu
 
   public function header()
   {
-    $pageName = basename($_SERVER["SCRIPT_NAME"], ".php");
+    $pageName = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $header = '<header class="header-area header-sticky';
 
-    if ($pageName == "index") {
+    if ($pageName == "/") {
       $header .= '">';
     } else {
       $header .= ' background-header">';
@@ -66,20 +66,20 @@ class Menu
   public function addStylesheets()
   {
     $result = "";
-    $pageName = basename($_SERVER["SCRIPT_NAME"], ".php");
+    $pageName = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-    $result .= '<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">';
-    $result .= '<link rel="stylesheet" href="assets/css/fontawesome.css">';
-    $result .= '<link rel="stylesheet" href="assets/css/templatemo-scholar.css">';
-    $result .= '<link rel="stylesheet" href="assets/css/animate.css">';
+    $result .= '<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">';
+    $result .= '<link rel="stylesheet" href="/assets/css/fontawesome.css">';
+    $result .= '<link rel="stylesheet" href="/assets/css/templatemo-scholar.css">';
+    $result .= '<link rel="stylesheet" href="/assets/css/animate.css">';
     $result .= '<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />';
 
     switch ($pageName) {
-      case "index":
-        $result .= '<link rel="stylesheet" href="assets/css/owl.css">';
+      case "/":
+        $result .= '<link rel="stylesheet" href="/assets/css/owl.css">';
         break;
-      case "thankyou":
-        $result .= '<link rel="stylesheet" href="assets/css/owl.css">';
+      case "/thankyou":
+        $result .= '<link rel="stylesheet" href="/assets/css/owl.css">';
         break;
         // case "admin":
         // case "admin-create":
@@ -93,23 +93,23 @@ class Menu
   public function addScripts()
   {
     $result = "";
-    $pageName = basename($_SERVER["SCRIPT_NAME"], ".php");
+    $pageName = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-    $result .= '<script src="vendor/jquery/jquery.min.js"></script>';
-    $result .= '<script src="vendor/bootstrap/js/bootstrap.min.js"></script>';
-    $result .= '<script src="assets/js/isotope.min.js"></script>';
+    $result .= '<script src="/vendor/jquery/jquery.min.js"></script>';
+    $result .= '<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>';
+    $result .= '<script src="/assets/js/isotope.min.js"></script>';
 
     switch ($pageName) {
-      case "index":
-        $result .= '<script src="assets/js/owl-carousel.js"></script>';
-        $result .= '<script src="assets/js/counter.js"></script>';
+      case "/":
+        $result .= '<script src="/assets/js/owl-carousel.js"></script>';
+        $result .= '<script src="/assets/js/counter.js"></script>';
         break;
-      case "thankyou":
-        $result .= '<script src="assets/js/owl-carousel.js"></script>';
-        $result .= '<script src="assets/js/counter.js"></script>';
+      case "/thankyou":
+        $result .= '<script src="/assets/js/owl-carousel.js"></script>';
+        $result .= '<script src="/assets/js/counter.js"></script>';
         break;
     }
-    $result .= '<script src="assets/js/custom.js"></script>';
+    $result .= '<script src="/assets/js/custom.js"></script>';
 
     return $result;
   }

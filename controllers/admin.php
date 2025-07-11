@@ -15,7 +15,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($testimonial->deleteTestimonial($_GET['delete'])) {
-        header("Location: admin.php?tab=testimonials");
+        header("Location: admin?tab=testimonials");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -29,7 +29,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($user->deleteUser($_GET['delete'])) {
-        header("Location: admin.php?tab=users");
+        header("Location: admin?tab=users");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -43,7 +43,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($tag->deleteTag($_GET['delete'])) {
-        header("Location: admin.php?tab=tags");
+        header("Location: admin?tab=tags");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -57,7 +57,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($service->deleteService($_GET['delete'])) {
-        header("Location: admin.php?tab=services");
+        header("Location: admin?tab=services");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -71,7 +71,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($event->deleteEvent($_GET['delete'])) {
-        header("Location: admin.php?tab=events");
+        header("Location: admin?tab=events");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -85,7 +85,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($course->deleteCourse($_GET['delete'])) {
-        header("Location: admin.php?tab=courses");
+        header("Location: admin?tab=courses");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -99,7 +99,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($employee->deleteEmployee($_GET['delete'])) {
-        header("Location: admin.php?tab=employees");
+        header("Location: admin?tab=employees");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -113,7 +113,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($qna->deleteQna($_GET['delete'])) {
-        header("Location: admin.php?tab=qnas");
+        header("Location: admin?tab=qnas");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -127,7 +127,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($banner->deleteBanner($_GET['delete'])) {
-        header("Location: admin.php?tab=banners");
+        header("Location: admin?tab=banners");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -141,7 +141,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($date->deleteDate($_GET['delete'])) {
-        header("Location: admin.php?tab=dates");
+        header("Location: admin?tab=dates");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -155,7 +155,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($order->deleteOrder($_GET['delete'])) {
-        header("Location: admin.php?tab=orders");
+        header("Location: admin?tab=orders");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -169,7 +169,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($order->deleteOrderEvent($_GET['delete'])) {
-        header("Location: admin.php?tab=eventOrders");
+        header("Location: admin?tab=eventOrders");
         exit;
       } else {
         echo "Record failed to be deleted.";
@@ -183,7 +183,7 @@ if ($isAdmin) {
 
     if (isset($_GET['delete'])) {
       if ($message->deleteMessage($_GET['delete'])) {
-        header("Location: admin.php?tab=messages");
+        header("Location: admin?tab=messages");
         exit;
       } else {
         echo "Record failed to be deleted.";

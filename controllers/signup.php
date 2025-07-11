@@ -3,7 +3,7 @@ include_once("components/header.php");
 $auth = new Authenticate($db);
 
 if ($auth->isLoggedIn()) {
-  header("Location: admin.php");
+  header("Location: admin");
   exit;
 }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 
   if ($userLogged) {
-    header("Location: admin.php");
+    header("Location: admin");
     exit;
   } else {
     $err = $err ?? "Login failed!";

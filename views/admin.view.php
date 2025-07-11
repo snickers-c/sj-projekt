@@ -38,7 +38,7 @@
   <?php if ($isAdmin): ?>
     <?php if (($_GET['tab'] ?? '') == "testimonials"): ?>
       <h1>Testimonials</h1>
-      <a href="admin-create.php?tab=testimonials">Create</a>
+      <a href="admin-create?tab=testimonials">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -67,7 +67,7 @@
               <td><?= $row['description'] ?></td>
               <td><?= $row['active'] ?></td>
               <td><?= $row['image'] ?></td>
-              <td><a href="admin-update.php?tab=testimonials&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=testimonials&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=testimonials&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -77,7 +77,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "users"): ?>
       <h1>Users</h1>
-      <a href="admin-create.php?tab=users">Create</a>
+      <a href="admin-create?tab=users">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -102,7 +102,7 @@
               <td><?= $row['role'] ?></td>
               <td><?= $row['email'] ?></td>
               <td><?= $row['created_at'] ?></td>
-              <td><a href="admin-update.php?tab=users&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=users&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=users&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -112,7 +112,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "tags"): ?>
       <h1>Course tags</h1>
-      <a href="admin-create.php?tab=tags">Create</a>
+      <a href="admin-create?tab=tags">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -129,7 +129,7 @@
             <tr>
               <td><?= $id ?></td>
               <td><?= $row['name'] ?></td>
-              <td><a href="admin-update.php?tab=tags&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=tags&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=tags&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -139,7 +139,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "services"): ?>
       <h1>Services</h1>
-      <a href="admin-create.php?tab=services">Create</a>
+      <a href="admin-create?tab=services">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -166,7 +166,7 @@
               <td><?= $row['button_link'] ?></td>
               <td><?= $row['image'] ?></td>
               <td><?= $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=services&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=services&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=services&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -176,7 +176,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "events"): ?>
       <h1>Events</h1>
-      <a href="admin-create.php?tab=events">Create</a>
+      <a href="admin-create?tab=events">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -211,7 +211,7 @@
               <td>Check in edit</td>
               <td><?= $row['users_count'] ?></td>
               <td><?= $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=events&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=events&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=events&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -221,7 +221,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "courses"): ?>
       <h1>Courses</h1>
-      <a href="admin-create.php?tab=courses">Create</a>
+      <a href="admin-create?tab=courses">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -250,7 +250,7 @@
               <td><?= $row['image'] ?></td>
               <td>Check in edit</td>
               <td><?= $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=courses&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=courses&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=courses&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -262,7 +262,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "employees"): ?>
       <h1>Employees</h1>
-      <a href="admin-create.php?tab=employees">Create</a>
+      <a href="admin-create?tab=employees">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -291,7 +291,7 @@
               <td><?= $row['facebook'] ?></td>
               <td><?= $row['twitter'] ?></td>
               <td><?= $row['linkedin'] ?></td>
-              <td><a href="admin-update.php?tab=employees&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=employees&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=employees&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -301,7 +301,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "qnas"): ?>
       <h1>QnA's</h1>
-      <a href="admin-create.php?tab=qnas">Create</a>
+      <a href="admin-create?tab=qnas">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -324,7 +324,7 @@
               <td><?= $row['title'] ?></td>
               <td><?= $row['description'] ?></td>
               <td><?= $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=qnas&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=qnas&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=qnas&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -334,7 +334,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "banners"): ?>
       <h1>Banners</h1>
-      <a href="admin-create.php?tab=banners">Create</a>
+      <a href="admin-create?tab=banners">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -363,7 +363,7 @@
               <td><?= $row['image'] ?></td>
               <td><?= $row['button_link'] ?></td>
               <td><?= $row['active'] ?></td>
-              <td><a href="admin-update.php?tab=banners&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=banners&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=banners&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -373,7 +373,7 @@
 
     <?php if (($_GET['tab'] ?? '') == "dates"): ?>
       <h1>Dates</h1>
-      <a href="admin-create.php?tab=dates">Create</a>
+      <a href="admin-create?tab=dates">Create</a>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -398,7 +398,7 @@
               <td><?= $row['date'] ?></td>
               <td><?= $row['capacity'] ?></td>
               <td><?= $row['slots'] ?></td>
-              <td><a href="admin-update.php?tab=dates&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=dates&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=dates&delete=<?= $id ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -436,7 +436,7 @@
               <td><?= $row['date'] ?></td>
               <td><?= $row['registered_at'] ?></td>
               <td><?= $row['paid'] ?></td>
-              <td><a href="admin-update.php?tab=orders&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=orders&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=orders&delete=<?= $id . '-' . $row['id_date'] ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>
@@ -474,7 +474,7 @@
               <td><?= $row['date'] ?></td>
               <td><?= $row['registered_at'] ?></td>
               <td><?= $row['paid'] ?></td>
-              <td><a href="admin-update.php?tab=eventOrders&id=<?= $id ?>">Edit</a></td>
+              <td><a href="admin-update?tab=eventOrders&id=<?= $id ?>">Edit</a></td>
               <td><a href="?tab=eventOrders&delete=<?= $id . '-' . $row['id_event'] ?>">Delete</a></td>
             </tr>
           <?php endforeach ?>

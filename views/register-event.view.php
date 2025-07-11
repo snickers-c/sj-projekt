@@ -34,7 +34,7 @@
         <div class="mt-4 alert alert-primary" role="alert">
           To register a event, you have to be logged in your account or create one.
         </div>
-        <a href="signup.php">sign up</a>
+        <a href="signup">sign up</a>
       <?php endif ?>
     </form>
 

@@ -20,7 +20,7 @@
       <input name="password" type="password" class="form-control" placeholder="Password" required>
     </div>
 
-    <a href="signup.php">Don't have account?</a><br>
+    <a href="signup">Don't have account?</a><br>
     <button type="submit" class="btn btn-primary mt-2">Submit</button>
   </form>
 </div>

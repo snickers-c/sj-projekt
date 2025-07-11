@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $order = new Order($db);
   if ($order->createOrder($_SESSION['userID'], $date)) {
-    header("Location: admin.php?tab=myCourses");
+    header("Location: admin?tab=myCourses");
     exit;
   } else {
     $err = 'Failed to register course to your account, try again later.';

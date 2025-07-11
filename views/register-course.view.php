@@ -73,7 +73,7 @@
           To register a course, you have to be logged in your account or create one.
         </div>
 
-        <a href="signup.php">sign up</a>
+        <a href="signup">sign up</a>
       <?php endif ?>
     </form>
 

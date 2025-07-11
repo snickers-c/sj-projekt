@@ -140,7 +140,7 @@
         <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 <?= $row['tags'] ?>">
           <div class="events_item">
             <div class="thumb">
-              <a href="register-course.php?id=<?= $row['id_course'] ?>"><img src="<?= $row['image'] ?>"
+              <a href="register-course?id=<?= $row['id_course'] ?>"><img src="<?= $row['image'] ?>"
                   alt="<?= $row['title'] ?>"></a>
               <span class="category"><?= $firstTag ?></span>
               <span class="price">
@@ -315,7 +315,7 @@
                     <h6><?= $row['price'] ?>€</h6>
                   </li>
                 </ul>
-                <a href="register-event.php?id=<?= $row['id_event'] ?>"><i class="fa fa-angle-right"></i></a>
+                <a href="register-event?id=<?= $row['id_event'] ?>"><i class="fa fa-angle-right"></i></a>
               </div>
             </div>
           </div>
